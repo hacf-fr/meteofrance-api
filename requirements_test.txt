@@ -1,0 +1,5 @@
+# Requirements used for testing
+
+pytest
+pytest-cov
+requests_mock
