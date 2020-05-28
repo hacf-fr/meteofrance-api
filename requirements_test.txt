@@ -3,3 +3,5 @@
 pytest
 pytest-cov
 requests_mock
+isort
+black

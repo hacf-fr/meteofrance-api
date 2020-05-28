@@ -4,13 +4,13 @@ Meteo France weather forecast python API.
 """
 
 from typing import List
+
 from .auth import Auth
-from .place import Place
+from .const import COASTAL_DEPARTMENT_LIST
 from .forecast import Forecast
+from .place import Place
 from .rain import Rain
 from .warning import CurrentPhenomenons, Full
-from .const import COASTAL_DEPARTMENT_LIST
-
 
 # TODO: http://webservice.meteofrance.com/observation
 # TODO: http://ws.meteofrance.com/ws/getVigilance/national.json

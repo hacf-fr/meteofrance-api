@@ -7,11 +7,11 @@ For getting weather alerts in France and Andorre.
 
 from .auth import Auth
 from .const import (
-    ALERT_COLOR_LIST_FR,
     ALERT_COLOR_LIST_EN,
-    COASTAL_DEPARTMENT_LIST,
+    ALERT_COLOR_LIST_FR,
     ALERT_TYPE_LIST_EN,
     ALERT_TYPE_LIST_FR,
+    COASTAL_DEPARTMENT_LIST,
 )
 
 ###

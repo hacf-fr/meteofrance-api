@@ -1,11 +1,10 @@
 # coding: utf-8
 """tests meteofrance module. Auth class"""
 import pytest
-
 import requests
 
 from meteofrance import Auth, AuthMeteofrance
-from meteofrance.const import METEOFRANCE_API_URL, METEOFRANCE_API_TOKEN
+from meteofrance.const import METEOFRANCE_API_TOKEN, METEOFRANCE_API_URL
 
 
 def test_auth():

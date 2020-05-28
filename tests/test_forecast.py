@@ -1,8 +1,8 @@
 # coding: utf-8
 """tests for meteofrance modile. Forecast class"""
-import pytest
-
 from datetime import datetime
+
+import pytest
 
 from meteofrance import AuthMeteofrance, MeteofranceClient
 
