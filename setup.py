@@ -15,7 +15,7 @@ setup(
     packages=find_packages("src"),
     package_dir={"": "src"},
     install_requires=["requests", "pytz"],
-    extra_require={"testing": ["pytest", "pytest-cov", "requests_mock"]},
+    extras_require={"testing": ["pytest", "pytest-cov", "requests_mock"]},
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
