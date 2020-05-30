@@ -1,6 +1,5 @@
 """Setup configuration."""
-from setuptools import setup, find_packages
-
+from setuptools import find_packages, setup
 
 with open("README.md", "r") as fh:
     README = fh.read()
@@ -16,6 +15,9 @@ setup(
     packages=find_packages("src"),
     package_dir={"": "src"},
     install_requires=["requests", "pytz"],
+    extras_require={
+        "testing": ["pytest", "pytest-cov", "requests_mock", "pytest-isort"]
+    },
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",

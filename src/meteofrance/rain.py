@@ -3,9 +3,11 @@
 Meteo France weather forecast python API. Rain class.
 """
 
-from .auth import Auth
 from datetime import datetime
+
 from pytz import timezone, utc
+
+from .auth import Auth
 
 
 class Rain(object):

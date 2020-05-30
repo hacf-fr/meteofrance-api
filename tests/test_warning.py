@@ -4,9 +4,9 @@ import pytest
 
 from meteofrance import AuthMeteofrance, MeteofranceClient
 from meteofrance.warning import (
+    get_phenomenon_name_from_indice,
     get_text_status_from_indice_color,
     is_coastal_department,
-    get_phenomenon_name_from_indice,
     readeable_phenomenoms_dict,
 )
 

@@ -3,8 +3,9 @@
 Meteo France weather forecast python API.
 """
 
-from requests import Session, Response
-from .const import METEOFRANCE_API_URL, METEOFRANCE_API_TOKEN
+from requests import Response, Session
+
+from .const import METEOFRANCE_API_TOKEN, METEOFRANCE_API_URL
 
 
 class Auth:

@@ -2,7 +2,7 @@
 """tests meteofrance module. Auth class"""
 import pytest
 
-from meteofrance import MeteofranceClient, AuthMeteofrance
+from meteofrance import AuthMeteofrance, MeteofranceClient
 
 
 @pytest.mark.parametrize("city", ["montreal", "Foix"])

@@ -1,6 +1,5 @@
-from meteofrance.client import MeteofranceClient
 from meteofrance.auth import Auth, AuthMeteofrance
-
+from meteofrance.client import MeteofranceClient
 
 # from meteofrance.place import Place
 # from meteofrance.forecast import Forecast

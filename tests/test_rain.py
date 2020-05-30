@@ -1,12 +1,12 @@
 # coding: utf-8
 """tests for meteofrance modile. Forecast class"""
-import pytest
-
-import requests
 from datetime import datetime
 
+import pytest
+import requests
+
 from meteofrance import AuthMeteofrance, MeteofranceClient
-from meteofrance.const import METEOFRANCE_API_URL, METEOFRANCE_API_TOKEN
+from meteofrance.const import METEOFRANCE_API_TOKEN, METEOFRANCE_API_URL
 
 
 def test_rain():

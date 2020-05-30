@@ -4,6 +4,7 @@ Meteo France weather forecast python API. Forecast class.
 """
 
 from datetime import datetime
+
 from pytz import timezone, utc
 
 from .auth import Auth
