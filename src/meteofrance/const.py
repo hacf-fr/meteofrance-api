@@ -2,7 +2,7 @@
 """
 Consts for Meteo France weather forecast python API.
 """
-
+# TODO: add package version
 METEOFRANCE_API_URL = "http://webservice.meteofrance.com"
 METEOFRANCE_API_TOKEN = "__Wj7dVSTjV9YGu1guveLyDq0g7S7TfTjaHBTPTpO0kj8__"
 

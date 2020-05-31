@@ -1,8 +1,8 @@
 # coding: utf-8
 """tests for meteofrance module. Place class"""
-import pytest
 
-from meteofrance import AuthMeteofrance, MeteofranceClient
+from meteofrance.auth import AuthMeteofrance
+from meteofrance.client import MeteofranceClient
 
 
 def test_places():

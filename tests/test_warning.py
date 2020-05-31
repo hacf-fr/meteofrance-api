@@ -2,7 +2,8 @@
 """tests for meteofrance module. Warning classes"""
 import pytest
 
-from meteofrance import AuthMeteofrance, MeteofranceClient
+from meteofrance.auth import AuthMeteofrance
+from meteofrance.client import MeteofranceClient
 from meteofrance.warning import (
     get_phenomenon_name_from_indice,
     get_text_status_from_indice_color,
@@ -55,9 +56,10 @@ def test_thumbnail():
 
     thumbnail_url = client.get_warning_thumbnail()
 
-    assert (
-        thumbnail_url
-        == "http://webservice.meteofrance.com/warning/thumbnail?&token=__Wj7dVSTjV9YGu1guveLyDq0g7S7TfTjaHBTPTpO0kj8__&domain=france"
+    assert thumbnail_url == (
+        "http://webservice.meteofrance.com/warning/thumbnail"
+        "?&token=__Wj7dVSTjV9YGu1guveLyDq0g7S7TfTjaHBTPTpO0kj8__&"
+        "domain=france"
     )
 
 
@@ -78,12 +80,12 @@ def test_get_text_status_from_indice_color_en():
 
 @pytest.mark.parametrize("dep, res", [("03", False), ("06", True), ("2B", True)])
 def test_is_coastal_department(dep, res):
-    """Test the helper allowing to check if there is an additional coastal departement bulletin."""
+    """Test the helper checking if an additional coastal departement bulletin exist."""
     assert is_coastal_department(dep) == res
 
 
 def test_readeable_phenomenoms_dict():
-    """Test the helper allowing to construct a human readable dictionary for phenomenom."""
+    """Test the helper constructing a human readable dictionary for phenomenom."""
     api_list = [
         {"phenomenon_id": 4, "phenomenon_max_color_id": 1},
         {"phenomenon_id": 5, "phenomenon_max_color_id": 1},
@@ -124,4 +126,4 @@ def test_full_with_coastal_bulletint(dep, res):
     assert [
         len(full_phenomenoms.phenomenons_items),
         len(full_phenomenoms.timelaps),
-    ] == [res, res,]
+    ] == [res, res]

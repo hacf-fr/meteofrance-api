@@ -6,7 +6,7 @@ Meteo France weather forecast python API.
 from typing import List
 
 from .auth import Auth
-from .const import COASTAL_DEPARTMENT_LIST
+from .const import COASTAL_DEPARTMENT_LIST, METEOFRANCE_API_TOKEN, METEOFRANCE_API_URL
 from .forecast import Forecast
 from .place import Place
 from .rain import Rain
@@ -14,7 +14,8 @@ from .warning import CurrentPhenomenons, Full
 
 # TODO: http://webservice.meteofrance.com/observation
 # TODO: http://ws.meteofrance.com/ws/getVigilance/national.json
-# TODO: investigate bulletincote, montagne, etc... http://ws.meteofrance.com/ws//getDetail/france/330630.json
+# TODO: investigate bulletincote, montagne, etc...
+#       http://ws.meteofrance.com/ws//getDetail/france/330630.json
 # TODO: add protection for warning if domain not valid
 # TODO: strategy for HTTP errors
 # TODO: next rain in minute. Necessary ?
@@ -41,7 +42,8 @@ class MeteofranceClient:
     ) -> List[Place]:
         """Return the places link to a search.
 
-        You can add GPS coordinates in parameter to search places arround a given location.
+        You can add GPS coordinates in parameter to search places arround a given
+        location.
         """
         # Construct the list of the GET paremeters
         params = {"q": search_querry}
@@ -93,10 +95,12 @@ class MeteofranceClient:
         """Return the current weather phenomenoms (or alerts) for a given domain.
 
         domain: could be `france` or any department numbers on two digits.
-        For some departments you ca access an additional bulletin for coastal phenomenoms.
+        For some departments you ca access an additional bulletin for coastal
+        phenomenoms.
         To access it add `10` after the domain id (example: `1310`).
 
-        with_costal_bulletin: If set to True, you can get the basic bulletin and coastal bulletin merged.
+        with_costal_bulletin: If set to True, you can get the basic bulletin and
+        coastal bulletin merged.
 
         depth: use 1 with `france` domain to have all sub location phenomenoms.
         """
@@ -127,16 +131,19 @@ class MeteofranceClient:
         return phenomenoms
 
     def get_warning_full(self, domain: str, with_costal_bulletin: bool = False) -> Full:
-        """Return a complete bulletin of the weather phenomenons or alertfor a given domain.
+        """Return a complete bulletin of the weather phenomenons for a given domain.
 
-        For a given domain we can access the maximum alert, a timelaps of the alert evolution for
+        For a given domain we can access the maximum alert, a timelaps of the alert
+        evolution for
         the next 24 hours, a list of alerts and other metadatas.
 
         domain: could be `france` or any department numbers on two digits.
-        For some department you ca access an additional bulletin for coastal phenomenoms.
+        For some department you ca access an additional bulletin for coastal
+        phenomenoms.
         To access it add `10` after the domain id (example: `1310`).
 
-        with_costal_bulletin: If set to True, you can get the basic bulletin and coastal bulletin merged.
+        with_costal_bulletin: If set to True, you can get the basic bulletin and
+        coastal bulletin merged.
         """
         # TODO: add formatDate parameter
 
@@ -162,6 +169,6 @@ class MeteofranceClient:
         """Return the thumbnail of the weather phenomenoms or alerts map."""
         # Return directly the URL of the gif image
         return (
-            "http://webservice.meteofrance.com/warning/thumbnail?&token=__Wj7dVSTjV9YGu1guveLyDq0g7S7TfTjaHBTPTpO0kj8__&domain="
-            + domain
+            f"{METEOFRANCE_API_URL}/warning/thumbnail?&token={METEOFRANCE_API_TOKEN}"
+            f"&domain={domain}"
         )

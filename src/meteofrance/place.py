@@ -3,8 +3,6 @@
 Meteo France weather forecast python API. Place class.
 """
 
-from .auth import Auth
-
 
 class Place(object):
     def __init__(self, raw_data: dict):
@@ -44,12 +42,17 @@ class Place(object):
 
     @property
     def admin(self) -> str:
-        """Return the admin (seems to be the department in text ex: "Gers") of the place."""
+        """Return the admin of the place.
+
+        Seems to be the department in text ex: "Gers".
+        """
         return self.raw_data["admin"]
 
     @property
     def admin2(self) -> str:
-        """Return the admin2 (seems to be the department in numbers "32") of the place."""
+        """Return the admin2 of the place.
+
+        Seems to be the department in numbers "32"."""
         return self.raw_data["admin2"]
 
     @property

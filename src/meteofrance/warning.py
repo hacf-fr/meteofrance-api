@@ -5,7 +5,6 @@ Meteo France weather forecast python API. Classes for weather alert.
 For getting weather alerts in France and Andorre.
 """
 
-from .auth import Auth
 from .const import (
     ALERT_COLOR_LIST_EN,
     ALERT_COLOR_LIST_FR,
@@ -14,9 +13,9 @@ from .const import (
     COASTAL_DEPARTMENT_LIST,
 )
 
-###
-### Helpers
-###
+#
+# Helpers
+#
 
 
 def get_text_status_from_indice_color(int_color: int, lang: str = "fr") -> str:
@@ -64,13 +63,16 @@ def readeable_phenomenoms_dict(list_phenomenoms: list, language: str = "fr") -> 
     return readable_dict
 
 
-###
-### Classes
-###
-class CurrentPhenomenons(object):
-    """This class allows to access the results of a `warning/currentPhenomenons` API command.
+#
+# Classes
+#
 
-    For coastal department two bulletins are avalaible corresponding to two different domains.
+
+class CurrentPhenomenons(object):
+    """Class to access the results of a `warning/currentPhenomenons` API command.
+
+    For coastal department two bulletins are avalaible corresponding to two different
+    domains.
     """
 
     def __init__(self, raw_data: dict):
@@ -118,9 +120,11 @@ class CurrentPhenomenons(object):
 class Full(object):
     """This class allows to access the results of a `warning/full` API command.
 
-    For a given domain we can access the maximum alert, a timelaps of the alert evolution for
-    the next 24 hours, and a list of alerts.
-    For coastal department two bulletins are avalaible corresponding to two different domains.
+    For a given domain we can access the maximum alert, a timelaps of the alert
+    evolution for the next 24 hours, and a list of alerts.
+
+    For coastal department two bulletins are avalaible corresponding to two different
+    domains.
     """
 
     def __init__(self, raw_data: dict):

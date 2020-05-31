@@ -7,8 +7,6 @@ from datetime import datetime
 
 from pytz import timezone, utc
 
-from .auth import Auth
-
 
 class Forecast(object):
     def __init__(self, raw_data: dict):
@@ -41,7 +39,10 @@ class Forecast(object):
         return self.raw_data["probability_forecast"]
 
     def timestamp_to_locale_time(self, timestamp: int) -> datetime:
-        """Helper to convert timestamp in datetime using the timezone corresponding to the forecast location."""
+        """Helper to convert timestamp in datetime.
+
+         Tthe timezone corresponding to the forecast location is used.
+         """
         # convert timestamp in datetime with UTC timezone
         dt_utc = utc.localize(datetime.utcfromtimestamp(timestamp))
         # convert datetime to Place timezone

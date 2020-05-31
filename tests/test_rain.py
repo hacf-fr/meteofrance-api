@@ -1,12 +1,12 @@
 # coding: utf-8
 """tests for meteofrance modile. Forecast class"""
-from datetime import datetime
 
 import pytest
 import requests
 
-from meteofrance import AuthMeteofrance, MeteofranceClient
-from meteofrance.const import METEOFRANCE_API_TOKEN, METEOFRANCE_API_URL
+from meteofrance.auth import AuthMeteofrance
+from meteofrance.client import MeteofranceClient
+from meteofrance.const import METEOFRANCE_API_URL
 
 
 def test_rain():
@@ -30,7 +30,7 @@ def test_rain_not_covered():
     client = MeteofranceClient(auth)
 
     with pytest.raises(requests.HTTPError, match=r"400 .*"):
-        rain = client.get_rain(latitude=45.508, longitude=-73.58)
+        client.get_rain(latitude=45.508, longitude=-73.58)
 
 
 def test_rain_expected(requests_mock):

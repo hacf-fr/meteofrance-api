@@ -7,8 +7,6 @@ from datetime import datetime
 
 from pytz import timezone, utc
 
-from .auth import Auth
-
 
 class Rain(object):
     def __init__(self, raw_data: dict):

@@ -2,9 +2,8 @@
 """tests for meteofrance modile. Forecast class"""
 from datetime import datetime
 
-import pytest
-
-from meteofrance import AuthMeteofrance, MeteofranceClient
+from meteofrance.auth import AuthMeteofrance
+from meteofrance.client import MeteofranceClient
 
 
 def test_forecast():
