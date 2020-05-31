@@ -16,7 +16,7 @@ setup(
     package_dir={"": "src"},
     install_requires=["requests", "pytz"],
     extras_require={
-        "testing": ["pytest", "pytest-cov", "requests_mock", "pytest-isort"]
+        "testing": ["pytest", "pytest-cov", "requests_mock", "flake8", "pydocstyle"]
     },
     classifiers=[
         "Programming Language :: Python :: 3",

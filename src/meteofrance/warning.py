@@ -5,7 +5,6 @@ Meteo France weather forecast python API. Classes for weather alert.
 For getting weather alerts in France and Andorre.
 """
 
-from .auth import Auth
 from .const import (
     ALERT_COLOR_LIST_EN,
     ALERT_COLOR_LIST_FR,
@@ -14,13 +13,13 @@ from .const import (
     COASTAL_DEPARTMENT_LIST,
 )
 
-###
-### Helpers
-###
+#
+# Helpers
+#
 
 
 def get_text_status_from_indice_color(int_color: int, lang: str = "fr") -> str:
-    """Helper to have the color code (in int) transalted in text.
+    """Convert the color code (in int) in readable text (Helper).
 
     Returned text is in French or English according to the lang parameter.
     """
@@ -31,7 +30,7 @@ def get_text_status_from_indice_color(int_color: int, lang: str = "fr") -> str:
 
 
 def get_phenomenon_name_from_indice(int_phenomenon: int, lang: str = "fr") -> str:
-    """Helper to translate the phenomenom code in text.
+    """Convert the phenomenom code in readable text (Hepler).
 
     Returned text is in French or English according to the lang parameter.
     """
@@ -42,7 +41,7 @@ def get_phenomenon_name_from_indice(int_phenomenon: int, lang: str = "fr") -> st
 
 
 def is_coastal_department(department_number: str) -> bool:
-    """Helper to identify when a second bulletin is availabe for coastal risks."""
+    """Iidentify when a second bulletin is availabe for coastal risks (Helper)."""
     result = False
     if department_number in COASTAL_DEPARTMENT_LIST:
         result = True
@@ -50,7 +49,7 @@ def is_coastal_department(department_number: str) -> bool:
 
 
 def readeable_phenomenoms_dict(list_phenomenoms: list, language: str = "fr") -> dict:
-    """Helper: create a dictionary with human readable keys and values."""
+    """Create a dictionary with human readable keys and values (Helper)."""
     # Init empty dictionnary
     readable_dict = {}
 
@@ -64,13 +63,16 @@ def readeable_phenomenoms_dict(list_phenomenoms: list, language: str = "fr") -> 
     return readable_dict
 
 
-###
-### Classes
-###
-class CurrentPhenomenons(object):
-    """This class allows to access the results of a `warning/currentPhenomenons` API command.
+#
+# Classes
+#
 
-    For coastal department two bulletins are avalaible corresponding to two different domains.
+
+class CurrentPhenomenons(object):
+    """Class to access the results of a `warning/currentPhenomenons` API command.
+
+    For coastal department two bulletins are avalaible corresponding to two different
+    domains.
     """
 
     def __init__(self, raw_data: dict):
@@ -118,9 +120,11 @@ class CurrentPhenomenons(object):
 class Full(object):
     """This class allows to access the results of a `warning/full` API command.
 
-    For a given domain we can access the maximum alert, a timelaps of the alert evolution for
-    the next 24 hours, and a list of alerts.
-    For coastal department two bulletins are avalaible corresponding to two different domains.
+    For a given domain we can access the maximum alert, a timelaps of the alert
+    evolution for the next 24 hours, and a list of alerts.
+
+    For coastal department two bulletins are avalaible corresponding to two different
+    domains.
     """
 
     def __init__(self, raw_data: dict):

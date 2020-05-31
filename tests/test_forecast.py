@@ -1,14 +1,13 @@
 # coding: utf-8
-"""tests for meteofrance modile. Forecast class"""
+"""Tests for meteofrance modile. Forecast class."""
 from datetime import datetime
 
-import pytest
-
-from meteofrance import AuthMeteofrance, MeteofranceClient
+from meteofrance.auth import AuthMeteofrance
+from meteofrance.client import MeteofranceClient
 
 
 def test_forecast():
-
+    """Test weather forecast results from API."""
     auth = AuthMeteofrance()
     client = MeteofranceClient(auth)
 

@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
-"""
-Meteo France weather forecast python API. Place class.
-"""
-
-from .auth import Auth
+"""Meteo France weather forecast python API. Place class."""
 
 
 class Place(object):
+    """Class to access the results of 'places' API command."""
+
     def __init__(self, raw_data: dict):
         """Initialize a Place object."""
         self.raw_data = raw_data
@@ -44,12 +42,18 @@ class Place(object):
 
     @property
     def admin(self) -> str:
-        """Return the admin (seems to be the department in text ex: "Gers") of the place."""
+        """Return the admin of the place.
+
+        Seems to be the department in text ex: "Gers".
+        """
         return self.raw_data["admin"]
 
     @property
     def admin2(self) -> str:
-        """Return the admin2 (seems to be the department in numbers "32") of the place."""
+        """Return the admin2 of the place.
+
+        Seems to be the department in numbers "32".
+        """
         return self.raw_data["admin2"]
 
     @property
@@ -60,7 +64,8 @@ class Place(object):
     def pretty_print(self) -> str:
         """Provide an easy way to identify the Place.
 
-        examples: `Toulouse - (31)` or `Montréal - (Quebec)`"""
+        examples: `Toulouse - (31)` or `Montréal - (Quebec)`
+        """
         if self.country == "FR":
             pretty_str = "{} - ({})".format(self.name, self.admin2)
         else:

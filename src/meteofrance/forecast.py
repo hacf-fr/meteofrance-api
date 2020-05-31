@@ -1,16 +1,14 @@
 # -*- coding: utf-8 -*-
-"""
-Meteo France weather forecast python API. Forecast class.
-"""
+"""Meteo France weather forecast python API. Forecast class."""
 
 from datetime import datetime
 
 from pytz import timezone, utc
 
-from .auth import Auth
-
 
 class Forecast(object):
+    """Class to access the results of a `forecast` API command."""
+
     def __init__(self, raw_data: dict):
         """Initialize a Forecast object."""
         self.raw_data = raw_data
@@ -41,7 +39,10 @@ class Forecast(object):
         return self.raw_data["probability_forecast"]
 
     def timestamp_to_locale_time(self, timestamp: int) -> datetime:
-        """Helper to convert timestamp in datetime using the timezone corresponding to the forecast location."""
+        """Convert timestamp in datetime (Helper).
+
+        Tthe timezone corresponding to the forecast location is used.
+        """
         # convert timestamp in datetime with UTC timezone
         dt_utc = utc.localize(datetime.utcfromtimestamp(timestamp))
         # convert datetime to Place timezone
