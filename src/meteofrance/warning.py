@@ -19,7 +19,7 @@ from .const import (
 
 
 def get_text_status_from_indice_color(int_color: int, lang: str = "fr") -> str:
-    """Helper to have the color code (in int) transalted in text.
+    """Convert the color code (in int) in readable text (Helper).
 
     Returned text is in French or English according to the lang parameter.
     """
@@ -30,7 +30,7 @@ def get_text_status_from_indice_color(int_color: int, lang: str = "fr") -> str:
 
 
 def get_phenomenon_name_from_indice(int_phenomenon: int, lang: str = "fr") -> str:
-    """Helper to translate the phenomenom code in text.
+    """Convert the phenomenom code in readable text (Hepler).
 
     Returned text is in French or English according to the lang parameter.
     """
@@ -41,7 +41,7 @@ def get_phenomenon_name_from_indice(int_phenomenon: int, lang: str = "fr") -> st
 
 
 def is_coastal_department(department_number: str) -> bool:
-    """Helper to identify when a second bulletin is availabe for coastal risks."""
+    """Iidentify when a second bulletin is availabe for coastal risks (Helper)."""
     result = False
     if department_number in COASTAL_DEPARTMENT_LIST:
         result = True
@@ -49,7 +49,7 @@ def is_coastal_department(department_number: str) -> bool:
 
 
 def readeable_phenomenoms_dict(list_phenomenoms: list, language: str = "fr") -> dict:
-    """Helper: create a dictionary with human readable keys and values."""
+    """Create a dictionary with human readable keys and values (Helper)."""
     # Init empty dictionnary
     readable_dict = {}
 

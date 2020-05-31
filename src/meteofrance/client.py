@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Meteo France weather forecast python API.
-"""
+"""Meteo France weather forecast python API."""
 
 from typing import List
 
@@ -23,7 +21,7 @@ from .warning import CurrentPhenomenons, Full
 
 
 class meteofranceError(Exception):
-    """Raise when errors occur while fetching or parsing MeteoFrance data"""
+    """Raise when errors occur while fetching or parsing MeteoFrance data."""
 
 
 class MeteofranceClient:
