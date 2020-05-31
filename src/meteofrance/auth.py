@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """Meteo France weather forecast python API."""
 
+from typing import Any
+
 from requests import Response, Session
 
 from .const import METEOFRANCE_API_TOKEN, METEOFRANCE_API_URL
@@ -15,16 +17,13 @@ class Auth:
         self.host = host
         self.access_token = access_token
 
-    def request(self, method: str, path: str, **kwargs) -> Response:
+    def request(self, method: str, path: str, **kwargs: Any) -> Response:
         """Make a request."""
-        params = kwargs.pop("params", None)
+        params_inputs = kwargs.pop("params", None)
 
-        if params is None:
-            params = {}
-        else:
-            params = dict(params)
-
-        params["token"] = self.access_token
+        params: dict = {"token": self.access_token}
+        if params_inputs is not None:
+            params.update(dict(params_inputs))
 
         return self.websession.request(
             method, f"{self.host}/{path}", **kwargs, params=params
