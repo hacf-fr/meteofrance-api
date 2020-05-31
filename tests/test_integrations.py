@@ -1,5 +1,5 @@
 # coding: utf-8
-"""tests meteofrance module. Auth class"""
+"""Tests meteofrance module. Auth class."""
 import pytest
 
 from meteofrance.auth import AuthMeteofrance
@@ -9,7 +9,7 @@ from meteofrance.warning import readeable_phenomenoms_dict
 
 @pytest.mark.parametrize("city", ["montreal", "Foix"])
 def test_workflow(city):
-    """Test classical workflow usage with the python library"""
+    """Test classical workflow usage with the python library."""
     auth = AuthMeteofrance()
     client = MeteofranceClient(auth)
 

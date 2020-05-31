@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Meteo France weather forecast python API.
-"""
+"""Meteo France weather forecast python API."""
 
 from requests import Response, Session
 
@@ -38,4 +36,5 @@ class AuthMeteofrance(Auth):
 
     # TODO: convert to class method
     def __init__(self):
+        """Initialize the standard for Meteo-France."""
         super().__init__(Session(), METEOFRANCE_API_URL, METEOFRANCE_API_TOKEN)

@@ -1,12 +1,12 @@
 # coding: utf-8
-"""tests for meteofrance module. Place class"""
+"""Tests for meteofrance module. Place class."""
 
 from meteofrance.auth import AuthMeteofrance
 from meteofrance.client import MeteofranceClient
 
 
 def test_places():
-    """Test for simple seach of Place"""
+    """Test for simple seach of Place."""
     auth = AuthMeteofrance()
     client = MeteofranceClient(auth)
 
@@ -25,7 +25,7 @@ def test_places():
 
 
 def test_places_with_gps():
-    """Test a place search by specifying a GPS point to search arround"""
+    """Test a place search by specifying a GPS point to search arround."""
     auth = AuthMeteofrance()
     client = MeteofranceClient(auth)
 
@@ -36,7 +36,7 @@ def test_places_with_gps():
 
 
 def test_places_not_found():
-    """Test when no places are found"""
+    """Test when no places are found."""
     auth = AuthMeteofrance()
     client = MeteofranceClient(auth)
 
@@ -46,7 +46,7 @@ def test_places_not_found():
 
 
 def test_places_print():
-    """Test different way to print Places class"""
+    """Test different way to print Places class."""
     auth = AuthMeteofrance()
     client = MeteofranceClient(auth)
 

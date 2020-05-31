@@ -1,5 +1,5 @@
 # coding: utf-8
-"""tests for meteofrance module. Warning classes"""
+"""Tests for meteofrance module. Warning classes."""
 import pytest
 
 from meteofrance.auth import AuthMeteofrance
@@ -15,7 +15,7 @@ WARNING_COLOR_LIST = [1, 2, 3, 4]
 
 
 def test_currentphenomenons():
-
+    """Test basic weather alert results from API."""
     auth = AuthMeteofrance()
     client = MeteofranceClient(auth)
 
@@ -32,6 +32,7 @@ def test_currentphenomenons():
 
 
 def test_fulls():
+    """Test advanced weather alert results from API."""
     auth = AuthMeteofrance()
     client = MeteofranceClient(auth)
 
@@ -51,6 +52,7 @@ def test_fulls():
 
 
 def test_thumbnail():
+    """Test getting France status weather alert map."""
     auth = AuthMeteofrance()
     client = MeteofranceClient(auth)
 
@@ -64,6 +66,7 @@ def test_thumbnail():
 
 
 def test_text_helpers_fr():
+    """Test helpers to have readable alert type and alert level in French."""
     assert [
         get_text_status_from_indice_color(1),
         get_phenomenon_name_from_indice(2),
@@ -71,7 +74,7 @@ def test_text_helpers_fr():
 
 
 def test_get_text_status_from_indice_color_en():
-    """Test helper for translating the alert level."""
+    """Test helpers to have readable alert type and alert level in English."""
     assert [
         get_text_status_from_indice_color(4, "en"),
         get_phenomenon_name_from_indice(4, "en"),
@@ -106,6 +109,7 @@ def test_readeable_phenomenoms_dict():
 
 @pytest.mark.parametrize("dep, res", [("13", 6), ("32", 5)])
 def test_currentphenomenons_with_coastal_bulletint(dep, res):
+    """Test getting a complete basic bulletin for coastal department."""
     auth = AuthMeteofrance()
     client = MeteofranceClient(auth)
 
@@ -118,6 +122,7 @@ def test_currentphenomenons_with_coastal_bulletint(dep, res):
 
 @pytest.mark.parametrize("dep, res", [("13", 6), ("32", 5)])
 def test_full_with_coastal_bulletint(dep, res):
+    """Test getting a complete advanced bulletin for coastal department."""
     auth = AuthMeteofrance()
     client = MeteofranceClient(auth)
 

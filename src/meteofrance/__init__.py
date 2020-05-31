@@ -1,1 +1,1 @@
-"""init file for meteofrance."""
+"""Init file for meteofrance."""

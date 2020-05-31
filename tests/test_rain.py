@@ -1,5 +1,5 @@
 # coding: utf-8
-"""tests for meteofrance modile. Forecast class"""
+"""Tests for meteofrance modile. Forecast class."""
 
 import pytest
 import requests
@@ -10,7 +10,7 @@ from meteofrance.const import METEOFRANCE_API_URL
 
 
 def test_rain():
-    """Test rain forecast on a covered zone"""
+    """Test rain forecast on a covered zone."""
     auth = AuthMeteofrance()
     client = MeteofranceClient(auth)
 
@@ -25,7 +25,7 @@ def test_rain():
 
 
 def test_rain_not_covered():
-    """Test rain forecast result on a non covered zone"""
+    """Test rain forecast result on a non covered zone."""
     auth = AuthMeteofrance()
     client = MeteofranceClient(auth)
 
