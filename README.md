@@ -6,9 +6,9 @@ Client Python pour l'API Météo-France. | Python client for Météo-France API.
 [![GitHub Activity][commits-shield]][commits]
 [![License][license-shield]](LICENSE)
 
-You will find English README content [here](##for-english-speaking-users).
+You will find English README content [here](#for-english-speaking-users).
 
-Vous trouverez le contenu francophone du README [ici](##pour-les-francophones).
+Vous trouverez le contenu francophone du README [ici](#pour-les-francophones).
 
 ## Pour les francophones
 

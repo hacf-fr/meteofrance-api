@@ -1,8 +1,8 @@
 # Contribuer | Contributing
 
-You will find instruction in English [here](##contributing).
+You will find instruction in English [here](#contributing).
 
-Vous trouverez les instructions en français [ici](##contribuer).
+Vous trouverez les instructions en français [ici](#contribuer).
 
 ## Contribuer
 
