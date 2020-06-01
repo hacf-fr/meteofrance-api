@@ -1,26 +1,26 @@
 # Contribuer | Contributing
 
-You will find instruction in English [here](#contributing).
+You will find instructions in English [here](#contributing).
 
 Vous trouverez les instructions en français [ici](#contribuer).
 
 ## Contribuer
 
-Vous êtes tous invité à contribuer à ce projet pour le maintenir ou l'améliorer.
+Vous êtes tous invités à contribuer à ce projet pour le maintenir ou l'améliorer.
 Même si vous n'êtes pas un développeur, vous pouvez suremnent donner un coup de
 main à la documentation.
 
 ### Préparer votre Pull Request (PR)
 
--   Commencer par faire un `fork'` de ce dépot.
--   Cloner votre dépot sur votre machine de developpement.
--   Choisissez et installer votre environement de developpement (environement
+-   Commencez par faire un `fork'` de ce dépot.
+-   Clonez votre dépot sur votre machine de developpement.
+-   Choisissez et installez votre environement de developpement (environement
     virtuel, container, etc...).
--   Installer le package python en mode edition avec ses prerequis de test: `pip
+-   Installez le package python en mode edition avec ses prerequis de test: `pip
     install -e .[testing]`.
--   Créer une branche pour votre contribution.
--   Tester vos modiification avec la commande `pytest`.
--   Créer et envoyer la PR quand elle est prête.
+-   Créez une branche pour votre contribution.
+-   Testez vos modiification avec la commande `pytest`.
+-   Créez et envoyez la PR quand elle est prête.
 -   Attendez les commentaire des relecteurs, répondez à leur questions ou demandes
     de mise au point.
 -   Votre contribution est fusionnée dans le projet. Merci.

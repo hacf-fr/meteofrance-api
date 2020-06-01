@@ -15,15 +15,15 @@ Vous trouverez le contenu francophone du README [ici](#pour-les-francophones).
 ### Description
 
 Ce pacakge Python permet de gérer la communication avec l'API non publique de
-Météo-France utilisée par les application moblies officielles.
+Météo-France utilisée par les applications moblies officielles.
 
 Le client permet:
 
 -   Rechercher des lieux de prévisions.
--   Accéder aux prévisions métérologique horraire ou quotidiennes.
--   Accéder aux prévisions de pluie dans l'heure quand disponible.
+-   Accéder aux prévisions météorologiques horraires ou quotidiennes.
+-   Accéder aux prévisions de pluie dans l'heure quand disponibles.
 -   Accéder aux alertes météo pour chaque département français et l'Andorre. Deux
-    bulletins sont disponible : un synthétique et un second avec l'évolution des alertes
+    bulletins sont disponibles : un synthétique et un second avec l'évolution des alertes
     pour les prochaines 24 heures (exemple [ici](http://vigilance.meteofrance.com/Bulletin_sans.html?a=dept32&b=2&c=)).
 
 Ce package a été développé avec l'intention d'être utilisé par [Home-Assistant](https://home-assistant.io/) mais il peut être utilsé dans d'autres contextes.
