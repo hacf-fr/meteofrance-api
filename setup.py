@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
     README = fh.read()
 setup(
     name="meteofrance-api",
-    version="0.0.1",
+    version="0.0.2",
     author="oncleben31",
     author_email="oncleben31@gmail.com",
     description="Python client for Météo-France API.",
