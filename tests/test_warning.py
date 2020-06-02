@@ -107,7 +107,7 @@ def test_readeable_phenomenoms_dict():
     assert readeable_phenomenoms_dict(api_list) == expected_dictionary
 
 
-@pytest.mark.parametrize("dep, res", [("13", 6), ("32", 5)])
+@pytest.mark.parametrize("dep, res", [("13", True), ("32", False)])
 def test_currentphenomenons_with_coastal_bulletint(dep, res):
     """Test getting a complete basic bulletin for coastal department."""
     auth = AuthMeteofrance()
@@ -116,11 +116,14 @@ def test_currentphenomenons_with_coastal_bulletint(dep, res):
     current_phenomenoms = client.get_warning_current_phenomenoms(
         domain=dep, depth=1, with_costal_bulletin=True
     )
+    has_coastal_phenomenom = any(
+        phenomenom["phenomenon_id"] == 9
+        for phenomenom in current_phenomenoms.phenomenons_max_colors
+    )
+    assert has_coastal_phenomenom == res
 
-    assert len(current_phenomenoms.phenomenons_max_colors) == res
 
-
-@pytest.mark.parametrize("dep, res", [("13", 6), ("32", 5)])
+@pytest.mark.parametrize("dep, res", [("13", True), ("32", False)])
 def test_full_with_coastal_bulletint(dep, res):
     """Test getting a complete advanced bulletin for coastal department."""
     auth = AuthMeteofrance()
@@ -128,7 +131,8 @@ def test_full_with_coastal_bulletint(dep, res):
 
     full_phenomenoms = client.get_warning_full(domain=dep, with_costal_bulletin=True)
 
-    assert [
-        len(full_phenomenoms.phenomenons_items),
-        len(full_phenomenoms.timelaps),
-    ] == [res, res]
+    has_coastal_phenomenom = any(
+        phenomenom["phenomenon_id"] == 9
+        for phenomenom in full_phenomenoms.phenomenons_items
+    )
+    assert has_coastal_phenomenom == res
