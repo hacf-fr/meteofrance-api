@@ -2,9 +2,13 @@
 
 Client Python pour l'API Météo-France. | Python client for Météo-France API.
 
-[![GitHub Release][releases-shield]][releases]
-[![GitHub Activity][commits-shield]][commits]
+[![Build Status][build-shield]][build]
+[![codecov][codecov-shield]][codecov]
 [![License][license-shield]](LICENSE)
+
+[![GitHub Release][releases-shield]][releases]
+[![PyPI version][pypi-shield]][pypi]
+[![GitHub Activity][commits-shield]][commits]
 
 You will find English README content [here](#for-english-speaking-users).
 
@@ -80,3 +84,15 @@ Contributions are welcomed. Please check the guidelines in [`CONTRIBUTING.md`](C
 [releases-shield]: https://img.shields.io/github/release/hacf-fr/meteofrance-api.svg?style=for-the-badge
 
 [releases]: https://github.com/hacf-fr/meteofrance-api/releases
+
+[build-shield]: https://img.shields.io/github/workflow/status/hacf-fr/meteofrance-api/Python%20package?style=for-the-badge
+
+[build]: https://github.com/hacf-fr/meteofrance-api/actions?query=workflow%3A%22Python+package%22
+
+[codecov-shield]: https://img.shields.io/codecov/c/github/hacf-fr/meteofrance-api?style=for-the-badge
+
+[codecov]: https://codecov.io/gh/hacf-fr/meteofrance-api
+
+[pypi-shield]: https://img.shields.io/pypi/v/meteofrance-api?style=for-the-badge
+
+[pypi]: https://pypi.org/project/meteofrance-api/
