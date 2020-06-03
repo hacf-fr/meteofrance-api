@@ -36,7 +36,7 @@ class MeteofranceClient:
         self.auth = auth
 
     def search_places(
-        self, search_querry: str, latitude: str = None, longitude: str = None
+        self, search_query: str, latitude: str = None, longitude: str = None
     ) -> List[Place]:
         """Return the places link to a search.
 
@@ -44,7 +44,7 @@ class MeteofranceClient:
         location.
         """
         # Construct the list of the GET paremeters
-        params = {"q": search_querry}
+        params = {"q": search_query}
         if latitude is not None:
             params["lat"] = latitude
         if longitude is not None:
