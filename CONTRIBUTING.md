@@ -16,8 +16,8 @@ main à la documentation.
 -   Clonez votre dépot sur votre machine de developpement.
 -   Choisissez et installez votre environement de developpement (environement
     virtuel, container, etc...).
--   Installez le package python en mode edition avec ses prérequis de test: `pip
-    install -e .[testing]`.
+-   Installez le package python en mode edition avec ses prérequis de test:
+    `pip install -e .[testing]`.
 -   Créez une branche pour votre contribution.
 -   Testez vos modifications avec la commande `py.test`.
 -   Créez et envoyez la PR quand elle est prête.
@@ -41,8 +41,8 @@ Even if you are not a developer, you can probably help to improve the documentat
 -   Clone this repository on your development machine.
 -   Choose and setup your development environement (virtual environement, container,
     etc.).
--   Install the python package in edition mode with the test prerequisits: `pip 
-    install -e .[testing]`.
+-   Install the python package in edition mode with the test prerequisits:
+    `pip install -e .[testing]`.
 -   Create a branch for your contribution.
 -   Test your change using the `pytest` command.
 -   Create and send your PR when ready.
