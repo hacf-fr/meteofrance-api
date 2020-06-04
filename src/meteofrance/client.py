@@ -5,8 +5,7 @@ from typing import List
 
 from .auth import Auth
 from .const import COASTAL_DEPARTMENT_LIST, METEOFRANCE_API_TOKEN, METEOFRANCE_API_URL
-from .model import Forecast, Place, Rain
-from .warning import CurrentPhenomenons, Full
+from .model import CurrentPhenomenons, Forecast, Full, Place, Rain
 
 # TODO: http://webservice.meteofrance.com/observation
 # TODO: http://ws.meteofrance.com/ws/getVigilance/national.json
