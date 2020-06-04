@@ -1,19 +1,31 @@
 # -*- coding: utf-8 -*-
-"""Meteo France weather forecast python API. Place class."""
+"""Météo-France weather forecast python API. Place class."""
 
 
-class Place(object):
+class Place:
     """Class to access the results of 'places' API command."""
 
     def __init__(self, raw_data: dict):
         """Initialize a Place object."""
         self.raw_data = raw_data
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """Return string representation of this class."""
         return "<{}(name={}, country={}, admin={})>".format(
             self.__class__.__name__, self.name, self.country, self.admin
         )
+
+    def __str__(self) -> str:
+        """Provide an easy way to identify the Place.
+
+        examples: `Toulouse - (31)` or `Montréal - (Quebec)`
+        """
+        if self.country == "FR":
+            pretty_str = "{} - ({})".format(self.name, self.admin2)
+        else:
+            pretty_str = "{} - ({})".format(self.name, self.admin)
+
+        return pretty_str
 
     @property
     def insee(self) -> str:
@@ -37,7 +49,7 @@ class Place(object):
 
     @property
     def country(self) -> str:
-        """Return the country of the place."""
+        """Return the country code of the place."""
         return self.raw_data["country"]
 
     @property
@@ -57,18 +69,6 @@ class Place(object):
         return self.raw_data["admin2"]
 
     @property
-    def postcode(self) -> str:
-        """Return the postcode of the place."""
+    def postal_code(self) -> str:
+        """Return the postal code of the place."""
         return self.raw_data["postCode"]
-
-    def pretty_print(self) -> str:
-        """Provide an easy way to identify the Place.
-
-        examples: `Toulouse - (31)` or `Montréal - (Quebec)`
-        """
-        if self.country == "FR":
-            pretty_str = "{} - ({})".format(self.name, self.admin2)
-        else:
-            pretty_str = "{} - ({})".format(self.name, self.admin)
-
-        return pretty_str

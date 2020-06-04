@@ -1,1 +1,1 @@
-"""Init file for meteofrance."""
+"""Météo-France API."""

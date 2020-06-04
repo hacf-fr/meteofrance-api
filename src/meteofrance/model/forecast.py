@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-"""Meteo France weather forecast python API. Forecast class."""
+"""Météo-France weather forecast python API. Forecast class."""
 
 from datetime import datetime
 
 from pytz import timezone, utc
 
 
-class Forecast(object):
+class Forecast:
     """Class to access the results of a `forecast` API command."""
 
     def __init__(self, raw_data: dict):
@@ -41,7 +41,7 @@ class Forecast(object):
     def timestamp_to_locale_time(self, timestamp: int) -> datetime:
         """Convert timestamp in datetime (Helper).
 
-        Tthe timezone corresponding to the forecast location is used.
+        The timezone corresponding to the forecast location is used.
         """
         # convert timestamp in datetime with UTC timezone
         dt_utc = utc.localize(datetime.utcfromtimestamp(timestamp))

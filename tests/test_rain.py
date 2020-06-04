@@ -4,30 +4,28 @@
 import pytest
 import requests
 
-from meteofrance.auth import AuthMeteofrance
-from meteofrance.client import MeteofranceClient
+from meteofrance.auth import MeteoFranceAuth
+from meteofrance.client import MeteoFranceClient
 from meteofrance.const import METEOFRANCE_API_URL
 
 
 def test_rain():
     """Test rain forecast on a covered zone."""
-    auth = AuthMeteofrance()
-    client = MeteofranceClient(auth)
+    auth = MeteoFranceAuth()
+    client = MeteoFranceClient(auth)
 
     rain = client.get_rain(latitude=48.8075, longitude=2.24028)
 
-    assert [
-        type(rain.position),
-        type(rain.updated_on),
-        type(rain.quality),
-        "rain" in rain.forecast[0].keys(),
-    ] == [dict, int, int, True]
+    assert type(rain.position) == dict
+    assert type(rain.updated_on) == int
+    assert type(rain.quality) == int
+    assert "rain" in rain.forecast[0].keys()
 
 
 def test_rain_not_covered():
     """Test rain forecast result on a non covered zone."""
-    auth = AuthMeteofrance()
-    client = MeteofranceClient(auth)
+    auth = MeteoFranceAuth()
+    client = MeteoFranceClient(auth)
 
     with pytest.raises(requests.HTTPError, match=r"400 .*"):
         client.get_rain(latitude=45.508, longitude=-73.58)
@@ -35,8 +33,8 @@ def test_rain_not_covered():
 
 def test_rain_expected(requests_mock):
     """Test datecomputation when rain is expected within the hour."""
-    auth = AuthMeteofrance()
-    client = MeteofranceClient(auth)
+    auth = MeteoFranceAuth()
+    client = MeteoFranceClient(auth)
 
     requests_mock.request(
         "get",
@@ -69,4 +67,4 @@ def test_rain_expected(requests_mock):
 
     rain = client.get_rain(latitude=48.8075, longitude=2.24028)
     date_rain = rain.next_rain_date_locale()
-    assert f"{date_rain}" == "2020-05-20 19:50:00+02:00"
+    assert str(date_rain) == "2020-05-20 19:50:00+02:00"

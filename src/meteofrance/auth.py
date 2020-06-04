@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Meteo France weather forecast python API."""
+"""Météo-France weather forecast python API."""
 
 from typing import Any
 
@@ -30,7 +30,7 @@ class Auth:
         )
 
 
-class AuthMeteofrance(Auth):
+class MeteoFranceAuth(Auth):
     """Generic Auth for meteofrance as token is static."""
 
     # TODO: convert to class method

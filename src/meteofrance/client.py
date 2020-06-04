@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
-"""Meteo France weather forecast python API."""
+"""Météo-France weather forecast python API."""
 
 from typing import List
 
 from .auth import Auth
 from .const import COASTAL_DEPARTMENT_LIST, METEOFRANCE_API_TOKEN, METEOFRANCE_API_URL
-from .forecast import Forecast
-from .place import Place
-from .rain import Rain
+from .model import Forecast, Place, Rain
 from .warning import CurrentPhenomenons, Full
 
 # TODO: http://webservice.meteofrance.com/observation
@@ -20,11 +18,7 @@ from .warning import CurrentPhenomenons, Full
 # TODO: forecast/metadata from ID to get gps ?
 
 
-class meteofranceError(Exception):
-    """Raise when errors occur while fetching or parsing MeteoFrance data."""
-
-
-class MeteofranceClient:
+class MeteoFranceClient:
     """Proxy to the MeteoFrance API.
 
     You will find methods and helpers to request weather forecast, rain forecast and
@@ -35,6 +29,9 @@ class MeteofranceClient:
         """Initialize the API and store the auth so we can make requests."""
         self.auth = auth
 
+    #
+    # Place
+    #
     def search_places(
         self, search_query: str, latitude: str = None, longitude: str = None
     ) -> List[Place]:
@@ -43,7 +40,7 @@ class MeteofranceClient:
         You can add GPS coordinates in parameter to search places arround a given
         location.
         """
-        # Construct the list of the GET paremeters
+        # Construct the list of the GET parameters
         params = {"q": search_query}
         if latitude is not None:
             params["lat"] = latitude
@@ -55,14 +52,17 @@ class MeteofranceClient:
         resp.raise_for_status()
         return [Place(place_data) for place_data in resp.json()]
 
+    #
+    # Forecast
+    #
     def get_forecast(
-        self, latitude: str, longitude: str, language: str = "fr"
+        self, latitude: str, longitude: str, language: str = "fr",
     ) -> Forecast:
         """Return the weather forecast for a GPS location.
 
         Results can be fetched in french or english according to the language parameter.
         """
-        # TODO: add possibility to request forecat from id
+        # TODO: add possibility to request forecast from id
 
         # Send the API request
         resp = self.auth.request(
@@ -73,6 +73,16 @@ class MeteofranceClient:
         resp.raise_for_status()
         return Forecast(resp.json())
 
+    def get_forecast_for_place(self, place: Place, language: str = "fr",) -> Forecast:
+        """Return the weather forecast for a Place.
+
+        Results can be fetched in french or english according to the language parameter.
+        """
+        return self.get_forecast(place.latitude, place.longitude, language)
+
+    #
+    # Rain
+    #
     def get_rain(self, latitude: str, longitude: str, language: str = "fr") -> Rain:
         """Return the next 1 hour rain forecast for a GPS the location.
 
@@ -87,6 +97,9 @@ class MeteofranceClient:
         resp.raise_for_status()
         return Rain(resp.json())
 
+    #
+    # Warning
+    #
     def get_warning_current_phenomenoms(
         self, domain: str, depth: int = 0, with_costal_bulletin: bool = False
     ) -> CurrentPhenomenons:
@@ -136,7 +149,7 @@ class MeteofranceClient:
         the next 24 hours, a list of alerts and other metadatas.
 
         domain: could be `france` or any department numbers on two digits.
-        For some department you ca access an additional bulletin for coastal
+        For some department you can access an additional bulletin for coastal
         phenomenoms.
         To access it add `10` after the domain id (example: `1310`).
 
