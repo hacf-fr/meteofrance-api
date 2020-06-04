@@ -2,8 +2,8 @@
 """Tests meteofrance module. Auth class."""
 import pytest
 
-from meteofrance.auth import AuthMeteofrance
-from meteofrance.client import MeteofranceClient
+from meteofrance.auth import MeteoFranceAuth
+from meteofrance.client import MeteoFranceClient
 from meteofrance.warning import readeable_phenomenoms_dict
 
 
@@ -11,8 +11,8 @@ from meteofrance.warning import readeable_phenomenoms_dict
 def test_workflow(city):
     """Test classical workflow usage with the Python library."""
     # Init client
-    auth = AuthMeteofrance()
-    client = MeteofranceClient(auth)
+    auth = MeteoFranceAuth()
+    client = MeteoFranceClient(auth)
 
     # Search a location from name.
     list_places = client.search_places(city)

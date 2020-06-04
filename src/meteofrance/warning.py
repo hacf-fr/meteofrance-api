@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Meteo France weather forecast python API. Classes for weather alert.
+Météo-France weather forecast python API. Classes for weather alert.
 
 For getting weather alerts in France and Andorre.
 """
@@ -68,7 +68,7 @@ def readeable_phenomenoms_dict(list_phenomenoms: list, language: str = "fr") -> 
 #
 
 
-class CurrentPhenomenons(object):
+class CurrentPhenomenons:
     """Class to access the results of a `warning/currentPhenomenons` API command.
 
     For coastal department two bulletins are avalaible corresponding to two different
@@ -117,7 +117,7 @@ class CurrentPhenomenons(object):
     #     return get_text_status_from_indice_color(max_int_color)
 
 
-class Full(object):
+class Full:
     """This class allows to access the results of a `warning/full` API command.
 
     For a given domain we can access the maximum alert, a timelaps of the alert

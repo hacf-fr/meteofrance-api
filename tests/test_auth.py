@@ -3,7 +3,7 @@
 import pytest
 import requests
 
-from meteofrance.auth import Auth, AuthMeteofrance
+from meteofrance.auth import Auth, MeteoFranceAuth
 from meteofrance.const import METEOFRANCE_API_TOKEN, METEOFRANCE_API_URL
 
 
@@ -18,7 +18,7 @@ def test_auth():
 
 def test_auth_meteofrance():
     """Test Meteo-France specific auth."""
-    auth = AuthMeteofrance()
+    auth = MeteoFranceAuth()
 
     resp = auth.request("get", "places", params={"q": "montreal"})
 

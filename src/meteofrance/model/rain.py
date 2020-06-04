@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Meteo France weather forecast python API. Rain class."""
+"""Météo-France weather forecast python API. Rain class."""
 
 from datetime import datetime
 from typing import Optional
@@ -7,7 +7,7 @@ from typing import Optional
 from pytz import timezone, utc
 
 
-class Rain(object):
+class Rain:
     """Class to access the results of 'rain' API command."""
 
     def __init__(self, raw_data: dict):

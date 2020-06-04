@@ -1,0 +1,1 @@
+"""Météo-France API tests."""
