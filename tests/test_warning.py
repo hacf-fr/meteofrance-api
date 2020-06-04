@@ -23,12 +23,10 @@ def test_currentphenomenons():
         domain="france", depth=1
     )
 
-    assert [
-        type(current_phenomenoms.update_time),
-        type(current_phenomenoms.end_validity_time),
-        type(current_phenomenoms.domain_id),
-        "phenomenon_id" in current_phenomenoms.phenomenons_max_colors[0].keys(),
-    ] == [int, int, str, True]
+    assert type(current_phenomenoms.update_time) == int
+    assert type(current_phenomenoms.end_validity_time) == int
+    assert type(current_phenomenoms.domain_id) == str
+    assert "phenomenon_id" in current_phenomenoms.phenomenons_max_colors[0].keys()
 
 
 def test_fulls():
@@ -36,19 +34,20 @@ def test_fulls():
     auth = MeteoFranceAuth()
     client = MeteoFranceClient(auth)
 
-    timelaps_list = client.get_warning_full(domain="31")
+    warning_full = client.get_warning_full(domain="31")
 
-    assert [
-        type(timelaps_list.update_time),
-        type(timelaps_list.end_validity_time),
-        type(timelaps_list.domain_id),
-        timelaps_list.domain_id,
-        timelaps_list.color_max in WARNING_COLOR_LIST,
-        timelaps_list.timelaps[0]["timelaps_items"][0]["color_id"]
-        in WARNING_COLOR_LIST,
-        timelaps_list.phenomenons_items[0]["phenomenon_max_color_id"]
-        in WARNING_COLOR_LIST,
-    ] == [int, int, str, "31", True, True, True]
+    assert type(warning_full.update_time) == int
+    assert type(warning_full.end_validity_time) == int
+    assert type(warning_full.domain_id) == str
+    assert warning_full.domain_id == "31"
+    assert warning_full.color_max in WARNING_COLOR_LIST
+    assert (
+        warning_full.timelaps[0]["timelaps_items"][0]["color_id"] in WARNING_COLOR_LIST
+    )
+    assert (
+        warning_full.phenomenons_items[0]["phenomenon_max_color_id"]
+        in WARNING_COLOR_LIST
+    )
 
 
 def test_thumbnail():
@@ -67,18 +66,14 @@ def test_thumbnail():
 
 def test_text_helpers_fr():
     """Test helpers to have readable alert type and alert level in French."""
-    assert [
-        get_text_status_from_indice_color(1),
-        get_phenomenon_name_from_indice(2),
-    ] == ["Vert", "Pluie-inondation"]
+    assert get_text_status_from_indice_color(1) == "Vert"
+    assert get_phenomenon_name_from_indice(2) == "Pluie-inondation"
 
 
 def test_get_text_status_from_indice_color_en():
     """Test helpers to have readable alert type and alert level in English."""
-    assert [
-        get_text_status_from_indice_color(4, "en"),
-        get_phenomenon_name_from_indice(4, "en"),
-    ] == ["Red", "Flood"]
+    assert get_text_status_from_indice_color(4, "en") == "Red"
+    assert get_phenomenon_name_from_indice(4, "en") == "Flood"
 
 
 @pytest.mark.parametrize("dep, res", [("03", False), ("06", True), ("2B", True)])
@@ -108,7 +103,7 @@ def test_readeable_phenomenoms_dict():
 
 
 @pytest.mark.parametrize("dep, res", [("13", True), ("32", False)])
-def test_currentphenomenons_with_coastal_bulletint(dep, res):
+def test_currentphenomenons_with_coastal_bulletin(dep, res):
     """Test getting a complete basic bulletin for coastal department."""
     auth = MeteoFranceAuth()
     client = MeteoFranceClient(auth)

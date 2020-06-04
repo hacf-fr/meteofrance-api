@@ -16,12 +16,10 @@ def test_rain():
 
     rain = client.get_rain(latitude=48.8075, longitude=2.24028)
 
-    assert [
-        type(rain.position),
-        type(rain.updated_on),
-        type(rain.quality),
-        "rain" in rain.forecast[0].keys(),
-    ] == [dict, int, int, True]
+    assert type(rain.position) == dict
+    assert type(rain.updated_on) == int
+    assert type(rain.quality) == int
+    assert "rain" in rain.forecast[0].keys()
 
 
 def test_rain_not_covered():
@@ -69,4 +67,4 @@ def test_rain_expected(requests_mock):
 
     rain = client.get_rain(latitude=48.8075, longitude=2.24028)
     date_rain = rain.next_rain_date_locale()
-    assert f"{date_rain}" == "2020-05-20 19:50:00+02:00"
+    assert str(date_rain) == "2020-05-20 19:50:00+02:00"

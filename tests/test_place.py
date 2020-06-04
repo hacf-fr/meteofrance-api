@@ -16,15 +16,15 @@ def test_places():
 
     place = list_places[0]
 
-    assert [
-        place.insee is not None,
-        place.name is not None,
-        place.latitude is not None,
-        place.longitude is not None,
-        place.postal_code is not None,
-    ] == [True, True, True, True, True]
+    assert place.insee
+    assert place.latitude
+    assert place.longitude
+    assert place.postal_code
 
-    assert [place.country, place.admin] == ["FR", "Languedoc-Roussillon"]
+    assert place.name == "Montréal"
+    assert place.country == "FR"
+    assert place.admin == "Languedoc-Roussillon"
+    assert place.admin2 == "11"
 
 
 def test_places_with_gps():
@@ -38,7 +38,10 @@ def test_places_with_gps():
 
     place = list_places[0]
 
-    assert [place.country, place.admin] == ["CA", "Quebec"]
+    assert place.name == "Montréal"
+    assert place.country == "CA"
+    assert place.admin == "Quebec"
+    assert place.admin2 == "06"
 
 
 def test_places_not_found():

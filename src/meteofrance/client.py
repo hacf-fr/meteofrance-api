@@ -29,6 +29,9 @@ class MeteoFranceClient:
         """Initialize the API and store the auth so we can make requests."""
         self.auth = auth
 
+    #
+    # Place
+    #
     def search_places(
         self, search_query: str, latitude: str = None, longitude: str = None
     ) -> List[Place]:
@@ -49,6 +52,9 @@ class MeteoFranceClient:
         resp.raise_for_status()
         return [Place(place_data) for place_data in resp.json()]
 
+    #
+    # Forecast
+    #
     def get_forecast(
         self, latitude: str, longitude: str, language: str = "fr",
     ) -> Forecast:
@@ -74,6 +80,9 @@ class MeteoFranceClient:
         """
         return self.get_forecast(place.latitude, place.longitude, language)
 
+    #
+    # Rain
+    #
     def get_rain(self, latitude: str, longitude: str, language: str = "fr") -> Rain:
         """Return the next 1 hour rain forecast for a GPS the location.
 
@@ -88,6 +97,9 @@ class MeteoFranceClient:
         resp.raise_for_status()
         return Rain(resp.json())
 
+    #
+    # Warning
+    #
     def get_warning_current_phenomenoms(
         self, domain: str, depth: int = 0, with_costal_bulletin: bool = False
     ) -> CurrentPhenomenons:
@@ -137,7 +149,7 @@ class MeteoFranceClient:
         the next 24 hours, a list of alerts and other metadatas.
 
         domain: could be `france` or any department numbers on two digits.
-        For some department you ca access an additional bulletin for coastal
+        For some department you can access an additional bulletin for coastal
         phenomenoms.
         To access it add `10` after the domain id (example: `1310`).
 
