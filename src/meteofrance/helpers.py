@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 """Météo-France helpers."""
 
+import math
+from typing import List, Tuple
+
 from .const import (
     ALERT_COLOR_LIST_EN,
     ALERT_COLOR_LIST_FR,
@@ -8,6 +11,7 @@ from .const import (
     ALERT_TYPE_LIST_FR,
     COASTAL_DEPARTMENT_LIST,
 )
+from .model import Place
 
 
 def get_warning_text_status_from_indice_color(int_color: int, lang: str = "fr") -> str:
@@ -53,3 +57,34 @@ def readeable_phenomenoms_dict(list_phenomenoms: list, language: str = "fr") -> 
             phenomenom["phenomenon_max_color_id"], language
         )
     return readable_dict
+
+
+def haversine(coord1: Tuple[float, float], coord2: Tuple[float, float]) -> float:
+    """Compute distance in meters between to GPS coordinates using Harvesine formula.
+
+    coord1 and coord2 are tuple with latitude and longitude in degrees.
+    source: https://janakiev.com/blog/gps-points-distance-python/
+    """
+    R = 6372800  # Earth radius in meters
+    lat1, lon1 = coord1
+    lat2, lon2 = coord2
+    phi1, phi2 = math.radians(lat1), math.radians(lat2)
+    dphi = math.radians(lat2 - lat1)
+    dlambda = math.radians(lon2 - lon1)
+
+    a = (
+        math.sin(dphi / 2) ** 2
+        + math.cos(phi1) * math.cos(phi2) * math.sin(dlambda / 2) ** 2
+    )
+
+    return 2 * R * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+
+
+def sort_places_versus_distance_from_coordinates(
+    list_places: List[Place], gps_coord: Tuple[float, float]
+) -> List[Place]:
+    """Oder list of places according to the distance to a reference coordinates.
+
+    gps_coordinates are in degrees.
+    """
+    pass
