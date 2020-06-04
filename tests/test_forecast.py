@@ -36,7 +36,7 @@ def test_forecast_place():
     auth = MeteoFranceAuth()
     client = MeteoFranceClient(auth)
 
-    weather_forecast = client.get_forecast(place=Place(MOUNTAIN_CITY))
+    weather_forecast = client.get_forecast_for_place(place=Place(MOUNTAIN_CITY))
 
     assert [
         type(weather_forecast.position),

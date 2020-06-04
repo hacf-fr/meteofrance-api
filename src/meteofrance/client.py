@@ -50,20 +50,13 @@ class MeteoFranceClient:
         return [Place(place_data) for place_data in resp.json()]
 
     def get_forecast(
-        self,
-        latitude: str = None,
-        longitude: str = None,
-        language: str = "fr",
-        place: Place = None,
+        self, latitude: str, longitude: str, language: str = "fr",
     ) -> Forecast:
         """Return the weather forecast for a GPS location.
 
         Results can be fetched in french or english according to the language parameter.
         """
         # TODO: add possibility to request forecast from id
-
-        if place:
-            return self.get_forecast(place.latitude, place.longitude, language)
 
         # Send the API request
         resp = self.auth.request(
@@ -73,6 +66,13 @@ class MeteoFranceClient:
         )
         resp.raise_for_status()
         return Forecast(resp.json())
+
+    def get_forecast_for_place(self, place: Place, language: str = "fr",) -> Forecast:
+        """Return the weather forecast for a Place.
+
+        Results can be fetched in french or english according to the language parameter.
+        """
+        return self.get_forecast(place.latitude, place.longitude, language)
 
     def get_rain(self, latitude: str, longitude: str, language: str = "fr") -> Rain:
         """Return the next 1 hour rain forecast for a GPS the location.
