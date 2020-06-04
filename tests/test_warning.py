@@ -4,23 +4,41 @@ import pytest
 
 from meteofrance.auth import MeteoFranceAuth
 from meteofrance.client import MeteoFranceClient
+from meteofrance.const import METEOFRANCE_API_URL
 
 WARNING_COLOR_LIST = [1, 2, 3, 4]
 
 
-def test_currentphenomenons():
+def test_currentphenomenons(requests_mock):
     """Test basic weather alert results from API."""
     auth = MeteoFranceAuth()
     client = MeteoFranceClient(auth)
 
-    current_phenomenoms = client.get_warning_current_phenomenoms(
-        domain="france", depth=1
+    requests_mock.request(
+        "get",
+        f"{METEOFRANCE_API_URL}/warning/currentphenomenons",
+        json={
+            "update_time": 1591279200,
+            "end_validity_time": 1591365600,
+            "domain_id": "32",
+            "phenomenons_max_colors": [
+                {"phenomenon_id": 6, "phenomenon_max_color_id": 1},
+                {"phenomenon_id": 4, "phenomenon_max_color_id": 1},
+                {"phenomenon_id": 5, "phenomenon_max_color_id": 3},
+                {"phenomenon_id": 2, "phenomenon_max_color_id": 1},
+                {"phenomenon_id": 1, "phenomenon_max_color_id": 1},
+                {"phenomenon_id": 3, "phenomenon_max_color_id": 2},
+            ],
+        },
     )
+
+    current_phenomenoms = client.get_warning_current_phenomenoms(domain="32", depth=1)
 
     assert type(current_phenomenoms.update_time) == int
     assert type(current_phenomenoms.end_validity_time) == int
     assert type(current_phenomenoms.domain_id) == str
     assert "phenomenon_id" in current_phenomenoms.phenomenons_max_colors[0].keys()
+    assert current_phenomenoms.get_domain_max_color() == 3
 
 
 def test_fulls():
