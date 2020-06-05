@@ -3,6 +3,7 @@
 # TODO: add package version
 METEOFRANCE_API_URL = "http://webservice.meteofrance.com"
 METEOFRANCE_WS_API_URL = "http://ws.meteofrance.com/ws"  # used with getDetail, getAllVigilances, getVigilance
+METEONET_API_URL = "http://www.meteo.fr/meteonet/temps"  # used with ImageJour, radarEU
 METEOFRANCE_API_TOKEN = "__Wj7dVSTjV9YGu1guveLyDq0g7S7TfTjaHBTPTpO0kj8__"
 
 # enums used in all Warning classes. First indice is 0

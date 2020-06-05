@@ -1,5 +1,5 @@
 # coding: utf-8
-"""Tests Météo-France module. Auth class."""
+"""Tests Météo-France module."""
 import pytest
 
 from meteofrance.client import MeteoFranceClient

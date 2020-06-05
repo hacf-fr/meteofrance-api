@@ -3,11 +3,16 @@
 
 from requests import Response, Session
 
-from .const import METEOFRANCE_API_TOKEN, METEOFRANCE_API_URL, METEOFRANCE_WS_API_URL
+from .const import (
+    METEOFRANCE_API_TOKEN,
+    METEOFRANCE_API_URL,
+    METEOFRANCE_WS_API_URL,
+    METEONET_API_URL,
+)
 
 
 class MeteoFranceSession(Session):
-    """Class to make authenticated requests."""
+    """Session for Météo-France."""
 
     host: str = METEOFRANCE_API_URL
 
@@ -33,11 +38,22 @@ class MeteoFranceSession(Session):
 
 
 class MeteoFranceWSSession(MeteoFranceSession):
-    """Auth for Météo-France WS."""
+    """Session for Météo-France WS."""
 
     host: str = METEOFRANCE_WS_API_URL
 
     # TODO: convert to class method
     def __init__(self, access_token: str = None):
         """Initialize the Météo-France WS."""
+        super().__init__(access_token)
+
+
+class MeteoNetSession(MeteoFranceSession):
+    """Session for MétéoNet."""
+
+    host: str = METEONET_API_URL
+
+    # TODO: convert to class method
+    def __init__(self, access_token: str = None):
+        """Initialize the MétéoNet."""
         super().__init__(access_token)
