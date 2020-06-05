@@ -86,5 +86,11 @@ def sort_places_versus_distance_from_coordinates(
     """Oder list of places according to the distance to a reference coordinates.
 
     gps_coordinates are in degrees.
+    Note: this helper is compensating the bad results of the API. Results in the API
+    are sorted but lot of case identified where it doesn't work (example: Montréal)
     """
-    pass
+    sorted_places = sorted(
+        list_places,
+        key=lambda x: haversine((float(x.latitude), float(x.longitude)), gps_coord),
+    )
+    return sorted_places
