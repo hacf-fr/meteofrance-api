@@ -1,5 +1,5 @@
 # coding: utf-8
-"""Tests for meteofrance modile. Forecast class."""
+"""Tests Météo-France module. Forecast class."""
 from datetime import datetime
 
 from meteofrance.client import MeteoFranceClient

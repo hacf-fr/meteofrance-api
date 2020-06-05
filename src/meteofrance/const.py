@@ -2,6 +2,7 @@
 """Consts for Météo-France weather forecast python API."""
 # TODO: add package version
 METEOFRANCE_API_URL = "http://webservice.meteofrance.com"
+METEOFRANCE_WS_API_URL = "http://ws.meteofrance.com/ws"  # used with getDetail, getAllVigilances, getVigilance
 METEOFRANCE_API_TOKEN = "__Wj7dVSTjV9YGu1guveLyDq0g7S7TfTjaHBTPTpO0kj8__"
 
 # enums used in all Warning classes. First indice is 0
