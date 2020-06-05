@@ -1,6 +1,6 @@
 repository:
   description: "Python client for Météo-France API."
-  homepage: https://pypi.org/project/sampleclient/
+  homepage: https://pypi.org/project/meteofrance-api/
   private: false
   has_issues: true
   has_projects: false
