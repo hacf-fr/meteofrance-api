@@ -3,9 +3,9 @@
 
 from typing import List
 
-from .session import MeteoFranceSession, MeteoFranceWSSession
+from .session import MeteoFranceSession, MeteoFranceWSSession, MeteoNetSession
 from .const import COASTAL_DEPARTMENT_LIST, METEOFRANCE_API_TOKEN, METEOFRANCE_API_URL
-from .model import Forecast, Place, Rain
+from .model import Forecast, Place, Rain, PictureOfTheDay
 from .warning import CurrentPhenomenons, Full
 
 # TODO: http://webservice.meteofrance.com/observation
@@ -28,7 +28,8 @@ class MeteoFranceClient:
     def __init__(self, access_token: str = None):
         """Initialize the API and store the auth so we can make requests."""
         self.session = MeteoFranceSession(access_token)
-        self.session_ws = MeteoFranceWSSession(access_token)
+        self.session_ws = MeteoFranceWSSession()
+        self.session_net = MeteoNetSession()
 
     #
     # Place
@@ -177,3 +178,11 @@ class MeteoFranceClient:
             f"{METEOFRANCE_API_URL}/warning/thumbnail?&token={METEOFRANCE_API_TOKEN}"
             f"&domain={domain}"
         )
+
+    #
+    # Picture of the day
+    #
+    def get_picture_of_the_day(self) -> PictureOfTheDay:
+        """Return the picture of the day image URL & description."""
+        resp = self.session_net.request("get", "ImageJour/last.txt")
+        return PictureOfTheDay(resp.json())
