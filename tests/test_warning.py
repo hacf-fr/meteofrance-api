@@ -3,28 +3,40 @@
 import pytest
 
 from meteofrance.client import MeteoFranceClient
-from meteofrance.warning import (
-    get_phenomenon_name_from_indice,
-    get_text_status_from_indice_color,
-    is_coastal_department,
-    readeable_phenomenoms_dict,
-)
+from meteofrance.const import METEOFRANCE_API_URL
 
 WARNING_COLOR_LIST = [1, 2, 3, 4]
 
 
-def test_currentphenomenons():
+def test_currentphenomenons(requests_mock):
     """Test basic weather alert results from API."""
     client = MeteoFranceClient()
 
-    current_phenomenoms = client.get_warning_current_phenomenoms(
-        domain="france", depth=1
+    requests_mock.request(
+        "get",
+        f"{METEOFRANCE_API_URL}/warning/currentphenomenons",
+        json={
+            "update_time": 1591279200,
+            "end_validity_time": 1591365600,
+            "domain_id": "32",
+            "phenomenons_max_colors": [
+                {"phenomenon_id": 6, "phenomenon_max_color_id": 1},
+                {"phenomenon_id": 4, "phenomenon_max_color_id": 1},
+                {"phenomenon_id": 5, "phenomenon_max_color_id": 3},
+                {"phenomenon_id": 2, "phenomenon_max_color_id": 1},
+                {"phenomenon_id": 1, "phenomenon_max_color_id": 1},
+                {"phenomenon_id": 3, "phenomenon_max_color_id": 2},
+            ],
+        },
     )
+
+    current_phenomenoms = client.get_warning_current_phenomenoms(domain="32", depth=1)
 
     assert type(current_phenomenoms.update_time) == int
     assert type(current_phenomenoms.end_validity_time) == int
     assert type(current_phenomenoms.domain_id) == str
     assert "phenomenon_id" in current_phenomenoms.phenomenons_max_colors[0].keys()
+    assert current_phenomenoms.get_domain_max_color() == 3
 
 
 def test_fulls():
@@ -58,44 +70,6 @@ def test_thumbnail():
         "?&token=__Wj7dVSTjV9YGu1guveLyDq0g7S7TfTjaHBTPTpO0kj8__&"
         "domain=france"
     )
-
-
-def test_text_helpers_fr():
-    """Test helpers to have readable alert type and alert level in French."""
-    assert get_text_status_from_indice_color(1) == "Vert"
-    assert get_phenomenon_name_from_indice(2) == "Pluie-inondation"
-
-
-def test_get_text_status_from_indice_color_en():
-    """Test helpers to have readable alert type and alert level in English."""
-    assert get_text_status_from_indice_color(4, "en") == "Red"
-    assert get_phenomenon_name_from_indice(4, "en") == "Flood"
-
-
-@pytest.mark.parametrize("dep, res", [("03", False), ("06", True), ("2B", True)])
-def test_is_coastal_department(dep, res):
-    """Test the helper checking if an additional coastal departement bulletin exist."""
-    assert is_coastal_department(dep) == res
-
-
-def test_readeable_phenomenoms_dict():
-    """Test the helper constructing a human readable dictionary for phenomenom."""
-    api_list = [
-        {"phenomenon_id": 4, "phenomenon_max_color_id": 1},
-        {"phenomenon_id": 5, "phenomenon_max_color_id": 1},
-        {"phenomenon_id": 3, "phenomenon_max_color_id": 2},
-        {"phenomenon_id": 2, "phenomenon_max_color_id": 1},
-        {"phenomenon_id": 1, "phenomenon_max_color_id": 3},
-    ]
-    expected_dictionary = {
-        "Inondation": "Vert",
-        "Neige-verglas": "Vert",
-        "Pluie-inondation": "Vert",
-        "Orages": "Jaune",
-        "Vent violent": "Orange",
-    }
-
-    assert readeable_phenomenoms_dict(api_list) == expected_dictionary
 
 
 @pytest.mark.parametrize("dep, res", [("13", True), ("32", False)])

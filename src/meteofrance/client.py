@@ -5,8 +5,8 @@ from typing import List
 
 from .session import MeteoFranceSession, MeteoFranceWSSession, MeteoNetSession
 from .const import COASTAL_DEPARTMENT_LIST, METEOFRANCE_API_TOKEN, METEOFRANCE_API_URL
-from .model import Forecast, Place, Rain, PictureOfTheDay
-from .warning import CurrentPhenomenons, Full
+from .model import Forecast, Place, Rain, PictureOfTheDay, CurrentPhenomenons, Full
+
 
 # TODO: http://webservice.meteofrance.com/observation
 # TODO: http://ws.meteofrance.com/ws/getVigilance/national.json

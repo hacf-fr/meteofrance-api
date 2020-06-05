@@ -3,7 +3,7 @@
 import pytest
 
 from meteofrance.client import MeteoFranceClient
-from meteofrance.warning import readeable_phenomenoms_dict
+from meteofrance.helpers import readeable_phenomenoms_dict
 
 
 @pytest.mark.parametrize("city", ["montreal", "Foix"])
