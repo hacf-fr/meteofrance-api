@@ -3,9 +3,10 @@
 
 from typing import List
 
-from .auth import Auth
+from .session import MeteoFranceSession, MeteoFranceWSSession, MeteoNetSession
 from .const import COASTAL_DEPARTMENT_LIST, METEOFRANCE_API_TOKEN, METEOFRANCE_API_URL
-from .model import CurrentPhenomenons, Forecast, Full, Place, Rain
+from .model import Forecast, Place, Rain, PictureOfTheDay, CurrentPhenomenons, Full
+
 
 # TODO: http://webservice.meteofrance.com/observation
 # TODO: http://ws.meteofrance.com/ws/getVigilance/national.json
@@ -18,15 +19,17 @@ from .model import CurrentPhenomenons, Forecast, Full, Place, Rain
 
 
 class MeteoFranceClient:
-    """Proxy to the MeteoFrance API.
+    """Proxy to the Météo-France API.
 
     You will find methods and helpers to request weather forecast, rain forecast and
     weather alert bulletin.
     """
 
-    def __init__(self, auth: Auth):
+    def __init__(self, access_token: str = None):
         """Initialize the API and store the auth so we can make requests."""
-        self.auth = auth
+        self.session = MeteoFranceSession(access_token)
+        self.session_ws = MeteoFranceWSSession()
+        self.session_net = MeteoNetSession()
 
     #
     # Place
@@ -47,8 +50,7 @@ class MeteoFranceClient:
             params["lon"] = longitude
 
         # Send the API resuest
-        resp = self.auth.request("get", "places", params=params)
-        resp.raise_for_status()
+        resp = self.session.request("get", "places", params=params)
         return [Place(place_data) for place_data in resp.json()]
 
     #
@@ -64,12 +66,11 @@ class MeteoFranceClient:
         # TODO: add possibility to request forecast from id
 
         # Send the API request
-        resp = self.auth.request(
+        resp = self.session.request(
             "get",
             "forecast",
             params={"lat": latitude, "lon": longitude, "lang": language},
         )
-        resp.raise_for_status()
         return Forecast(resp.json())
 
     def get_forecast_for_place(self, place: Place, language: str = "fr",) -> Forecast:
@@ -90,10 +91,9 @@ class MeteoFranceClient:
         # TODO: add protection if no rain forecast for this position
 
         # Send the API request
-        resp = self.auth.request(
+        resp = self.session.request(
             "get", "rain", params={"lat": latitude, "lon": longitude, "lang": language}
         )
-        resp.raise_for_status()
         return Rain(resp.json())
 
     #
@@ -115,12 +115,11 @@ class MeteoFranceClient:
         depth: use 1 with `france` domain to have all sub location phenomenoms.
         """
         # Send the API request
-        resp = self.auth.request(
+        resp = self.session.request(
             "get",
             "warning/currentphenomenons",
             params={"domain": domain, "depth": depth},
         )
-        resp.raise_for_status()
 
         # Create object with API response
         phenomenoms = CurrentPhenomenons(resp.json())
@@ -128,12 +127,11 @@ class MeteoFranceClient:
         # if user ask to have the coastal bulletin merged
         if with_costal_bulletin:
             if domain in COASTAL_DEPARTMENT_LIST:
-                resp = self.auth.request(
+                resp = self.session.request(
                     "get",
                     "warning/currentphenomenons",
                     params={"domain": domain + "10"},
                 )
-                resp.raise_for_status()
                 phenomenoms.merge_with_coastal_phenomenons(
                     CurrentPhenomenons(resp.json())
                 )
@@ -158,8 +156,7 @@ class MeteoFranceClient:
         # TODO: add formatDate parameter
 
         # Send the API request
-        resp = self.auth.request("get", "warning/full", params={"domain": domain})
-        resp.raise_for_status()
+        resp = self.session.request("get", "warning/full", params={"domain": domain})
 
         # Create object with API response
         full_phenomenoms = Full(resp.json())
@@ -167,10 +164,9 @@ class MeteoFranceClient:
         # if user ask to have the coastal bulletin merged
         if with_costal_bulletin:
             if domain in COASTAL_DEPARTMENT_LIST:
-                resp = self.auth.request(
+                resp = self.session.request(
                     "get", "warning/full", params={"domain": domain + "10"},
                 )
-                resp.raise_for_status()
                 full_phenomenoms.merge_with_coastal_phenomenons(Full(resp.json()))
 
         return full_phenomenoms
@@ -182,3 +178,11 @@ class MeteoFranceClient:
             f"{METEOFRANCE_API_URL}/warning/thumbnail?&token={METEOFRANCE_API_TOKEN}"
             f"&domain={domain}"
         )
+
+    #
+    # Picture of the day
+    #
+    def get_picture_of_the_day(self) -> PictureOfTheDay:
+        """Return the picture of the day image URL & description."""
+        resp = self.session_net.request("get", "ImageJour/last.txt")
+        return PictureOfTheDay(resp.json())
