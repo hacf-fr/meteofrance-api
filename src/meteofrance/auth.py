@@ -5,35 +5,47 @@ from typing import Any
 
 from requests import Response, Session
 
-from .const import METEOFRANCE_API_TOKEN, METEOFRANCE_API_URL
+from .const import METEOFRANCE_API_TOKEN, METEOFRANCE_API_URL, METEOFRANCE_WS_API_URL
 
 
 class Auth:
     """Class to make authenticated requests."""
 
-    def __init__(self, websession: Session, host: str, access_token: str):
+    def __init__(self, host: str, websession: Session = None, access_token: str = None):
         """Initialize the auth."""
-        self.websession = websession
         self.host = host
-        self.access_token = access_token
+        self.websession = websession or Session()
+        self.access_token = access_token or METEOFRANCE_API_TOKEN
 
     def request(self, method: str, path: str, **kwargs: Any) -> Response:
         """Make a request."""
         params_inputs = kwargs.pop("params", None)
 
         params: dict = {"token": self.access_token}
-        if params_inputs is not None:
-            params.update(dict(params_inputs))
+        if params_inputs:
+            params.update(params_inputs)
 
-        return self.websession.request(
+        response = self.websession.request(
             method, f"{self.host}/{path}", **kwargs, params=params
         )
+        response.raise_for_status()
+
+        return response
 
 
 class MeteoFranceAuth(Auth):
-    """Generic Auth for meteofrance as token is static."""
+    """Auth for Météo-France webservice."""
 
     # TODO: convert to class method
     def __init__(self):
-        """Initialize the standard for Meteo-France."""
-        super().__init__(Session(), METEOFRANCE_API_URL, METEOFRANCE_API_TOKEN)
+        """Initialize the Météo-France webservice."""
+        super().__init__(METEOFRANCE_API_URL)
+
+
+class MeteoFranceWSAuth(Auth):
+    """Auth for Météo-France WS."""
+
+    # TODO: convert to class method
+    def __init__(self):
+        """Initialize the Météo-France WS."""
+        super().__init__(METEOFRANCE_WS_API_URL)

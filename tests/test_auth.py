@@ -9,7 +9,7 @@ from meteofrance.const import METEOFRANCE_API_TOKEN, METEOFRANCE_API_URL
 
 def test_auth():
     """Test generic auth."""
-    auth = Auth(requests.Session(), METEOFRANCE_API_URL, METEOFRANCE_API_TOKEN)
+    auth = Auth(METEOFRANCE_API_URL, requests.Session(), METEOFRANCE_API_TOKEN)
 
     resp = auth.request("get", "places", params={"q": "montreal"})
 
@@ -27,7 +27,7 @@ def test_auth_meteofrance():
 
 def test_auth_without_params():
     """Test exceptions raised."""
-    auth = Auth(requests.Session(), "http://fakeurl.fake", "fake_token")
+    auth = Auth("http://fakeurl.fake", requests.Session(), "fake_token")
 
     with pytest.raises(requests.exceptions.ConnectionError):
         auth.request("get", "places")

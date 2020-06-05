@@ -2,7 +2,6 @@
 """Tests for meteofrance modile. Forecast class."""
 from datetime import datetime
 
-from meteofrance.auth import MeteoFranceAuth
 from meteofrance.client import MeteoFranceClient
 from meteofrance.model import Place
 
@@ -11,8 +10,7 @@ from .const import MOUNTAIN_CITY
 
 def test_forecast():
     """Test weather forecast results from API."""
-    auth = MeteoFranceAuth()
-    client = MeteoFranceClient(auth)
+    client = MeteoFranceClient()
 
     weather_forecast = client.get_forecast(latitude=48.8075, longitude=2.24028)
 
@@ -34,8 +32,7 @@ def test_forecast():
 
 def test_forecast_place():
     """Test weather forecast results from API."""
-    auth = MeteoFranceAuth()
-    client = MeteoFranceClient(auth)
+    client = MeteoFranceClient()
 
     weather_forecast = client.get_forecast_for_place(place=Place(MOUNTAIN_CITY))
 
