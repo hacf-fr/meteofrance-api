@@ -1,8 +1,7 @@
 # coding: utf-8
-"""Tests for meteofrance module. Warning classes."""
+"""Tests Météo-France module. Warning classes."""
 import pytest
 
-from meteofrance.auth import MeteoFranceAuth
 from meteofrance.client import MeteoFranceClient
 from meteofrance.warning import (
     get_phenomenon_name_from_indice,
@@ -16,8 +15,7 @@ WARNING_COLOR_LIST = [1, 2, 3, 4]
 
 def test_currentphenomenons():
     """Test basic weather alert results from API."""
-    auth = MeteoFranceAuth()
-    client = MeteoFranceClient(auth)
+    client = MeteoFranceClient()
 
     current_phenomenoms = client.get_warning_current_phenomenoms(
         domain="france", depth=1
@@ -31,8 +29,7 @@ def test_currentphenomenons():
 
 def test_fulls():
     """Test advanced weather alert results from API."""
-    auth = MeteoFranceAuth()
-    client = MeteoFranceClient(auth)
+    client = MeteoFranceClient()
 
     warning_full = client.get_warning_full(domain="31")
 
@@ -52,8 +49,7 @@ def test_fulls():
 
 def test_thumbnail():
     """Test getting France status weather alert map."""
-    auth = MeteoFranceAuth()
-    client = MeteoFranceClient(auth)
+    client = MeteoFranceClient()
 
     thumbnail_url = client.get_warning_thumbnail()
 
@@ -105,8 +101,7 @@ def test_readeable_phenomenoms_dict():
 @pytest.mark.parametrize("dep, res", [("13", True), ("32", False)])
 def test_currentphenomenons_with_coastal_bulletin(dep, res):
     """Test getting a complete basic bulletin for coastal department."""
-    auth = MeteoFranceAuth()
-    client = MeteoFranceClient(auth)
+    client = MeteoFranceClient()
 
     current_phenomenoms = client.get_warning_current_phenomenoms(
         domain=dep, depth=1, with_costal_bulletin=True
@@ -121,8 +116,7 @@ def test_currentphenomenons_with_coastal_bulletin(dep, res):
 @pytest.mark.parametrize("dep, res", [("13", True), ("32", False)])
 def test_full_with_coastal_bulletint(dep, res):
     """Test getting a complete advanced bulletin for coastal department."""
-    auth = MeteoFranceAuth()
-    client = MeteoFranceClient(auth)
+    client = MeteoFranceClient()
 
     full_phenomenoms = client.get_warning_full(domain=dep, with_costal_bulletin=True)
 
