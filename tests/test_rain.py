@@ -100,4 +100,4 @@ def test_no_rain_expected(requests_mock):
     )
 
     rain = client.get_rain(latitude=48.8075, longitude=2.24028)
-    assert rain.next_rain_date_locale() == None
+    assert rain.next_rain_date_locale() is None
