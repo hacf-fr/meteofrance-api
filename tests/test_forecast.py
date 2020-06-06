@@ -35,7 +35,7 @@ def test_forecast():
     )
     assert (
         current_forecast["dt"] < datetime.utcnow().timestamp()
-        or not current_forecast["dt"]
+        or not current_forecast
     )
     assert (
         weather_forecast.today_forecast["dt"]
