@@ -13,6 +13,8 @@ def test_forecast():
     client = MeteoFranceClient()
 
     weather_forecast = client.get_forecast(latitude=48.8075, longitude=2.24028)
+    now_ts = datetime.utcnow().timestamp()
+    current_forecast = weather_forecast.current_forecast
 
     assert type(weather_forecast.position) == dict
     assert type(weather_forecast.updated_on) == int
@@ -27,6 +29,17 @@ def test_forecast():
             )
         )
         == datetime
+    )
+    assert abs(weather_forecast.nearest_forecast["dt"] - now_ts) == min(
+        [abs(x["dt"] - now_ts) for x in weather_forecast.forecast]
+    )
+    assert (
+        current_forecast["dt"] < datetime.utcnow().timestamp()
+        or current_forecast["dt"] == weather_forecast.forecast[0]["dt"]
+    )
+    assert (
+        weather_forecast.today_forecast["dt"]
+        == weather_forecast.daily_forecast[0]["dt"]
     )
 
 

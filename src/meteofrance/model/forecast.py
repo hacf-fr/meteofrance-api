@@ -38,6 +38,31 @@ class Forecast:
         """Return the wheather event forecast."""
         return self.raw_data["probability_forecast"]
 
+    @property
+    def today_forecast(self) -> dict:
+        """Return the forecast for today."""
+        return self.raw_data["daily_forecast"][0]
+
+    @property
+    def nearest_forecast(self) -> dict:
+        """Return the nearest hourly forecast."""
+        now_timestamp = datetime.utcnow().timestamp()
+        sorted_forecast = sorted(
+            self.forecast, key=lambda x: abs(x["dt"] - now_timestamp)
+        )
+        return sorted_forecast[0]
+
+    @property
+    def current_forecast(self) -> dict:
+        """Return the forecast of the current hour."""
+        current_hour_timestamp = (
+            datetime.utcnow().replace(minute=0, second=0, microsecond=0).timestamp()
+        )
+        return next(
+            (x for x in self.forecast if x["dt"] == current_hour_timestamp),
+            self.forecast[0],
+        )
+
     def timestamp_to_locale_time(self, timestamp: int) -> datetime:
         """Convert timestamp in datetime (Helper).
 
