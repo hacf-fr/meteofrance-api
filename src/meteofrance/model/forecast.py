@@ -41,7 +41,7 @@ class Forecast:
     @property
     def today_forecast(self) -> dict:
         """Return the forecast for today."""
-        return self.raw_data["daily_forecast"][0]
+        return self.daily_forecast[0]
 
     @property
     def nearest_forecast(self) -> dict:
@@ -60,7 +60,7 @@ class Forecast:
         )
         return next(
             (x for x in self.forecast if x["dt"] == current_hour_timestamp),
-            self.forecast[0],
+            None,
         )
 
     def timestamp_to_locale_time(self, timestamp: int) -> datetime:
