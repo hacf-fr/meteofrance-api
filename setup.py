@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
     README = fh.read()
 setup(
     name="meteofrance-api",
-    version="0.0.2",
+    version="0.0.3",
     author="oncleben31",
     author_email="oncleben31@gmail.com",
     description="Python client for Météo-France API.",
@@ -18,9 +18,14 @@ setup(
     extras_require={
         "testing": ["pytest", "pytest-cov", "requests_mock", "flake8", "pydocstyle"]
     },
+    python_requires=">=3.6",
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
+        "Development Status :: 3 - Alpha",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
     ],
 )
