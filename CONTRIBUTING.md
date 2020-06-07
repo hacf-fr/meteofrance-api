@@ -19,11 +19,27 @@ main à la documentation.
 -   Installez le package python en mode edition avec ses prérequis de test:
     `pip install -e .[testing]`.
 -   Créez une branche pour votre contribution.
--   Testez vos modifications avec la commande `py.test`.
+-   Testez vos modifications avec la commande `pytest`.
 -   Créez et envoyez la PR quand elle est prête.
 -   Attendez les commentaires des relecteurs, répondez à leur questions ou demandes
     de mise au point.
 -   Votre contribution est fusionnée dans le projet. Merci.
+
+### Bonnes pratiques
+
+Pour faciliter la maintenance et la relecture il est fortement recommandé
+d'utiliser des outils pour s'assurer de la qualité du code et de son formatage.
+Avec les librairies installées par la comande `pip install -e .[testing]`, vous
+pouvez utiliser les commandes:
+
+-   `pytest --cov` pour vérifer que les tests couvrent bien tout le code du
+    package.
+-   `flake8` pour vérfier que les bonnes pratiques Python sont respectées.
+-   `pydocstyle` pour vérifier que les bonnes pratique des docstrings sont
+    respectées.
+
+Vous pouvez utiliser les lignes de commandes ci-dessus ou paramétrer votre
+environnement de developpement pour utiliser ces outils ou similaires.
 
 ### Proposer une nouvelle fonctionnalité
 
@@ -48,6 +64,19 @@ Even if you are not a developer, you can probably help to improve the documentat
 -   Create and send your PR when ready.
 -   Wait for feedbacks from the reviewers, answer their questions or updates.
 -   You contribution is merged in the project. Thank you.
+
+### Guidelines
+
+To make maintenance and review easier, we recommand you to use some tools ensuring
+good code and format quality. With the librairies installed by
+`pip install -e .[testing]` command, you can use the following commands:
+
+-   `pytest --cov` to check code coevrage of the test suite.
+-   `flake8` to check Python code best practices.
+-   `pydocstyle` to check docstrings bespractices.
+
+You can use those commands or setup your development environnement to use those
+tools or silmilar ones.
 
 ### Feature suggestion
 
