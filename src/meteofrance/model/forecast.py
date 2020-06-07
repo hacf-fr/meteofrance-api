@@ -46,7 +46,10 @@ class Forecast:
     @property
     def nearest_forecast(self) -> dict:
         """Return the nearest hourly forecast."""
-        now_timestamp = datetime.utcnow().timestamp()
+        # get timestamp for current time
+        now_timestamp = int(utc.localize(datetime.utcnow()).timestamp())
+        # sort list of foerecast by distance between current timestamp and
+        # forecast timestamp
         sorted_forecast = sorted(
             self.forecast, key=lambda x: abs(x["dt"] - now_timestamp)
         )
@@ -55,13 +58,16 @@ class Forecast:
     @property
     def current_forecast(self) -> dict:
         """Return the forecast of the current hour."""
-        current_hour_timestamp = (
-            datetime.utcnow().replace(minute=0, second=0, microsecond=0).timestamp()
+        # Get the timestamp for the current hour.
+        current_hour_timestamp = int(
+            utc.localize(
+                datetime.utcnow().replace(minute=0, second=0, microsecond=0)
+            ).timestamp()
         )
-        return next(
-            (x for x in self.forecast if x["dt"] == current_hour_timestamp),
-            None,
-        )
+        # create a dict using timestamp as keys
+        forecast_by_datetime = {item["dt"]: item for item in self.forecast}
+        # Return the element corresponding to the timesamp of the current hour.
+        return forecast_by_datetime[current_hour_timestamp]
 
     def timestamp_to_locale_time(self, timestamp: int) -> datetime:
         """Convert timestamp in datetime (Helper).

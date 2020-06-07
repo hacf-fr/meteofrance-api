@@ -1,5 +1,6 @@
 # coding: utf-8
 """Tests Météo-France module. Forecast class."""
+import time
 from datetime import datetime
 
 from meteofrance.client import MeteoFranceClient
@@ -13,7 +14,7 @@ def test_forecast():
     client = MeteoFranceClient()
 
     weather_forecast = client.get_forecast(latitude=48.8075, longitude=2.24028)
-    now_ts = datetime.utcnow().timestamp()
+    now_ts = int(time.time())
     current_forecast = weather_forecast.current_forecast
 
     assert type(weather_forecast.position) == dict
@@ -30,13 +31,8 @@ def test_forecast():
         )
         == datetime
     )
-    assert abs(weather_forecast.nearest_forecast["dt"] - now_ts) == min(
-        [abs(x["dt"] - now_ts) for x in weather_forecast.forecast]
-    )
-    assert (
-        current_forecast["dt"] < datetime.utcnow().timestamp()
-        or not current_forecast
-    )
+    assert abs(weather_forecast.nearest_forecast["dt"] - now_ts) <= 30 * 60
+    assert now_ts - 3600 <= current_forecast["dt"] <= now_ts
     assert (
         weather_forecast.today_forecast["dt"]
         == weather_forecast.daily_forecast[0]["dt"]
