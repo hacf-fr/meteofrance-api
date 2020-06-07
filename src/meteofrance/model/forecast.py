@@ -36,7 +36,11 @@ class Forecast:
     @property
     def probability_forecast(self) -> list:
         """Return the wheather event forecast."""
-        return self.raw_data["probability_forecast"]
+        if "probability_forecast" in self.raw_data:
+            probability_forecast = self.raw_data["probability_forecast"]
+        else:
+            probability_forecast = []
+        return probability_forecast
 
     @property
     def today_forecast(self) -> dict:
@@ -66,8 +70,15 @@ class Forecast:
         )
         # create a dict using timestamp as keys
         forecast_by_datetime = {item["dt"]: item for item in self.forecast}
-        # Return the element corresponding to the timesamp of the current hour.
-        return forecast_by_datetime[current_hour_timestamp]
+        if current_hour_timestamp in forecast_by_datetime.keys():
+            # Return the element corresponding to the timesamp of the current hour if
+            # exsit.
+            current_forecast = forecast_by_datetime[current_hour_timestamp]
+        else:
+            # Else: return nearest forecast.
+            current_forecast = self.nearest_forecast
+
+        return current_forecast
 
     def timestamp_to_locale_time(self, timestamp: int) -> datetime:
         """Convert timestamp in datetime (Helper).
