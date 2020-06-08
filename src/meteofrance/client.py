@@ -3,13 +3,11 @@
 
 from typing import List
 
-from .session import MeteoFranceSession, MeteoFranceWSSession, MeteoNetSession
 from .const import COASTAL_DEPARTMENT_LIST, METEOFRANCE_API_TOKEN, METEOFRANCE_API_URL
-from .model import Forecast, Place, Rain, PictureOfTheDay, CurrentPhenomenons, Full
-
+from .model import CurrentPhenomenons, Forecast, Full, PictureOfTheDay, Place, Rain
+from .session import MeteoFranceSession, MeteoFranceWSSession, MeteoNetSession
 
 # TODO: http://webservice.meteofrance.com/observation
-# TODO: http://ws.meteofrance.com/ws/getVigilance/national.json
 # TODO: investigate bulletincote, montagne, etc...
 #       http://ws.meteofrance.com/ws//getDetail/france/330630.json
 # TODO: add protection for warning if domain not valid
