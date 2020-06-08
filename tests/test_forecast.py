@@ -32,7 +32,7 @@ def test_forecast_france():
         == datetime
     )
     assert abs(weather_forecast.nearest_forecast["dt"] - now_ts) <= 30 * 60
-    assert now_ts - 3600 <= current_forecast["dt"] <= now_ts
+    assert now_ts - 3600 <= weather_forecast.current_forecast["dt"] <= now_ts
     assert (
         weather_forecast.today_forecast["dt"]
         == weather_forecast.daily_forecast[0]["dt"]
