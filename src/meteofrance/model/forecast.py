@@ -36,11 +36,7 @@ class Forecast:
     @property
     def probability_forecast(self) -> list:
         """Return the wheather event forecast."""
-        if "probability_forecast" in self.raw_data:
-            probability_forecast = self.raw_data["probability_forecast"]
-        else:
-            probability_forecast = []
-        return probability_forecast
+        return self.raw_data.get("probability_forecast", [])
 
     @property
     def today_forecast(self) -> dict:
