@@ -15,7 +15,6 @@ def test_forecast_france():
 
     weather_forecast = client.get_forecast(latitude=48.8075, longitude=2.24028)
     now_ts = int(time.time())
-    current_forecast = weather_forecast.current_forecast
 
     assert type(weather_forecast.position) == dict
     assert type(weather_forecast.updated_on) == int
@@ -45,7 +44,6 @@ def test_forecast_world():
 
     weather_forecast = client.get_forecast(latitude=45.5016889, longitude=73.567256)
     now_ts = int(time.time())
-    current_forecast = weather_forecast.current_forecast
 
     assert type(weather_forecast.position) == dict
     assert type(weather_forecast.updated_on) == int
@@ -64,7 +62,7 @@ def test_forecast_world():
     assert abs(weather_forecast.nearest_forecast["dt"] - now_ts) == min(
         abs(x["dt"] - now_ts) for x in weather_forecast.forecast
     )
-    assert current_forecast["dt"] == weather_forecast.nearest_forecast["dt"]
+    assert weather_forecast.current_forecast["dt"] == weather_forecast.nearest_forecast["dt"]
     assert (
         weather_forecast.today_forecast["dt"]
         == weather_forecast.daily_forecast[0]["dt"]
