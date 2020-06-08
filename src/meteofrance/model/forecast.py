@@ -66,15 +66,9 @@ class Forecast:
         )
         # create a dict using timestamp as keys
         forecast_by_datetime = {item["dt"]: item for item in self.forecast}
-        if current_hour_timestamp in forecast_by_datetime.keys():
-            # Return the element corresponding to the timesamp of the current hour if
-            # exsit.
-            current_forecast = forecast_by_datetime[current_hour_timestamp]
-        else:
-            # Else: return nearest forecast.
-            current_forecast = self.nearest_forecast
-
-        return current_forecast
+        # Return the forecast corresponding to the timestamp of the current hour if exists
+        # If not exists, returns the nearest forecast (not France countries)
+        return forecast_by_datetime.get(current_hour_timestamp, self.nearest_forecast)
 
     def timestamp_to_locale_time(self, timestamp: int) -> datetime:
         """Convert timestamp in datetime (Helper).
