@@ -3,7 +3,9 @@
 
 from datetime import datetime
 
-from pytz import timezone, utc
+from pytz import utc
+
+from meteofrance.helpers import timestamp_to_dateime_with_locale_tz
 
 
 class Forecast:
@@ -66,8 +68,8 @@ class Forecast:
         )
         # create a dict using timestamp as keys
         forecast_by_datetime = {item["dt"]: item for item in self.forecast}
-        # Return the forecast corresponding to the timestamp of the current hour if exists
-        # If not exists, returns the nearest forecast (not France countries)
+        # Return the forecast corresponding to the timestamp of the current hour if
+        # exists. If not exists, returns the nearest forecast (not France countries)
         return forecast_by_datetime.get(current_hour_timestamp, self.nearest_forecast)
 
     def timestamp_to_locale_time(self, timestamp: int) -> datetime:
@@ -75,8 +77,4 @@ class Forecast:
 
         The timezone corresponding to the forecast location is used.
         """
-        # convert timestamp in datetime with UTC timezone
-        dt_utc = utc.localize(datetime.utcfromtimestamp(timestamp))
-        # convert datetime to Place timezone
-        local_timezone = timezone(self.position["timezone"])
-        return dt_utc.astimezone(local_timezone)
+        return timestamp_to_dateime_with_locale_tz(timestamp, self.position["timezone"])

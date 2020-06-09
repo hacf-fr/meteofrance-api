@@ -4,7 +4,7 @@
 from datetime import datetime
 from typing import Optional
 
-from pytz import timezone, utc
+from meteofrance.helpers import timestamp_to_dateime_with_locale_tz
 
 
 class Rain:
@@ -46,12 +46,16 @@ class Rain:
         if next_rain is not None:
             # get the time stamp of the first cadran with rain
             next_rain_timestamp = next_rain["dt"]
-            # convert it in datetime with UTC timezone
-            next_rain_dt_utc = utc.localize(
-                datetime.utcfromtimestamp(next_rain_timestamp)
+            # convert timestamp in datetime with local timezone
+            next_rain_dt_local = timestamp_to_dateime_with_locale_tz(
+                next_rain_timestamp, self.position["timezone"]
             )
-            # convert datetime to Place timezone
-            local_timezone = timezone(self.position["timezone"])
-            next_rain_dt_local = next_rain_dt_utc.astimezone(local_timezone)
 
         return next_rain_dt_local
+
+    def timestamp_to_locale_time(self, timestamp: int) -> datetime:
+        """Convert timestamp in datetime (Helper).
+
+        The timezone corresponding to the forecast location is used.
+        """
+        return timestamp_to_dateime_with_locale_tz(timestamp, self.position["timezone"])

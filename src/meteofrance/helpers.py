@@ -2,7 +2,10 @@
 """Météo-France helpers."""
 
 import math
+from datetime import datetime
 from typing import List, Tuple
+
+from pytz import timezone, utc
 
 from .const import (
     ALERT_COLOR_LIST_EN,
@@ -11,7 +14,7 @@ from .const import (
     ALERT_TYPE_LIST_FR,
     COASTAL_DEPARTMENT_LIST,
 )
-from .model import Place
+from .model.place import Place
 
 
 def get_warning_text_status_from_indice_color(int_color: int, lang: str = "fr") -> str:
@@ -81,7 +84,7 @@ def haversine(coord1: Tuple[float, float], coord2: Tuple[float, float]) -> float
 
 
 def sort_places_versus_distance_from_coordinates(
-    list_places: List[Place], gps_coord: Tuple[float, float]
+    list_places: List["Place"], gps_coord: Tuple[float, float]
 ) -> List[Place]:
     """Oder list of places according to the distance to a reference coordinates.
 
@@ -94,3 +97,14 @@ def sort_places_versus_distance_from_coordinates(
         key=lambda x: haversine((float(x.latitude), float(x.longitude)), gps_coord),
     )
     return sorted_places
+
+
+def timestamp_to_dateime_with_locale_tz(timestamp: int, local_tz: str) -> datetime:
+    """Convert timestamp in datetime (Helper).
+
+    The local timezone corresponding to the forecast location is used.
+    """
+    # convert timestamp in datetime with UTC timezone
+    dt_utc = utc.localize(datetime.utcfromtimestamp(timestamp))
+    # convert datetime to local timezone
+    return dt_utc.astimezone(timezone(local_tz))
