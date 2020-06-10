@@ -62,7 +62,10 @@ def test_forecast_world():
     assert abs(weather_forecast.nearest_forecast["dt"] - now_ts) == min(
         abs(x["dt"] - now_ts) for x in weather_forecast.forecast
     )
-    assert weather_forecast.current_forecast["dt"] == weather_forecast.nearest_forecast["dt"]
+    assert (
+        weather_forecast.current_forecast["dt"]
+        == weather_forecast.nearest_forecast["dt"]
+    )
     assert (
         weather_forecast.today_forecast["dt"]
         == weather_forecast.daily_forecast[0]["dt"]

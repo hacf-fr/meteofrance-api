@@ -30,7 +30,7 @@ class Place:
     @property
     def insee(self) -> str:
         """Return the INSEE ID of the place."""
-        return self.raw_data["insee"]
+        return self.raw_data.get("insee")
 
     @property
     def name(self) -> str:
@@ -58,7 +58,7 @@ class Place:
 
         Seems to be the department in text ex: "Gers".
         """
-        return self.raw_data["admin"]
+        return self.raw_data.get("admin")
 
     @property
     def admin2(self) -> str:
@@ -66,9 +66,9 @@ class Place:
 
         Seems to be the department in numbers "32".
         """
-        return self.raw_data["admin2"]
+        return self.raw_data.get("admin2")
 
     @property
     def postal_code(self) -> str:
         """Return the postal code of the place."""
-        return self.raw_data["postCode"]
+        return self.raw_data.get("postCode")
