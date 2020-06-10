@@ -84,7 +84,7 @@ def haversine(coord1: Tuple[float, float], coord2: Tuple[float, float]) -> float
 
 
 def sort_places_versus_distance_from_coordinates(
-    list_places: List["Place"], gps_coord: Tuple[float, float]
+    list_places: List[Place], gps_coord: Tuple[float, float]
 ) -> List[Place]:
     """Oder list of places according to the distance to a reference coordinates.
 
