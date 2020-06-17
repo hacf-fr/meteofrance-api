@@ -21,11 +21,9 @@ class Place:
         examples: `Toulouse - (31)` or `Montréal - (Quebec)`
         """
         if self.country == "FR":
-            pretty_str = f"{self.name} - {self.admin} ({self.admin2}) - {self.country}"
-        else:
-            pretty_str = f"{self.name} - {self.admin} - {self.country}"
+            return f"{self.name} - {self.admin} ({self.admin2}) - {self.country}"
 
-        return pretty_str
+        return f"{self.name} - {self.admin} - {self.country}"
 
     @property
     def insee(self) -> str:
