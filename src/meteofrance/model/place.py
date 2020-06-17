@@ -21,9 +21,9 @@ class Place:
         examples: `Toulouse - (31)` or `Montréal - (Quebec)`
         """
         if self.country == "FR":
-            pretty_str = "{} - ({})".format(self.name, self.admin2)
+            pretty_str = f"{self.name} - {self.admin} ({self.admin2}) - {self.country}"
         else:
-            pretty_str = "{} - ({})".format(self.name, self.admin)
+            pretty_str = f"{self.name} - {self.admin} - {self.country}"
 
         return pretty_str
 

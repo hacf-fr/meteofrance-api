@@ -61,10 +61,10 @@ def test_places_print():
         repr(place_in_france)
         == "<Place(name=Montréal, country=FR, admin=Languedoc-Roussillon)>"
     )
-    assert str(place_in_france) == "Montréal - (11)"
+    assert str(place_in_france) == "Montréal - Languedoc-Roussillon (11) - FR"
 
     assert (
         repr(place_not_in_france) == "<Place(name=Montréal, country=CA, admin=Quebec)>"
     )
-    assert str(place_not_in_france) == "Montréal - (Quebec)"
-    assert f"I live in {place_not_in_france}" == "I live in Montréal - (Quebec)"
+    assert str(place_not_in_france) == "Montréal - Quebec - CA"
+    assert f"I live in {place_not_in_france}" == "I live in Montréal - Quebec - CA"
