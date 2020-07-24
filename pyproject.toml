@@ -10,6 +10,7 @@ keywords = ["weather", "weather-api", "meteo"]
 
 [tool.poetry.dependencies]
 python = "^3.6"
+requests = "^2.24.0"
 
 [tool.poetry.dev-dependencies]
 
