@@ -1,9 +1,9 @@
 [flake8]
-select = C,E,F,W
+select = C,D,E,F,W
 max-complexity = 10
-
+docstring-convention = google
 exclude = .venv,.git,.tox,docs,venv,bin,lib,deps,build,.eggs
-doctests = True
+
 # To work with Black
 max-line-length = 88
 # E501: line too long
