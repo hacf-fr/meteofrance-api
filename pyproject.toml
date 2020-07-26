@@ -7,6 +7,11 @@ authors = ["oncleben31 <oncleben31@gmail.com>"]
 homepage = "https://github.com/hacf-fr/meteofrance-api"
 repository = "https://github.com/hacf-fr/meteofrance-api"
 keywords = ["weather", "weather-api", "meteo"]
+readme = "README.md"
+packages = [
+    { include = "meteofrance", from = "src" },
+]
+
 
 [tool.poetry.dependencies]
 python = "^3.6"
