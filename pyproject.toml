@@ -27,3 +27,14 @@ coverage = {version = "^5.2.1", extras = ["toml"]}
 [build-system]
 requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"
+
+[tool.coverage.paths]
+source = ["src", "*/site-packages"]
+
+[tool.coverage.run]
+branch = true
+source = ["meteofrance"]
+
+[tool.coverage.report]
+show_missing = true
+precision = 1
