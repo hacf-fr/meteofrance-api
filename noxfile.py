@@ -14,7 +14,15 @@ def tests(session):
 
 @nox.session(python=["3.8", "3.7", "3.6"])
 def lint(session):
-    """Ling using flake8."""
+    """Lint using flake8."""
     args = session.posargs or locations
     session.run("poetry", "install", external=True)
     session.run("flake8", *args)
+
+
+@nox.session(python="3.8")
+def coverage(session):
+    """Upload coverage data."""
+    session.run("poetry", "install", external=True)
+    session.run("coverage", "xml", "--fail-under=0")
+    session.run("codecov", *session.posargs)
