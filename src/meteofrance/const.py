@@ -2,8 +2,10 @@
 """Consts for Météo-France weather forecast python API."""
 # TODO: add package version
 METEOFRANCE_API_URL = "http://webservice.meteofrance.com"
-METEOFRANCE_WS_API_URL = "http://ws.meteofrance.com/ws"  # used with getDetail, getAllVigilances, getVigilance
-METEONET_API_URL = "http://www.meteo.fr/meteonet/temps"  # used with ImageJour, radarEU
+# Additionan API URL used with getDetail, getAllVigilances, getVigilance
+METEOFRANCE_WS_API_URL = "http://ws.meteofrance.com/ws"
+# Additionan API URL used with ImageJour, radarEU
+METEONET_API_URL = "http://www.meteo.fr/meteonet/temps"
 METEOFRANCE_API_TOKEN = "__Wj7dVSTjV9YGu1guveLyDq0g7S7TfTjaHBTPTpO0kj8__"
 
 # enums used in all Warning classes. First indice is 0

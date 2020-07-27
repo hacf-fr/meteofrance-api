@@ -3,12 +3,7 @@
 import pytest
 from requests.exceptions import RequestException
 
-from meteofrance.session import MeteoFranceSession, MeteoFranceWSSession
-from meteofrance.const import (
-    METEOFRANCE_API_TOKEN,
-    METEOFRANCE_API_URL,
-    METEOFRANCE_WS_API_URL,
-)
+from meteofrance.session import MeteoFranceSession
 
 
 def test_session():
