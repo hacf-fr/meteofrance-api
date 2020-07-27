@@ -34,6 +34,7 @@ pytest-cov = "^2.10.0"
 coverage = {version = "^5.2.1", extras = ["toml"]}
 flake8 = "^3.8.3"
 flake8-docstrings = "^1.5.0"
+codecov = "^2.1.8"
 
 [tool.coverage.paths]
 source = ["src", "*/site-packages"]
