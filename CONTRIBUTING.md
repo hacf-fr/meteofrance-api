@@ -45,7 +45,7 @@ Les tests unitaires sont dans le répertoire `tests` et utilisent le framework p
 
 ### Soumettre votre Pull Request (PR)
 
-Oouvrez une [pull requet](https://github.com/hacf-fr/meteofrance-api/pulls) pour proposer des changements à ce projet.
+Ouvrez une [pull request](https://github.com/hacf-fr/meteofrance-api/pulls) pour proposer des changements à ce projet.
 
 Votre pull request doit vérifier les conditions suivantes pour être acceptée:
 
@@ -96,7 +96,7 @@ Unit tests are located in the tests directory, and are written using the pytest 
 
 ### How to submit changes
 
-Open a [pull requet](https://github.com/hacf-fr/meteofrance-api/pulls) to submit changes to this project.
+Open a [pull request](https://github.com/hacf-fr/meteofrance-api/pulls) to submit changes to this project.
 
 Your pull request needs to meet the following guidelines for acceptance:
 
