@@ -8,77 +8,102 @@ Vous trouverez les instructions en français [ici](#contribuer).
 
 Vous êtes tous invités à contribuer à ce projet pour le maintenir ou l'améliorer.
 Même si vous n'êtes pas un développeur, vous pouvez suremnent donner un coup de
-main à la documentation.
+main en remontant les bugs constatés, en partageant vos idées d'amélioration ou
+en participant à la documentation.
 
-### Préparer votre Pull Request (PR)
+## Préparer votre environement de développement
 
--   Commencez par faire un `fork` de ce dépot.
--   Clonez votre dépot sur votre machine de developpement.
--   Choisissez et installez votre environement de developpement (environement
-    virtuel, container, etc...).
--   Installez le package python en mode edition avec ses prérequis de test:
-    `pip install -e .[testing]`.
--   Créez une branche pour votre contribution.
--   Testez vos modifications avec la commande `pytest`.
--   Créez et envoyez la PR quand elle est prête.
--   Attendez les commentaires des relecteurs, répondez à leur questions ou demandes
-    de mise au point.
--   Votre contribution est fusionnée dans le projet. Merci.
+Vous aurez besoin de Python 3.6+ et des outils suivants:
 
-### Bonnes pratiques
+-   [Poetry](https://python-poetry.org)
+-   [Nox](https://nox.thea.codes/en/stable)
 
-Pour faciliter la maintenance et la relecture il est fortement recommandé
-d'utiliser des outils pour s'assurer de la qualité du code et de son formatage.
-Avec les librairies installées par la comande `pip install -e .[testing]`, vous
-pouvez utiliser les commandes:
+Installez le package avec les dépendances de développement:
 
--   `pytest --cov` pour vérifer que les tests couvrent bien tout le code du
-    package.
--   `flake8` pour vérfier que les bonnes pratiques Python sont respectées.
--   `pydocstyle` pour vérifier que les bonnes pratique des docstrings sont
-    respectées.
+`$ poetry install`
 
-Vous pouvez utiliser les lignes de commandes ci-dessus ou paramétrer votre
-environnement de developpement pour utiliser ces outils ou similaires.
+Vous pouvez maintenant utiliser une session interactive Python:
+
+`$ poetry run python`
+
+## Tester le projet
+
+Dérouler la suite de tests complète:
+
+`$ nox`
+
+Lister toutes les sessions disponibles dans Nox:
+
+`$ nox --list-sessions`
+
+Vous pouvez lancer une session Nox spécifique. Par exemple, lancez la suite de
+tests unitaires avec:
+
+`$ nox --session=tests`
+
+Les tests unitaires sont dans le répertoire `tests` et utilisent le framework pytest.
+
+### Soumettre votre Pull Request (PR)
+
+Oouvrez une [pull requet](https://github.com/hacf-fr/meteofrance-api/pulls) pour proposer des changements à ce projet.
+
+Votre pull request doit vérifier les conditions suivantes pour être acceptée:
+
+-   La suite de tests Nox doit réussir sans erreurs ni warning.
+-   Doit inclure des tests unitaires. Ce projet maintien une couverture de code à 100%.
 
 ### Proposer une nouvelle fonctionnalité
 
-Pour proposer vos idées d'amélioration, ouvrez une `issue` en utilisant le
+Pour proposer vos idées d'amélioration, ouvrez une [issue](https://github.com/hacf-fr/meteofrance-api/issues) en utilisant le
 modèle `feature request`.
 
 ## Contributing
 
 You are all invited to contribute to this project for maintenance or improvement.
-Even if you are not a developer, you can probably help to improve the documentation.
+Even if you are not a developer, you can probably help to report some bugs, share
+improvements ideas, or contribute to the documentation.
 
-### Prepare your Pull Request (PR)
+### How to set up your development environment
 
--   Start by forking this repository.
--   Clone this repository on your development machine.
--   Choose and setup your development environement (virtual environement, container,
-    etc.).
--   Install the python package in edition mode with the test prerequisits:
-    `pip install -e .[testing]`.
--   Create a branch for your contribution.
--   Test your change using the `pytest` command.
--   Create and send your PR when ready.
--   Wait for feedbacks from the reviewers, answer their questions or updates.
--   You contribution is merged in the project. Thank you.
+You need Python 3.6+ and the following tools:
 
-### Guidelines
+-   [Poetry](https://python-poetry.org)
+-   [Nox](https://nox.thea.codes/en/stable)
 
-To make maintenance and review easier, we recommand you to use some tools ensuring
-good code and format quality. With the librairies installed by
-`pip install -e .[testing]` command, you can use the following commands:
+Install the package with development requirements:
 
--   `pytest --cov` to check code coevrage of the test suite.
--   `flake8` to check Python code best practices.
--   `pydocstyle` to check docstrings bespractices.
+`$ poetry install`
 
-You can use those commands or setup your development environnement to use those
-tools or silmilar ones.
+You can now run an interactive Python session, or the command-line interface:
+
+`$ poetry run python`
+
+### How to test the project
+
+Run the full test suite:
+
+`$ nox`
+
+List the available Nox sessions:
+
+`$ nox --list-sessions`
+
+You can also run a specific Nox session. For example, invoke the unit test suite like this:
+
+`$ nox --session=tests`
+
+Unit tests are located in the tests directory, and are written using the pytest testing framework.
+
+### How to submit changes
+
+Open a [pull requet](https://github.com/hacf-fr/meteofrance-api/pulls) to submit changes to this project.
+
+Your pull request needs to meet the following guidelines for acceptance:
+
+-   The Nox test suite must pass without errors and warnings.
+-   Include unit tests. This project maintains 100% code coverage.
 
 ### Feature suggestion
 
-If you want to suggest a new feature for this project, please open an issue by
+If you want to suggest a new feature for this project, please open an [`issue`](https://github.com/hacf-fr/meteofrance-api/issues) by
 using the `feature request` template.

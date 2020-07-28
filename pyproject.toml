@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "meteofrance-api"
-version = "0.1.0-beta1"
+version = "0.1.1"
 license = "MIT"
 description = "Python client for Météo-France API."
 authors = ["oncleben31 <oncleben31@gmail.com>"]
@@ -34,6 +34,7 @@ pytest-cov = "^2.10.0"
 coverage = {version = "^5.2.1", extras = ["toml"]}
 flake8 = "^3.8.3"
 flake8-docstrings = "^1.5.0"
+codecov = "^2.1.8"
 
 [tool.coverage.paths]
 source = ["src", "*/site-packages"]
@@ -45,6 +46,7 @@ source = ["meteofrance"]
 [tool.coverage.report]
 show_missing = true
 precision = 1
+fail_under = 100
 
 [build-system]
 requires = ["poetry>=0.12"]
