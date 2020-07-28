@@ -23,7 +23,7 @@ classifiers = [
 
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.6.1"
 requests = "^2.24.0"
 pytz = "^2020.1"
 
@@ -35,6 +35,7 @@ coverage = {version = "^5.2.1", extras = ["toml"]}
 flake8 = "^3.8.3"
 flake8-docstrings = "^1.5.0"
 codecov = "^2.1.8"
+pre-commit = "^2.6.0"
 
 [tool.coverage.paths]
 source = ["src", "*/site-packages"]
