@@ -22,6 +22,26 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           architecture: x64
-      - run: pip install nox==2020.5.24
-      - run: pip install poetry==1.0.9
-      - run: nox
+
+      - name: Upgrade pip
+        run: |
+          pip install --constraint=.github/workflows/constraints.txt pip
+          pip --version
+      - name: Install Poetry
+        run: |
+          pip install --constraint=.github/workflows/constraints.txt poetry
+          poetry --version
+      - name: Install Nox
+        run: |
+          pip install --constraint=.github/workflows/constraints.txt nox
+          nox --version
+
+      - name: Run Nox
+        run: nox
+
+      - name: Create coverage report
+        run: |
+          nox --force-color --session=coverage -- xml
+
+      - name: Upload coverage report
+        uses: codecov/codecov-action@v1.0.10
