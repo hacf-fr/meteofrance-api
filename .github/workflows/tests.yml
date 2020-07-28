@@ -37,7 +37,7 @@ jobs:
           nox --version
 
       - name: Run Nox
-        run: nox
+        run: nox --force-color
 
       - name: Create coverage report
         run: |
