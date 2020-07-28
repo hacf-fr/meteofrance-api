@@ -164,7 +164,7 @@ def precommit(session: Session) -> None:
     """Lint using pre-commit."""
     args = session.posargs or ["run", "--all-files", "--show-diff-on-failure"]
     install(
-        session, "flake8", "flake8-docstrings", "pre-commit",
+        session, "black", "flake8", "flake8-docstrings", "pre-commit",
     )
     session.run("pre-commit", *args)
     if args and args[0] == "install":
