@@ -1,6 +1,5 @@
 # coding: utf-8
 """Tests Météo-France module. Forecast class."""
-
 import pytest
 import requests
 

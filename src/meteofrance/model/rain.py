@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 """Météo-France weather forecast python API. Rain class."""
-
 from datetime import datetime
 from typing import Optional
 

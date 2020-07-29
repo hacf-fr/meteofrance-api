@@ -1,6 +1,5 @@
 # coding: utf-8
 """Tests Météo-France module. PictureOfTheDay class."""
-
 from meteofrance.client import MeteoFranceClient
 
 

@@ -1,15 +1,12 @@
 # coding: utf-8
 """Tests for meteofrance module. Helpers."""
-
 import pytest
 
-from meteofrance.helpers import (
-    get_phenomenon_name_from_indice,
-    get_warning_text_status_from_indice_color,
-    is_coastal_department,
-    readeable_phenomenoms_dict,
-    sort_places_versus_distance_from_coordinates,
-)
+from meteofrance.helpers import get_phenomenon_name_from_indice
+from meteofrance.helpers import get_warning_text_status_from_indice_color
+from meteofrance.helpers import is_coastal_department
+from meteofrance.helpers import readeable_phenomenoms_dict
+from meteofrance.helpers import sort_places_versus_distance_from_coordinates
 from meteofrance.model import Place
 
 

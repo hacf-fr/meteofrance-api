@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
 """Météo-France weather forecast python API."""
+from requests import Response
+from requests import Session
 
-from requests import Response, Session
-
-from .const import (
-    METEOFRANCE_API_TOKEN,
-    METEOFRANCE_API_URL,
-    METEOFRANCE_WS_API_URL,
-    METEONET_API_URL,
-)
+from .const import METEOFRANCE_API_TOKEN
+from .const import METEOFRANCE_API_URL
+from .const import METEOFRANCE_WS_API_URL
+from .const import METEONET_API_URL
 
 
 class MeteoFranceSession(Session):
