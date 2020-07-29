@@ -67,7 +67,7 @@ def haversine(coord1: Tuple[float, float], coord2: Tuple[float, float]) -> float
     coord1 and coord2 are tuple with latitude and longitude in degrees.
     source: https://janakiev.com/blog/gps-points-distance-python/
     """
-    R = 6372800  # Earth radius in meters
+    radius = 6372800  # Earth radius in meters
     lat1, lon1 = coord1
     lat2, lon2 = coord2
     phi1, phi2 = math.radians(lat1), math.radians(lat2)
@@ -79,7 +79,7 @@ def haversine(coord1: Tuple[float, float], coord2: Tuple[float, float]) -> float
         + math.cos(phi1) * math.cos(phi2) * math.sin(dlambda / 2) ** 2
     )
 
-    return 2 * R * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+    return 2 * radius * math.atan2(math.sqrt(a), math.sqrt(1 - a))
 
 
 def sort_places_versus_distance_from_coordinates(
