@@ -201,15 +201,6 @@ def tests(session: Session) -> None:
         session.notify("coverage")
 
 
-@nox.session(python=python_versions)
-def lint(session):
-    """Lint using flake8."""
-    args = session.posargs or locations
-    install_package(session)
-    install(session, "flake8", "flake8-docstrings")
-    session.run("flake8", *args)
-
-
 @nox.session
 def coverage(session: Session) -> None:
     """Produce the coverage report."""
