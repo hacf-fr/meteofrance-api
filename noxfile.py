@@ -171,6 +171,7 @@ def precommit(session: Session) -> None:
         "flake8-bandit",
         "flake8-bugbear",
         "flake8-docstrings",
+        "pep8-naming",
         "pre-commit",
         "pre-commit-hooks",
         "reorder-python-imports",

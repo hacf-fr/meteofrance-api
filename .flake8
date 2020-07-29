@@ -1,5 +1,5 @@
 [flake8]
-select = B,B9,C,D,E,F,S,W
+select = B,B9,C,D,E,F,N,S,W
 max-complexity = 10
 docstring-convention = google
 exclude = .venv,.git,.tox,docs,venv,bin,lib,deps,build,.eggs
