@@ -168,6 +168,7 @@ def precommit(session: Session) -> None:
         session,
         "black",
         "flake8",
+        "flake8-bugbear",
         "flake8-docstrings",
         "pre-commit",
         "pre-commit-hooks",
