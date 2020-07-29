@@ -26,6 +26,10 @@ Vous pouvez maintenant utiliser une session interactive Python:
 
 `$ poetry run python`
 
+Je vous recommande d'installer un pre-commit-hook pour lancer automatiquement quelques vérfication avant de commit vos modifications.
+
+`$ nox -s pre-commit -- install`
+
 ## Tester le projet
 
 Dérouler la suite de tests complète:
@@ -77,6 +81,10 @@ Install the package with development requirements:
 You can now run an interactive Python session, or the command-line interface:
 
 `$ poetry run python`
+
+I recommand to install a pre-commit-hook to have some checks done automatically before you commit your changes.
+
+`$ nox -s pre-commit -- install`
 
 ### How to test the project
 
