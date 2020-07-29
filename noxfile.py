@@ -3,7 +3,8 @@ import contextlib
 import tempfile
 from pathlib import Path
 from textwrap import dedent
-from typing import Iterator, cast
+from typing import cast
+from typing import Iterator
 
 import nox
 from nox.sessions import Session
@@ -170,6 +171,7 @@ def precommit(session: Session) -> None:
         "flake8-docstrings",
         "pre-commit",
         "pre-commit-hooks",
+        "reorder-python-imports",
     )
     session.run("pre-commit", *args)
     if args and args[0] == "install":

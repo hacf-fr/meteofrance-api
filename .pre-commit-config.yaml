@@ -39,3 +39,9 @@ repos:
         language: system
         types: [text]
         stages: [commit, push, manual]
+      - id: reorder-python-imports
+        name: Reorder python imports
+        entry: reorder-python-imports
+        language: system
+        types: [python]
+        args: [--application-directories=src]
