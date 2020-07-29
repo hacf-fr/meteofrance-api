@@ -11,7 +11,7 @@ from nox.sessions import Session
 
 python_versions = ["3.8", "3.7", "3.6"]
 package = "meteofrance_api"
-nox.options.sessions = "pre-commit", "tests"
+nox.options.sessions = "pre-commit", "safety", "tests"
 locations = "src", "tests", "noxfile.py"
 
 
@@ -178,6 +178,15 @@ def precommit(session: Session) -> None:
     session.run("pre-commit", *args)
     if args and args[0] == "install":
         activate_virtualenv_in_precommit_hooks(session)
+
+
+@nox.session(python="3.8")
+def safety(session: Session) -> None:
+    """Scan dependencies for insecure packages."""
+    poetry = Poetry(session)
+    with poetry.export("--dev", "--without-hashes") as requirements:
+        install(session, "safety")
+        session.run("safety", "check", f"--file={requirements}", "--bare")
 
 
 @nox.session(python=python_versions)
