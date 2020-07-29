@@ -162,6 +162,22 @@ version = "0.3.1"
 
 [[package]]
 category = "dev"
+description = "A parser for Python dependency files"
+name = "dparse"
+optional = false
+python-versions = ">=3.5"
+version = "0.5.1"
+
+[package.dependencies]
+packaging = "*"
+pyyaml = "*"
+toml = "*"
+
+[package.extras]
+pipenv = ["pipenv"]
+
+[[package]]
+category = "dev"
 description = "A platform independent file lock."
 name = "filelock"
 optional = false
@@ -593,6 +609,21 @@ version = "0.2.0"
 
 [[package]]
 category = "dev"
+description = "Checks installed dependencies for known vulnerabilities."
+name = "safety"
+optional = false
+python-versions = ">=3.5"
+version = "1.9.0"
+
+[package.dependencies]
+Click = ">=6.0"
+dparse = ">=0.5.1"
+packaging = "*"
+requests = "*"
+setuptools = "*"
+
+[[package]]
+category = "dev"
 description = "Python 2 and 3 compatibility utilities"
 name = "six"
 optional = false
@@ -707,7 +738,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "bcd00c2a6055acd3aa60ca95d0998db83b8d0f5ae040b94bb62cef273f6ad7cc"
+content-hash = "cc142a964cb8f090a01e1a16cb57af6695fd4743f5078df6a64be961ad129107"
 python-versions = "^3.6.1"
 
 [metadata.files]
@@ -803,6 +834,10 @@ coverage = [
 distlib = [
     {file = "distlib-0.3.1-py2.py3-none-any.whl", hash = "sha256:8c09de2c67b3e7deef7184574fc060ab8a793e7adbb183d942c389c8b13c52fb"},
     {file = "distlib-0.3.1.zip", hash = "sha256:edf6116872c863e1aa9d5bb7cb5e05a022c519a4594dc703843343a9ddd9bff1"},
+]
+dparse = [
+    {file = "dparse-0.5.1-py3-none-any.whl", hash = "sha256:e953a25e44ebb60a5c6efc2add4420c177f1d8404509da88da9729202f306994"},
+    {file = "dparse-0.5.1.tar.gz", hash = "sha256:a1b5f169102e1c894f9a7d5ccf6f9402a836a5d24be80a986c7ce9eaed78f367"},
 ]
 filelock = [
     {file = "filelock-3.0.12-py3-none-any.whl", hash = "sha256:929b7d63ec5b7d6b71b0fa5ac14e030b3f70b75747cef1b10da9b879fef15836"},
@@ -990,6 +1025,10 @@ requests-mock = [
     {file = "ruamel.yaml.clib-0.2.0-cp37-cp37m-win_amd64.whl", hash = "sha256:b1b7fcee6aedcdc7e62c3a73f238b3d080c7ba6650cd808bce8d7761ec484070"},
     {file = "ruamel.yaml.clib-0.2.0-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:be018933c2f4ee7de55e7bd7d0d801b3dfb09d21dad0cce8a97995fd3e44be30"},
     {file = "ruamel.yaml.clib-0.2.0.tar.gz", hash = "sha256:b66832ea8077d9b3f6e311c4a53d06273db5dc2db6e8a908550f3c14d67e718c"},
+]
+safety = [
+    {file = "safety-1.9.0-py2.py3-none-any.whl", hash = "sha256:86c1c4a031fe35bd624fce143fbe642a0234d29f7cbf7a9aa269f244a955b087"},
+    {file = "safety-1.9.0.tar.gz", hash = "sha256:23bf20690d4400edc795836b0c983c2b4cbbb922233108ff925b7dd7750f00c9"},
 ]
 six = [
     {file = "six-1.15.0-py2.py3-none-any.whl", hash = "sha256:8b74bedcbbbaca38ff6d7491d76f2b06b3592611af620f8426e82dddb04a5ced"},
