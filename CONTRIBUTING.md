@@ -15,8 +15,8 @@ en participant à la documentation.
 
 Vous aurez besoin de Python 3.6+ et des outils suivants:
 
--   [Poetry](https://python-poetry.org)
--   [Nox](https://nox.thea.codes/en/stable)
+- [Poetry](https://python-poetry.org)
+- [Nox](https://nox.thea.codes/en/stable)
 
 Installez le package avec les dépendances de développement:
 
@@ -25,6 +25,10 @@ Installez le package avec les dépendances de développement:
 Vous pouvez maintenant utiliser une session interactive Python:
 
 `$ poetry run python`
+
+Je vous recommande d'installer un pre-commit-hook pour lancer automatiquement quelques vérfication avant de commit vos modifications.
+
+`$ nox -s pre-commit -- install`
 
 ## Tester le projet
 
@@ -45,12 +49,12 @@ Les tests unitaires sont dans le répertoire `tests` et utilisent le framework p
 
 ### Soumettre votre Pull Request (PR)
 
-Oouvrez une [pull requet](https://github.com/hacf-fr/meteofrance-api/pulls) pour proposer des changements à ce projet.
+Ouvrez une [pull request](https://github.com/hacf-fr/meteofrance-api/pulls) pour proposer des changements à ce projet.
 
 Votre pull request doit vérifier les conditions suivantes pour être acceptée:
 
--   La suite de tests Nox doit réussir sans erreurs ni warning.
--   Doit inclure des tests unitaires. Ce projet maintien une couverture de code à 100%.
+- La suite de tests Nox doit réussir sans erreurs ni warning.
+- Doit inclure des tests unitaires. Ce projet maintien une couverture de code à 100%.
 
 ### Proposer une nouvelle fonctionnalité
 
@@ -67,8 +71,8 @@ improvements ideas, or contribute to the documentation.
 
 You need Python 3.6+ and the following tools:
 
--   [Poetry](https://python-poetry.org)
--   [Nox](https://nox.thea.codes/en/stable)
+- [Poetry](https://python-poetry.org)
+- [Nox](https://nox.thea.codes/en/stable)
 
 Install the package with development requirements:
 
@@ -77,6 +81,10 @@ Install the package with development requirements:
 You can now run an interactive Python session, or the command-line interface:
 
 `$ poetry run python`
+
+I recommand to install a pre-commit-hook to have some checks done automatically before you commit your changes.
+
+`$ nox -s pre-commit -- install`
 
 ### How to test the project
 
@@ -96,12 +104,12 @@ Unit tests are located in the tests directory, and are written using the pytest 
 
 ### How to submit changes
 
-Open a [pull requet](https://github.com/hacf-fr/meteofrance-api/pulls) to submit changes to this project.
+Open a [pull request](https://github.com/hacf-fr/meteofrance-api/pulls) to submit changes to this project.
 
 Your pull request needs to meet the following guidelines for acceptance:
 
--   The Nox test suite must pass without errors and warnings.
--   Include unit tests. This project maintains 100% code coverage.
+- The Nox test suite must pass without errors and warnings.
+- Include unit tests. This project maintains 100% code coverage.
 
 ### Feature suggestion
 

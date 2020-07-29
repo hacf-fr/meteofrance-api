@@ -1,19 +1,18 @@
 # -*- coding: utf-8 -*-
 """Météo-France helpers."""
-
 import math
 from datetime import datetime
-from typing import List, Tuple
+from typing import List
+from typing import Tuple
 
-from pytz import timezone, utc
+from pytz import timezone
+from pytz import utc
 
-from .const import (
-    ALERT_COLOR_LIST_EN,
-    ALERT_COLOR_LIST_FR,
-    ALERT_TYPE_LIST_EN,
-    ALERT_TYPE_LIST_FR,
-    COASTAL_DEPARTMENT_LIST,
-)
+from .const import ALERT_COLOR_LIST_EN
+from .const import ALERT_COLOR_LIST_FR
+from .const import ALERT_TYPE_LIST_EN
+from .const import ALERT_TYPE_LIST_FR
+from .const import COASTAL_DEPARTMENT_LIST
 from .model.place import Place
 
 
@@ -68,7 +67,7 @@ def haversine(coord1: Tuple[float, float], coord2: Tuple[float, float]) -> float
     coord1 and coord2 are tuple with latitude and longitude in degrees.
     source: https://janakiev.com/blog/gps-points-distance-python/
     """
-    R = 6372800  # Earth radius in meters
+    radius = 6372800  # Earth radius in meters
     lat1, lon1 = coord1
     lat2, lon2 = coord2
     phi1, phi2 = math.radians(lat1), math.radians(lat2)
@@ -80,7 +79,7 @@ def haversine(coord1: Tuple[float, float], coord2: Tuple[float, float]) -> float
         + math.cos(phi1) * math.cos(phi2) * math.sin(dlambda / 2) ** 2
     )
 
-    return 2 * R * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+    return 2 * radius * math.atan2(math.sqrt(a), math.sqrt(1 - a))
 
 
 def sort_places_versus_distance_from_coordinates(

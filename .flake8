@@ -1,18 +1,19 @@
 [flake8]
-select = C,D,E,F,W
+select = B,B9,C,D,E,F,N,S,W
 max-complexity = 10
 docstring-convention = google
 exclude = .venv,.git,.tox,docs,venv,bin,lib,deps,build,.eggs
+max-line-length = 80
 
-# To work with Black
-max-line-length = 88
-# E501: line too long
-# W503: Line break occurred before a binary operator
+# E501: line too long => covered by B950
+# W503: Line break occurred before a binary operator => Disabled for Black compatibility
 # E203: Whitespace before ':'
 # D202 No blank lines allowed after function docstring
 # W504 line break after binary operator
-ignore = W503
-#     E501,
+ignore = W503, E501
 #     E203,
 #     D202,
 #     W504
+
+# For avoiding issue with bandit
+per-file-ignores = tests/*:S101
