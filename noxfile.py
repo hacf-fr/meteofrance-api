@@ -12,7 +12,7 @@ from nox.sessions import Session
 
 python_versions = ["3.8", "3.7", "3.6"]
 package = "meteofrance_api"
-nox.options.sessions = "pre-commit", "safety", "mypy", "tests"
+nox.options.sessions = "pre-commit", "safety", "mypy", "tests", "typeguard"
 locations = "src", "tests", "noxfile.py"
 
 
@@ -200,6 +200,14 @@ def mypy(session: Session) -> None:
     session.run("mypy", *args)
     if not session.posargs:
         session.run("mypy", f"--python-executable={sys.executable}", "noxfile.py")
+
+
+@nox.session(python=python_versions)
+def typeguard(session: Session) -> None:
+    """Runtime type checking using Typeguard."""
+    install_package(session)
+    install(session, "pytest", "typeguard", "requests-mock")
+    session.run("pytest", f"--typeguard-packages={package}", *session.posargs)
 
 
 @nox.session(python=python_versions)
