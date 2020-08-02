@@ -3,6 +3,36 @@
 
 For getting weather alerts in France and Andorre.
 """
+from typing import Any
+from typing import Dict
+from typing import List
+from typing import TypedDict
+
+
+class WarnningCurrentPhenomenonsData(TypedDict):
+    """Describing the structure of the API returned CurrentPhenomenons object."""
+
+    update_time: int
+    end_validity_time: int
+    domain_id: str
+    phenomenons_max_colors: List[Dict[str, int]]
+
+
+class WarnningFullData(TypedDict):
+    """Describing the structure of the API returned full object."""
+
+    update_time: int
+    end_validity_time: int
+    domain_id: str
+    color_max: int
+    timelaps: List[Dict[str, Any]]
+    phenomenons_items: List[Dict[str, int]]
+    advices: List[Dict[str, Any]]
+    consequences: List[Dict[str, Any]]
+    max_count_items: Any  # Didn't see any value yet
+    comments: Dict[str, Any]
+    text: Dict[str, Any]
+    text_avalanche: Any  # Didn't see any value yet
 
 
 class CurrentPhenomenons:
@@ -12,7 +42,7 @@ class CurrentPhenomenons:
     domains.
     """
 
-    def __init__(self, raw_data: dict):
+    def __init__(self, raw_data: WarnningCurrentPhenomenonsData):
         """Initialize a CurrentPhenomenons object."""
         self.raw_data = raw_data
 
@@ -32,7 +62,7 @@ class CurrentPhenomenons:
         return self.raw_data["domain_id"]
 
     @property
-    def phenomenons_max_colors(self) -> list:
+    def phenomenons_max_colors(self) -> List[Dict[str, int]]:
         """Return the list and colors of the phenomenoms."""
         return self.raw_data["phenomenons_max_colors"]
 
@@ -63,7 +93,7 @@ class Full:
     domains.
     """
 
-    def __init__(self, raw_data: dict):
+    def __init__(self, raw_data: WarnningFullData):
         """Initialize a Full object."""
         self.raw_data = raw_data
 
@@ -88,12 +118,12 @@ class Full:
         return self.raw_data["color_max"]
 
     @property
-    def timelaps(self) -> list:
+    def timelaps(self) -> List[Dict[str, Any]]:
         """Return the timelaps of each phenomenom for the domain."""
         return self.raw_data["timelaps"]
 
     @property
-    def phenomenons_items(self) -> list:
+    def phenomenons_items(self) -> List[Dict[str, int]]:
         """Return the phenomenom list of the domain."""
         return self.raw_data["phenomenons_items"]
 
