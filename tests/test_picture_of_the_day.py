@@ -3,7 +3,7 @@
 from meteofrance.client import MeteoFranceClient
 
 
-def test_picture_of_the_day():
+def test_picture_of_the_day() -> None:
     """Test weather picture of the day results from API."""
     client = MeteoFranceClient()
 

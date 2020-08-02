@@ -7,7 +7,7 @@ from meteofrance.helpers import readeable_phenomenoms_dict
 
 
 @pytest.mark.parametrize("city", ["montreal", "Foix"])
-def test_workflow(city):
+def test_workflow(city: str) -> None:
     """Test classical workflow usage with the Python library."""
     # Init client
     client = MeteoFranceClient()

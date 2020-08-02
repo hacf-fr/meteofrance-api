@@ -1,5 +1,7 @@
 # coding: utf-8
 """Tests Météo-France module. Forecast class."""
+from unittest.mock import Mock
+
 import pytest
 import requests
 
@@ -7,11 +9,11 @@ from meteofrance.client import MeteoFranceClient
 from meteofrance.const import METEOFRANCE_API_URL
 
 
-def test_rain():
+def test_rain() -> None:
     """Test rain forecast on a covered zone."""
     client = MeteoFranceClient()
 
-    rain = client.get_rain(latitude=48.8075, longitude=2.24028)
+    rain = client.get_rain(latitude="48.8075", longitude="2.24028")
 
     assert type(rain.position) == dict
     assert type(rain.updated_on) == int
@@ -19,15 +21,15 @@ def test_rain():
     assert "rain" in rain.forecast[0].keys()
 
 
-def test_rain_not_covered():
+def test_rain_not_covered() -> None:
     """Test rain forecast result on a non covered zone."""
     client = MeteoFranceClient()
 
     with pytest.raises(requests.HTTPError, match=r"400 .*"):
-        client.get_rain(latitude=45.508, longitude=-73.58)
+        client.get_rain(latitude="45.508", longitude="-73.58")
 
 
-def test_rain_expected(requests_mock):
+def test_rain_expected(requests_mock: Mock) -> None:
     """Test datecomputation when rain is expected within the hour."""
     client = MeteoFranceClient()
 
@@ -60,7 +62,7 @@ def test_rain_expected(requests_mock):
         },
     )
 
-    rain = client.get_rain(latitude=48.8075, longitude=2.24028)
+    rain = client.get_rain(latitude="48.8075", longitude="2.24028")
     date_rain = rain.next_rain_date_locale()
     assert str(date_rain) == "2020-05-20 19:50:00+02:00"
     assert (
@@ -69,7 +71,7 @@ def test_rain_expected(requests_mock):
     )
 
 
-def test_no_rain_expected(requests_mock):
+def test_no_rain_expected(requests_mock: Mock) -> None:
     """Test datecomputation when rain is expected within the hour."""
     client = MeteoFranceClient()
 
@@ -102,5 +104,5 @@ def test_no_rain_expected(requests_mock):
         },
     )
 
-    rain = client.get_rain(latitude=48.8075, longitude=2.24028)
+    rain = client.get_rain(latitude="48.8075", longitude="2.24028")
     assert rain.next_rain_date_locale() is None
