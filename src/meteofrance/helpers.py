@@ -2,7 +2,9 @@
 """Météo-France helpers."""
 import math
 from datetime import datetime
+from typing import Dict
 from typing import List
+from typing import Optional
 from typing import Tuple
 
 from pytz import timezone
@@ -16,7 +18,9 @@ from .const import COASTAL_DEPARTMENT_LIST
 from .model.place import Place
 
 
-def get_warning_text_status_from_indice_color(int_color: int, lang: str = "fr") -> str:
+def get_warning_text_status_from_indice_color(
+    int_color: int, lang: str = "fr"
+) -> Optional[str]:
     """Convert the color code (in int) in readable text (Helper).
 
     Returned text is in French or English according to the lang parameter.
@@ -27,7 +31,9 @@ def get_warning_text_status_from_indice_color(int_color: int, lang: str = "fr") 
         return ALERT_COLOR_LIST_EN[int_color]
 
 
-def get_phenomenon_name_from_indice(int_phenomenon: int, lang: str = "fr") -> str:
+def get_phenomenon_name_from_indice(
+    int_phenomenon: int, lang: str = "fr"
+) -> Optional[str]:
     """Convert the phenomenom code in readable text (Hepler).
 
     Returned text is in French or English according to the lang parameter.
@@ -46,7 +52,9 @@ def is_coastal_department(department_number: str) -> bool:
     return result
 
 
-def readeable_phenomenoms_dict(list_phenomenoms: list, language: str = "fr") -> dict:
+def readeable_phenomenoms_dict(
+    list_phenomenoms: List[Dict[str, int]], language: str = "fr"
+) -> Dict[Optional[str], Optional[str]]:
     """Create a dictionary with human readable keys and values (Helper)."""
     # Init empty dictionnary
     readable_dict = {}

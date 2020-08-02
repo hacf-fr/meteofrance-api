@@ -1,5 +1,7 @@
 # coding: utf-8
 """Tests for meteofrance module. Helpers."""
+from typing import List
+
 import pytest
 
 from meteofrance.helpers import get_phenomenon_name_from_indice
@@ -8,6 +10,7 @@ from meteofrance.helpers import is_coastal_department
 from meteofrance.helpers import readeable_phenomenoms_dict
 from meteofrance.helpers import sort_places_versus_distance_from_coordinates
 from meteofrance.model import Place
+from meteofrance.model.place import PlaceData
 
 
 def test_text_helpers_fr() -> None:
@@ -50,7 +53,7 @@ def test_readeable_phenomenoms_dict() -> None:
 
 def test_sort_places_versus_distance_from_coordinates() -> None:
     """Test the helper to order the Places list return by the search."""
-    json_places = [
+    json_places: List[PlaceData] = [
         {
             "insee": "11254",
             "name": "Montréal",
