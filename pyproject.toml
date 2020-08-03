@@ -26,6 +26,7 @@ classifiers = [
 python = "^3.6.1"
 requests = "^2.24.0"
 pytz = "^2020.1"
+mypy_extensions = { version = "^0.4.3", python = "~3.6 || ^3.7" }
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.4.3"

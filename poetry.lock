@@ -357,7 +357,7 @@ typing-extensions = ">=3.7.4"
 dmypy = ["psutil (>=4.0)"]
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Experimental type system extensions for programs checked with the mypy typechecker."
 name = "mypy-extensions"
 optional = false
@@ -793,7 +793,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "d3193e8222558476e6b5031cc435c2bd928d9f63e3249b1bafc593ea85610e9c"
+content-hash = "c14471a443ea3d4037cc14f8acec166ad95f384987b3747926ae37edca948185"
 python-versions = "^3.6.1"
 
 [metadata.files]
