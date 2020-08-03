@@ -97,7 +97,7 @@ description = "Validate configuration and produce human readable error messages.
 name = "cfgv"
 optional = false
 python-versions = ">=3.6.1"
-version = "3.1.0"
+version = "3.2.0"
 
 [[package]]
 category = "main"
@@ -457,7 +457,7 @@ description = "Some out-of-the-box hooks for pre-commit."
 name = "pre-commit-hooks"
 optional = false
 python-versions = ">=3.6.1"
-version = "3.1.0"
+version = "3.2.0"
 
 [package.dependencies]
 "ruamel.yaml" = ">=0.15"
@@ -577,7 +577,7 @@ description = "Tool for reordering python imports"
 name = "reorder-python-imports"
 optional = false
 python-versions = ">=3.6.1"
-version = "2.3.4"
+version = "2.3.5"
 
 [package.dependencies]
 "aspy.refactor-imports" = ">=2.1.0"
@@ -751,7 +751,7 @@ description = "Virtual Python Environment builder"
 name = "virtualenv"
 optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,>=2.7"
-version = "20.0.28"
+version = "20.0.29"
 
 [package.dependencies]
 appdirs = ">=1.4.3,<2"
@@ -793,7 +793,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "c14471a443ea3d4037cc14f8acec166ad95f384987b3747926ae37edca948185"
+content-hash = "b8d4774bb1fbf768a56eee6646c161276182d26f7fcff0f968f02637c2a40bfd"
 python-versions = "^3.6.1"
 
 [metadata.files]
@@ -830,8 +830,8 @@ certifi = [
     {file = "certifi-2020.6.20.tar.gz", hash = "sha256:5930595817496dd21bb8dc35dad090f1c2cd0adfaf21204bf6732ca5d8ee34d3"},
 ]
 cfgv = [
-    {file = "cfgv-3.1.0-py2.py3-none-any.whl", hash = "sha256:1ccf53320421aeeb915275a196e23b3b8ae87dea8ac6698b1638001d4a486d53"},
-    {file = "cfgv-3.1.0.tar.gz", hash = "sha256:c8e8f552ffcc6194f4e18dd4f68d9aef0c0d58ae7e7be8c82bee3c5e9edfa513"},
+    {file = "cfgv-3.2.0-py2.py3-none-any.whl", hash = "sha256:32e43d604bbe7896fe7c248a9c2276447dbef840feb28fe20494f62af110211d"},
+    {file = "cfgv-3.2.0.tar.gz", hash = "sha256:cf22deb93d4bcf92f345a5c3cd39d3d41d6340adc60c78bbbd6588c384fda6a1"},
 ]
 chardet = [
     {file = "chardet-3.0.4-py2.py3-none-any.whl", hash = "sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691"},
@@ -997,8 +997,8 @@ pre-commit = [
     {file = "pre_commit-2.6.0.tar.gz", hash = "sha256:1657663fdd63a321a4a739915d7d03baedd555b25054449090f97bb0cb30a915"},
 ]
 pre-commit-hooks = [
-    {file = "pre_commit_hooks-3.1.0-py2.py3-none-any.whl", hash = "sha256:32e07d6bd511e26ac3d7b7aafdd2e49d0f1efdb7fc772156386004b9e6f66dbe"},
-    {file = "pre_commit_hooks-3.1.0.tar.gz", hash = "sha256:78642bdda65d524a6c91faaf4b322f18fc561e4377e8651d8502c6073e4a19d9"},
+    {file = "pre_commit_hooks-3.2.0-py2.py3-none-any.whl", hash = "sha256:8a174237326576c5f2279eba18ccbf2ca2a19fcaab8844db80f576c8fe76c2c2"},
+    {file = "pre_commit_hooks-3.2.0.tar.gz", hash = "sha256:917bce8feb048f8271e3a4a900c6d780118d23e8ddf4557ddec9384c0d1dba79"},
 ]
 py = [
     {file = "py-1.9.0-py2.py3-none-any.whl", hash = "sha256:366389d1db726cd2fcfc79732e75410e5fe4d31db13692115529d34069a043c2"},
@@ -1069,8 +1069,8 @@ regex = [
     {file = "regex-2020.7.14.tar.gz", hash = "sha256:3a3af27a8d23143c49a3420efe5b3f8cf1a48c6fc8bc6856b03f638abc1833bb"},
 ]
 reorder-python-imports = [
-    {file = "reorder_python_imports-2.3.4-py2.py3-none-any.whl", hash = "sha256:59e5f7a4a40181188c9563e60d13068a0bbfb68333c6554403a1a80a9d20603e"},
-    {file = "reorder_python_imports-2.3.4.tar.gz", hash = "sha256:508dbbe34b48505a29b4cdb964819c12309dbd4ba3f82e0eb7c02c915f2c6f88"},
+    {file = "reorder_python_imports-2.3.5-py2.py3-none-any.whl", hash = "sha256:6e8d3baba68c409ec87242757cf579a7ad2b133d1efed498be987b97ee385ac3"},
+    {file = "reorder_python_imports-2.3.5.tar.gz", hash = "sha256:7c46593d39899e3fb249248b448bde93ee7417889904f015c0c5a738c23fd0e0"},
 ]
 requests = [
     {file = "requests-2.24.0-py2.py3-none-any.whl", hash = "sha256:fe75cc94a9443b9246fc7049224f75604b113c36acb93f87b80ed42c44cbb898"},
@@ -1166,8 +1166,8 @@ urllib3 = [
     {file = "urllib3-1.25.10.tar.gz", hash = "sha256:91056c15fa70756691db97756772bb1eb9678fa585d9184f24534b100dc60f4a"},
 ]
 virtualenv = [
-    {file = "virtualenv-20.0.28-py2.py3-none-any.whl", hash = "sha256:8f582a030156282a9ee9d319984b759a232b07f86048c1d6a9e394afa44e78c8"},
-    {file = "virtualenv-20.0.28.tar.gz", hash = "sha256:688a61d7976d82b92f7906c367e83bb4b3f0af96f8f75bfcd3da95608fe8ac6c"},
+    {file = "virtualenv-20.0.29-py2.py3-none-any.whl", hash = "sha256:8aa9c37b082664dbce2236fa420759c02d64109d8e6013593ad13914718a30fd"},
+    {file = "virtualenv-20.0.29.tar.gz", hash = "sha256:f14a0a98ea4397f0d926cff950361766b6a73cd5975ae7eb259d12919f819a25"},
 ]
 wcwidth = [
     {file = "wcwidth-0.2.5-py2.py3-none-any.whl", hash = "sha256:beb4802a9cebb9144e99086eff703a642a13d6a0052920003a230f3294bbe784"},
