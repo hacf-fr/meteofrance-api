@@ -34,10 +34,13 @@ def test_workflow(city: str) -> None:
         rain_status = "No rain forecast availble."
 
     # Fetch weather alerts.
-    my_place_weather_alerts = client.get_warning_current_phenomenoms(my_place.admin2)
-    readable_warnings = readeable_phenomenoms_dict(
-        my_place_weather_alerts.phenomenons_max_colors
-    )
+    if my_place.admin2:
+        my_place_weather_alerts = client.get_warning_current_phenomenoms(
+            my_place.admin2
+        )
+        readable_warnings = readeable_phenomenoms_dict(
+            my_place_weather_alerts.phenomenons_max_colors
+        )
 
     assert type(my_place_daily_forecast) == list
     assert rain_status

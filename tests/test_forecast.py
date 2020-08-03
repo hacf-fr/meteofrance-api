@@ -12,7 +12,7 @@ def test_forecast_france() -> None:
     """Test weather forecast results from API."""
     client = MeteoFranceClient()
 
-    weather_forecast = client.get_forecast(latitude="48.8075", longitude="2.24028")
+    weather_forecast = client.get_forecast(latitude=48.8075, longitude=2.24028)
     now_ts = int(time.time())
 
     assert type(weather_forecast.position) == dict
@@ -41,7 +41,7 @@ def test_forecast_world() -> None:
     """Test weather forecast results from API."""
     client = MeteoFranceClient()
 
-    weather_forecast = client.get_forecast(latitude="45.5016889", longitude="73.567256")
+    weather_forecast = client.get_forecast(latitude=45.5016889, longitude=73.567256)
     now_ts = int(time.time())
 
     assert type(weather_forecast.position) == dict

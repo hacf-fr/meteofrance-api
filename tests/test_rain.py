@@ -13,7 +13,7 @@ def test_rain() -> None:
     """Test rain forecast on a covered zone."""
     client = MeteoFranceClient()
 
-    rain = client.get_rain(latitude="48.8075", longitude="2.24028")
+    rain = client.get_rain(latitude=48.8075, longitude=2.24028)
 
     assert type(rain.position) == dict
     assert type(rain.updated_on) == int
@@ -26,7 +26,7 @@ def test_rain_not_covered() -> None:
     client = MeteoFranceClient()
 
     with pytest.raises(requests.HTTPError, match=r"400 .*"):
-        client.get_rain(latitude="45.508", longitude="-73.58")
+        client.get_rain(latitude=45.508, longitude=-73.58)
 
 
 def test_rain_expected(requests_mock: Mock) -> None:
@@ -62,7 +62,7 @@ def test_rain_expected(requests_mock: Mock) -> None:
         },
     )
 
-    rain = client.get_rain(latitude="48.8075", longitude="2.24028")
+    rain = client.get_rain(latitude=48.8075, longitude=2.24028)
     date_rain = rain.next_rain_date_locale()
     assert str(date_rain) == "2020-05-20 19:50:00+02:00"
     assert (
@@ -104,5 +104,5 @@ def test_no_rain_expected(requests_mock: Mock) -> None:
         },
     )
 
-    rain = client.get_rain(latitude="48.8075", longitude="2.24028")
+    rain = client.get_rain(latitude=48.8075, longitude=2.24028)
     assert rain.next_rain_date_locale() is None
