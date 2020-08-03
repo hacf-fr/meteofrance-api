@@ -18,7 +18,7 @@ Vous trouverez le contenu francophone du README [ici](#pour-les-francophones).
 
 ### Description
 
-Ce pacakge Python permet de gérer la communication avec l'API non publique de
+Ce package Python permet de gérer la communication avec l'API non publique de
 Météo-France utilisée par les applications moblies officielles.
 
 Le client permet:
