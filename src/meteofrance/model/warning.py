@@ -3,10 +3,15 @@
 
 For getting weather alerts in France and Andorre.
 """
+import sys
 from typing import Any
 from typing import Dict
 from typing import List
-from typing import TypedDict
+
+if sys.version_info >= (3, 8):
+    from typing import TypedDict  # pylint: disable=no-name-in-module
+else:
+    from typing_extensions import TypedDict
 
 
 class WarnningCurrentPhenomenonsData(TypedDict):
