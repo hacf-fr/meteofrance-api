@@ -15,6 +15,7 @@ from .const import ALERT_COLOR_LIST_FR
 from .const import ALERT_TYPE_LIST_EN
 from .const import ALERT_TYPE_LIST_FR
 from .const import COASTAL_DEPARTMENT_LIST
+from .const import VALID_DEPARTMENT_LIST
 from .model.place import Place
 
 
@@ -45,9 +46,20 @@ def get_phenomenon_name_from_indice(
 
 
 def is_coastal_department(department_number: str) -> bool:
-    """Iidentify when a second bulletin is availabe for coastal risks (Helper)."""
+    """Identify when a second bulletin is availabe for coastal risks (Helper)."""
     result = False
     if department_number in COASTAL_DEPARTMENT_LIST:
+        result = True
+    return result
+
+
+def is_valid_warning_department(department_number: str) -> bool:
+    """Identify if there is a weather alert bulletin for this department (Helper).
+
+    Weather alert buletins are available only for France métropole and Andorre.
+    """
+    result = False
+    if department_number in VALID_DEPARTMENT_LIST:
         result = True
     return result
 
