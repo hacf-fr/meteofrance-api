@@ -27,8 +27,8 @@ def get_warning_text_status_from_indice_color(
     """
     if lang == "fr":
         return ALERT_COLOR_LIST_FR[int_color]
-    else:
-        return ALERT_COLOR_LIST_EN[int_color]
+
+    return ALERT_COLOR_LIST_EN[int_color]
 
 
 def get_phenomenon_name_from_indice(
