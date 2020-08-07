@@ -40,8 +40,8 @@ def get_phenomenon_name_from_indice(
     """
     if lang == "fr":
         return ALERT_TYPE_LIST_FR[int_phenomenon]
-    else:
-        return ALERT_TYPE_LIST_EN[int_phenomenon]
+
+    return ALERT_TYPE_LIST_EN[int_phenomenon]
 
 
 def is_coastal_department(department_number: str) -> bool:
