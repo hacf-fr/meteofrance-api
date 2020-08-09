@@ -1,20 +1,38 @@
 # -*- coding: utf-8 -*-
 """Météo-France weather forecast python API. Rain class."""
+import sys
 from datetime import datetime
+from typing import Any
+from typing import Dict
+from typing import List
 from typing import Optional
 
+if sys.version_info >= (3, 8):
+    from typing import TypedDict  # pylint: disable=no-name-in-module
+else:
+    from typing_extensions import TypedDict
+
 from meteofrance.helpers import timestamp_to_dateime_with_locale_tz
+
+
+class RainData(TypedDict):
+    """Describing the structure of the API returned rain object."""
+
+    position: Dict[str, Any]
+    updated_on: int
+    forecast: List[Dict[str, Any]]
+    quality: int
 
 
 class Rain:
     """Class to access the results of 'rain' API command."""
 
-    def __init__(self, raw_data: dict):
+    def __init__(self, raw_data: RainData):
         """Initialize a Rain object."""
         self.raw_data = raw_data
 
     @property
-    def position(self) -> dict:
+    def position(self) -> Dict[str, Any]:
         """Return the position information of the rain forecast."""
         return self.raw_data["position"]
 
@@ -24,7 +42,7 @@ class Rain:
         return self.raw_data["updated_on"]
 
     @property
-    def forecast(self) -> list:
+    def forecast(self) -> List[Dict[str, Any]]:
         """Return the rain forecast."""
         return self.raw_data["forecast"]
 

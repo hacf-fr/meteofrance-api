@@ -1,5 +1,7 @@
 # coding: utf-8
 """Tests Météo-France module. Warning classes."""
+from unittest.mock import Mock
+
 import pytest
 
 from meteofrance.client import MeteoFranceClient
@@ -8,7 +10,7 @@ from meteofrance.const import METEOFRANCE_API_URL
 WARNING_COLOR_LIST = [1, 2, 3, 4]
 
 
-def test_currentphenomenons(requests_mock):
+def test_currentphenomenons(requests_mock: Mock) -> None:
     """Test basic weather alert results from API."""
     client = MeteoFranceClient()
 
@@ -39,7 +41,7 @@ def test_currentphenomenons(requests_mock):
     assert current_phenomenoms.get_domain_max_color() == 3
 
 
-def test_fulls():
+def test_fulls() -> None:
     """Test advanced weather alert results from API."""
     client = MeteoFranceClient()
 
@@ -59,7 +61,7 @@ def test_fulls():
     )
 
 
-def test_thumbnail():
+def test_thumbnail() -> None:
     """Test getting France status weather alert map."""
     client = MeteoFranceClient()
 
@@ -73,7 +75,7 @@ def test_thumbnail():
 
 
 @pytest.mark.parametrize("dep, res", [("13", True), ("32", False)])
-def test_currentphenomenons_with_coastal_bulletin(dep, res):
+def test_currentphenomenons_with_coastal_bulletin(dep: str, res: bool) -> None:
     """Test getting a complete basic bulletin for coastal department."""
     client = MeteoFranceClient()
 
@@ -88,7 +90,7 @@ def test_currentphenomenons_with_coastal_bulletin(dep, res):
 
 
 @pytest.mark.parametrize("dep, res", [("13", True), ("32", False)])
-def test_full_with_coastal_bulletint(dep, res):
+def test_full_with_coastal_bulletint(dep: str, res: bool) -> None:
     """Test getting a complete advanced bulletin for coastal department."""
     client = MeteoFranceClient()
 

@@ -5,7 +5,7 @@ import pytest
 from meteofrance.exceptions import MeteoFranceException
 
 
-def test_meteofrance_exception():
+def test_meteofrance_exception() -> None:
     """Tests MeteoFranceException excetion."""
     with pytest.raises(MeteoFranceException):
         # TODO test for coverage. To be update in the future.

@@ -1,5 +1,7 @@
 # coding: utf-8
 """Tests Météo-France module. Forecast class."""
+from unittest.mock import Mock
+
 import pytest
 import requests
 
@@ -7,7 +9,7 @@ from meteofrance.client import MeteoFranceClient
 from meteofrance.const import METEOFRANCE_API_URL
 
 
-def test_rain():
+def test_rain() -> None:
     """Test rain forecast on a covered zone."""
     client = MeteoFranceClient()
 
@@ -19,7 +21,7 @@ def test_rain():
     assert "rain" in rain.forecast[0].keys()
 
 
-def test_rain_not_covered():
+def test_rain_not_covered() -> None:
     """Test rain forecast result on a non covered zone."""
     client = MeteoFranceClient()
 
@@ -27,7 +29,7 @@ def test_rain_not_covered():
         client.get_rain(latitude=45.508, longitude=-73.58)
 
 
-def test_rain_expected(requests_mock):
+def test_rain_expected(requests_mock: Mock) -> None:
     """Test datecomputation when rain is expected within the hour."""
     client = MeteoFranceClient()
 
@@ -69,7 +71,7 @@ def test_rain_expected(requests_mock):
     )
 
 
-def test_no_rain_expected(requests_mock):
+def test_no_rain_expected(requests_mock: Mock) -> None:
     """Test datecomputation when rain is expected within the hour."""
     client = MeteoFranceClient()
 

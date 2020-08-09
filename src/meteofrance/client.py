@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Météo-France weather forecast python API."""
 from typing import List
+from typing import Optional
 
 from .const import COASTAL_DEPARTMENT_LIST
 from .const import METEOFRANCE_API_TOKEN
@@ -31,7 +32,7 @@ class MeteoFranceClient:
     weather alert bulletin.
     """
 
-    def __init__(self, access_token: str = None):
+    def __init__(self, access_token: Optional[str] = None):
         """Initialize the API and store the auth so we can make requests."""
         self.session = MeteoFranceSession(access_token)
         self.session_ws = MeteoFranceWSSession()
@@ -41,7 +42,10 @@ class MeteoFranceClient:
     # Place
     #
     def search_places(
-        self, search_query: str, latitude: str = None, longitude: str = None
+        self,
+        search_query: str,
+        latitude: Optional[str] = None,
+        longitude: Optional[str] = None,
     ) -> List[Place]:
         """Return the places link to a search.
 
@@ -63,7 +67,7 @@ class MeteoFranceClient:
     # Forecast
     #
     def get_forecast(
-        self, latitude: str, longitude: str, language: str = "fr",
+        self, latitude: float, longitude: float, language: str = "fr",
     ) -> Forecast:
         """Return the weather forecast for a GPS location.
 
@@ -89,7 +93,7 @@ class MeteoFranceClient:
     #
     # Rain
     #
-    def get_rain(self, latitude: str, longitude: str, language: str = "fr") -> Rain:
+    def get_rain(self, latitude: float, longitude: float, language: str = "fr") -> Rain:
         """Return the next 1 hour rain forecast for a GPS the location.
 
         Results can be fetched in french or english according to the language parameter.

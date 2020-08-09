@@ -1,11 +1,26 @@
 # -*- coding: utf-8 -*-
 """Météo-France weather forecast python API. PictureOfTheDay class."""
+import sys
+from typing import Mapping
+
+if sys.version_info >= (3, 8):
+    from typing import TypedDict  # pylint: disable=no-name-in-module
+else:
+    from typing_extensions import TypedDict
+
+
+class PictureOfTheDayData(TypedDict):
+    """Describe the structure of the API returned ImageJour object."""
+
+    vignette: str
+    imageHD: str  # noqa: N815
+    commentaire: str
 
 
 class PictureOfTheDay:
     """Class to access the results of a `ImageJour/last` API command."""
 
-    def __init__(self, raw_data: dict):
+    def __init__(self, raw_data: Mapping[str, PictureOfTheDayData]):
         """Initialize a PictureOfTheDay object."""
         self.raw_data = raw_data["result"]
 

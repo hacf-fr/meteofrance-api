@@ -3,7 +3,7 @@
 from meteofrance.client import MeteoFranceClient
 
 
-def test_places():
+def test_places() -> None:
     """Test for simple seach of Place."""
     client = MeteoFranceClient()
 
@@ -24,7 +24,7 @@ def test_places():
     assert place.admin2 == "11"
 
 
-def test_places_with_gps():
+def test_places_with_gps() -> None:
     """Test a place search by specifying a GPS point to search arround."""
     client = MeteoFranceClient()
 
@@ -40,7 +40,7 @@ def test_places_with_gps():
     assert place.admin2 == "06"
 
 
-def test_places_not_found():
+def test_places_not_found() -> None:
     """Test when no places are found."""
     client = MeteoFranceClient()
 
@@ -49,7 +49,7 @@ def test_places_not_found():
     assert not list_places
 
 
-def test_places_print():
+def test_places_print() -> None:
     """Test different way to print Places class."""
     client = MeteoFranceClient()
 

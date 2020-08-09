@@ -1,5 +1,7 @@
 # coding: utf-8
 """Tests for meteofrance module. Helpers."""
+from typing import List
+
 import pytest
 
 from meteofrance.helpers import get_phenomenon_name_from_indice
@@ -8,27 +10,28 @@ from meteofrance.helpers import is_coastal_department
 from meteofrance.helpers import readeable_phenomenoms_dict
 from meteofrance.helpers import sort_places_versus_distance_from_coordinates
 from meteofrance.model import Place
+from meteofrance.model.place import PlaceData
 
 
-def test_text_helpers_fr():
+def test_text_helpers_fr() -> None:
     """Test helpers to have readable alert type and alert level in French."""
     assert get_warning_text_status_from_indice_color(1) == "Vert"
     assert get_phenomenon_name_from_indice(2) == "Pluie-inondation"
 
 
-def test_get_warning_text_status_from_indice_color_en():
+def test_get_warning_text_status_from_indice_color_en() -> None:
     """Test helpers to have readable alert type and alert level in English."""
     assert get_warning_text_status_from_indice_color(4, "en") == "Red"
     assert get_phenomenon_name_from_indice(4, "en") == "Flood"
 
 
 @pytest.mark.parametrize("dep, res", [("03", False), ("06", True), ("2B", True)])
-def test_is_coastal_department(dep, res):
+def test_is_coastal_department(dep: str, res: bool) -> None:
     """Test the helper checking if an additional coastal departement bulletin exist."""
     assert is_coastal_department(dep) == res
 
 
-def test_readeable_phenomenoms_dict():
+def test_readeable_phenomenoms_dict() -> None:
     """Test the helper constructing a human readable dictionary for phenomenom."""
     api_list = [
         {"phenomenon_id": 4, "phenomenon_max_color_id": 1},
@@ -48,9 +51,9 @@ def test_readeable_phenomenoms_dict():
     assert readeable_phenomenoms_dict(api_list) == expected_dictionary
 
 
-def test_sort_places_versus_distance_from_coordinates():
+def test_sort_places_versus_distance_from_coordinates() -> None:
     """Test the helper to order the Places list return by the search."""
-    json_places = [
+    json_places: List[PlaceData] = [
         {
             "insee": "11254",
             "name": "Montréal",

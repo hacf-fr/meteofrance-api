@@ -1,11 +1,44 @@
 # -*- coding: utf-8 -*-
-"""Météo-France weather forecast python API. Place class."""
+"""Météo-France weather forecast python API. Place class.
+
+Example of a place in JSON format:
+{
+   "insee":"11254",
+   "name":"Montréal",
+   "lat":43.2,
+   "lon":2.14083,
+   "country":"FR",
+   "admin":"Languedoc-Roussillon",
+   "admin2":"11",
+   "postCode":"11290"
+}
+"""
+import sys
+from typing import Optional
+
+if sys.version_info >= (3, 8):
+    from typing import TypedDict  # pylint: disable=no-name-in-module
+else:
+    from typing_extensions import TypedDict
+
+
+class PlaceData(TypedDict):
+    """Describe the structure of the API returned place object."""
+
+    insee: str
+    name: str
+    lat: float
+    lon: float
+    country: str
+    admin: str
+    admin2: str
+    postCode: str  # noqa: N815
 
 
 class Place:
     """Class to access the results of 'places' API command."""
 
-    def __init__(self, raw_data: dict):
+    def __init__(self, raw_data: PlaceData):
         """Initialize a Place object."""
         self.raw_data = raw_data
 
@@ -26,7 +59,7 @@ class Place:
         return f"{self.name} - {self.admin} - {self.country}"
 
     @property
-    def insee(self) -> str:
+    def insee(self) -> Optional[str]:
         """Return the INSEE ID of the place."""
         return self.raw_data.get("insee")
 
@@ -36,12 +69,12 @@ class Place:
         return self.raw_data["name"]
 
     @property
-    def latitude(self) -> str:
+    def latitude(self) -> float:
         """Return the latitude of the place."""
         return self.raw_data["lat"]
 
     @property
-    def longitude(self) -> str:
+    def longitude(self) -> float:
         """Return the longitude of the place."""
         return self.raw_data["lon"]
 
@@ -51,7 +84,7 @@ class Place:
         return self.raw_data["country"]
 
     @property
-    def admin(self) -> str:
+    def admin(self) -> Optional[str]:
         """Return the admin of the place.
 
         Seems to be the department in text ex: "Gers".
@@ -59,7 +92,7 @@ class Place:
         return self.raw_data.get("admin")
 
     @property
-    def admin2(self) -> str:
+    def admin2(self) -> Optional[str]:
         """Return the admin2 of the place.
 
         Seems to be the department in numbers "32".
@@ -67,6 +100,6 @@ class Place:
         return self.raw_data.get("admin2")
 
     @property
-    def postal_code(self) -> str:
+    def postal_code(self) -> Optional[str]:
         """Return the postal code of the place."""
         return self.raw_data.get("postCode")

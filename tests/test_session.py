@@ -6,7 +6,7 @@ from requests.exceptions import RequestException
 from meteofrance.session import MeteoFranceSession
 
 
-def test_session():
+def test_session() -> None:
     """Test generic session."""
     session = MeteoFranceSession()
 
@@ -15,7 +15,7 @@ def test_session():
     assert resp.status_code == 200
 
 
-def test_session_wrong_token():
+def test_session_wrong_token() -> None:
     """Test exceptions raised."""
     session = MeteoFranceSession("fake_token")
 

@@ -1,5 +1,6 @@
 """Nox sessions."""
 import contextlib
+import sys
 import tempfile
 from pathlib import Path
 from textwrap import dedent
@@ -10,7 +11,7 @@ from nox.sessions import Session
 
 python_versions = ["3.8", "3.7", "3.6"]
 package = "meteofrance_api"
-nox.options.sessions = "pre-commit", "safety", "tests"
+nox.options.sessions = "pre-commit", "safety", "mypy", "tests", "typeguard"
 locations = "src", "tests", "noxfile.py"
 
 
@@ -182,6 +183,25 @@ def safety(session: Session) -> None:
 
 
 @nox.session(python=python_versions)
+def mypy(session: Session) -> None:
+    """Type-check using mypy."""
+    args = session.posargs or ["src", "tests"]
+    install_package(session)
+    install(session, "mypy")
+    session.run("mypy", *args)
+    if not session.posargs:
+        session.run("mypy", f"--python-executable={sys.executable}", "noxfile.py")
+
+
+@nox.session(python=python_versions)
+def typeguard(session: Session) -> None:
+    """Runtime type checking using Typeguard."""
+    install_package(session)
+    install(session, "pytest", "typeguard", "requests-mock")
+    session.run("pytest", f"--typeguard-packages={package}", *session.posargs)
+
+
+@nox.session(python=python_versions)
 def tests(session: Session) -> None:
     """Run the test suite."""
     install_package(session)
@@ -189,7 +209,8 @@ def tests(session: Session) -> None:
     try:
         session.run("coverage", "run", "--parallel", "-m", "pytest", *session.posargs)
     finally:
-        session.notify("coverage")
+        if session.interactive:
+            session.notify("coverage")
 
 
 @nox.session

@@ -8,7 +8,7 @@ from meteofrance.client import MeteoFranceClient
 from meteofrance.model import Place
 
 
-def test_forecast_france():
+def test_forecast_france() -> None:
     """Test weather forecast results from API."""
     client = MeteoFranceClient()
 
@@ -37,7 +37,7 @@ def test_forecast_france():
     )
 
 
-def test_forecast_world():
+def test_forecast_world() -> None:
     """Test weather forecast results from API."""
     client = MeteoFranceClient()
 
@@ -71,7 +71,7 @@ def test_forecast_world():
     )
 
 
-def test_forecast_place():
+def test_forecast_place() -> None:
     """Test weather forecast results from API."""
     client = MeteoFranceClient()
 
