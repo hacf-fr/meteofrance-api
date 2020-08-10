@@ -35,7 +35,7 @@ def test_is_coastal_department(dep: str, res: bool) -> None:
 @pytest.mark.parametrize(
     "dep, res", [("03", True), ("98", False), ("2B", True), ("test", False)]
 )
-def test_is_valid_warning_department(dep, res):
+def test_is_valid_warning_department(dep: str, res: bool) -> None:
     """Test the helper checking if departent has a weather alert bulletin."""
     assert is_valid_warning_department(dep) == res
 
