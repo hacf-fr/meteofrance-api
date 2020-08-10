@@ -47,10 +47,7 @@ def get_phenomenon_name_from_indice(
 
 def is_coastal_department(department_number: str) -> bool:
     """Identify when a second bulletin is availabe for coastal risks (Helper)."""
-    result = False
-    if department_number in COASTAL_DEPARTMENT_LIST:
-        result = True
-    return result
+    return department_number in COASTAL_DEPARTMENT_LIST
 
 
 def is_valid_warning_department(department_number: str) -> bool:
@@ -58,10 +55,7 @@ def is_valid_warning_department(department_number: str) -> bool:
 
     Weather alert buletins are available only for France métropole and Andorre.
     """
-    result = False
-    if department_number in VALID_DEPARTMENT_LIST:
-        result = True
-    return result
+    return department_number in VALID_DEPARTMENT_LIST
 
 
 def readeable_phenomenoms_dict(
