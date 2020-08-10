@@ -41,7 +41,7 @@ ALERT_TYPE_LIST_EN = [
 ]
 
 
-# Valide departments list
+# Valide departments list for weather alert bulletin
 VALID_DEPARTMENT_LIST = [
     "01",
     "02",

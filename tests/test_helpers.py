@@ -7,6 +7,7 @@ import pytest
 from meteofrance.helpers import get_phenomenon_name_from_indice
 from meteofrance.helpers import get_warning_text_status_from_indice_color
 from meteofrance.helpers import is_coastal_department
+from meteofrance.helpers import is_valid_warning_department
 from meteofrance.helpers import readeable_phenomenoms_dict
 from meteofrance.helpers import sort_places_versus_distance_from_coordinates
 from meteofrance.model import Place
@@ -29,6 +30,14 @@ def test_get_warning_text_status_from_indice_color_en() -> None:
 def test_is_coastal_department(dep: str, res: bool) -> None:
     """Test the helper checking if an additional coastal departement bulletin exist."""
     assert is_coastal_department(dep) == res
+
+
+@pytest.mark.parametrize(
+    "dep, res", [("03", True), ("98", False), ("2B", True), ("test", False)]
+)
+def test_is_valid_warning_department(dep: str, res: bool) -> None:
+    """Test the helper checking if departent has a weather alert bulletin."""
+    assert is_valid_warning_department(dep) == res
 
 
 def test_readeable_phenomenoms_dict() -> None:
