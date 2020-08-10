@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-"""Météo-France weather forecast python API. Classes for weather alert.
+"""Weather alert buletin Python model for the Météo-France REST API.
 
-For getting weather alerts in France and Andorre.
+
+For getting weather alerts in France Metropole and Andorre.
 """
 import sys
 from typing import Any

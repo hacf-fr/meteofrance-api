@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Météo-France weather forecast python API. Rain class."""
+"""Rain in the next hour Python model for the Météo-France REST API."""
 import sys
 from datetime import datetime
 from typing import Any

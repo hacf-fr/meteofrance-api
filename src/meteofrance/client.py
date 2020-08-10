@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Météo-France weather forecast python API."""
+"""Client for the Météo-France REST API."""
 from typing import List
 from typing import Optional
 

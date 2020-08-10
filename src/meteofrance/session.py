@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Météo-France weather forecast python API."""
+"""Session managers for the Météo-France REST API."""
 from typing import Any
 from typing import Optional
 

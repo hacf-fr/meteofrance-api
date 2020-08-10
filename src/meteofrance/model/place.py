@@ -1,18 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Météo-France weather forecast python API. Place class.
-
-Example of a place in JSON format:
-{
-   "insee":"11254",
-   "name":"Montréal",
-   "lat":43.2,
-   "lon":2.14083,
-   "country":"FR",
-   "admin":"Languedoc-Roussillon",
-   "admin2":"11",
-   "postCode":"11290"
-}
-"""
+"""Place Python model for the Météo-France REST API."""
 import sys
 from typing import Optional
 

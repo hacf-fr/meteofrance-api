@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Météo-France weather forecast python API. PictureOfTheDay class."""
+"""Picture of the Day@ Python model for the Météo-France REST API."""
 import sys
 from typing import Mapping
 

@@ -1,4 +1,4 @@
-"""Météo-France models."""
+"""Météo-France models for the REST API."""
 from .forecast import Forecast
 from .picture_of_the_day import PictureOfTheDay
 from .place import Place
