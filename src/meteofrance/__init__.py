@@ -1,3 +1,2 @@
 """Météo-France API."""
-
-from .client import MeteoFranceClient  # noqa: F401
+__all__ = ["client/MeteoFranceClient"]
