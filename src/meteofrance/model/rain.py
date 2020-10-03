@@ -16,7 +16,7 @@ else:
 
 
 class RainData(TypedDict):
-    """Describing the structure of the API returned rain object."""
+    """Describing the data structure of rain object returned by the REST API."""
 
     position: Dict[str, Any]
     updated_on: int
@@ -25,9 +25,17 @@ class RainData(TypedDict):
 
 
 class Rain:
-    """Class to access the results of 'rain' API command."""
+    """Class to access the results of 'rain' REST API request.
 
-    def __init__(self, raw_data: RainData):
+    Attributes:
+        position: A dictionary with metadata about the position of the forecast place.
+        position: A dictionary with metadata about the position of the forecast place.
+        forecast: A list of dictionaries to describe the following next hour rain
+            forecast.
+        quality: An integer. Don't know yet the usage.
+    """
+
+    def __init__(self, raw_data: RainData) -> None:
         """Initialize a Rain object."""
         self.raw_data = raw_data
 
@@ -53,7 +61,15 @@ class Rain:
         return self.raw_data["quality"]
 
     def next_rain_date_locale(self) -> Optional[datetime]:
-        """Return the date of the next rain in the Place timezone (Helper)."""
+        """Estimate the date of the next rain in the Place timezone (Helper).
+
+        Returns:
+            A datetime instance representing the date estimation of the next rain within
+            the next hour.
+            If no rain is expected in the following hour 'None' is returned.
+
+            The datetime use the location timezone.
+        """
         # search first cadran with rain
         next_rain = next(
             (cadran for cadran in self.forecast if cadran["rain"] > 1), None
@@ -71,8 +87,13 @@ class Rain:
         return next_rain_dt_local
 
     def timestamp_to_locale_time(self, timestamp: int) -> datetime:
-        """Convert timestamp in datetime (Helper).
+        """Convert timestamp in datetime with rain forecast location timezone (Helper).
 
-        The timezone corresponding to the forecast location is used.
+        Args:
+            timestamp: An integer representing the UNIX timestamp.
+
+        Returns:
+            A datetime instance corresponding to the timestamp with the timezone of the
+                rain forecast location.
         """
         return timestamp_to_dateime_with_locale_tz(timestamp, self.position["timezone"])
