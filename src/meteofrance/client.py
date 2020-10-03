@@ -33,7 +33,11 @@ class MeteoFranceClient:
     """
 
     def __init__(self, access_token: Optional[str] = None) -> None:
-        """Initialize the API and store the auth so we can make requests."""
+        """Initialize the API and store the auth so we can make requests.
+
+        Args:
+            access_token: a string containing the authentication token for the REST API.
+        """
         self.session = MeteoFranceSession(access_token)
         self.session_ws = MeteoFranceWSSession()
         self.session_net = MeteoNetSession()

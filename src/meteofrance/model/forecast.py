@@ -46,7 +46,12 @@ class Forecast:
     """
 
     def __init__(self, raw_data: ForecastData) -> None:
-        """Initialize a Forecast object."""
+        """Initialize a Forecast object.
+
+        Args:
+            raw_data: A dictionary representing the JSON response from 'forecast' REST
+                API request. The structure is described by the ForecastData class.
+        """
         self.raw_data = raw_data
 
     @property

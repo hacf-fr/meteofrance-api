@@ -36,7 +36,12 @@ class Rain:
     """
 
     def __init__(self, raw_data: RainData) -> None:
-        """Initialize a Rain object."""
+        """Initialize a Rain object.
+
+        Args:
+            raw_data: A dictionary representing the JSON response from 'rain' REST API
+                request. The structure is described by the RainData class.
+        """
         self.raw_data = raw_data
 
     @property

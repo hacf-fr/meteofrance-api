@@ -21,7 +21,11 @@ class MeteoFranceSession(Session):
     host: str = METEOFRANCE_API_URL
 
     def __init__(self, access_token: Optional[str] = None) -> None:
-        """Initialize the authentication."""
+        """Initialize the authentication.
+
+        Args:
+            access_token: a string containing the authentication token for the REST API.
+        """
         self.access_token = access_token or METEOFRANCE_API_TOKEN
         Session.__init__(self)
 
@@ -62,7 +66,11 @@ class MeteoFranceWSSession(MeteoFranceSession):
     host: str = METEOFRANCE_WS_API_URL
 
     def __init__(self, access_token: Optional[str] = None) -> None:
-        """Initialize the Météo-France WS."""
+        """Initialize the Météo-France WS.
+
+        Args:
+            access_token: a string containing the authentication token for the REST API.
+        """
         super().__init__(access_token)
 
 
@@ -76,5 +84,9 @@ class MeteoNetSession(MeteoFranceSession):
     host: str = METEONET_API_URL
 
     def __init__(self, access_token: Optional[str] = None) -> None:
-        """Initialize the MétéoNet."""
+        """Initialize the MétéoNet.
+
+        Args:
+            access_token: a string containing the authentication token for the REST API.
+        """
         super().__init__(access_token)

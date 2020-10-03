@@ -28,7 +28,13 @@ class PictureOfTheDay:
     """
 
     def __init__(self, raw_data: Mapping[str, PictureOfTheDayData]) -> None:
-        """Initialize a PictureOfTheDay object."""
+        """Initialize a PictureOfTheDay object.
+
+        Args:
+            raw_data: A dictionary representing the JSON response from 'ImageJour/last'
+                REST API request. The structure is described by the PictureOfTheDayData
+                class.
+        """
         self.raw_data = raw_data["result"]
 
     @property

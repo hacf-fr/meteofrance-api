@@ -39,7 +39,12 @@ class Place:
     """
 
     def __init__(self, raw_data: PlaceData) -> None:
-        """Initialize a Place object."""
+        """Initialize a Place object.
+
+        Args:
+            raw_data: A dictionary representing the JSON response from 'places' REST API
+                request. The structure is described by the PlaceData class.
+        """
         self.raw_data = raw_data
 
     def __repr__(self) -> str:

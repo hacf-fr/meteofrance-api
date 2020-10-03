@@ -58,7 +58,13 @@ class CurrentPhenomenons:
     """
 
     def __init__(self, raw_data: WarnningCurrentPhenomenonsData) -> None:
-        """Initialize a CurrentPhenomenons object."""
+        """Initialize a CurrentPhenomenons object.
+
+        Args:
+            raw_data: A dictionary representing the JSON response from
+                'warning/currentPhenomenons' REST API request. The structure is
+                described by the WarnningCurrentPhenomenonsData class.
+        """
         self.raw_data = raw_data
 
     @property
@@ -134,7 +140,13 @@ class Full:
     """
 
     def __init__(self, raw_data: WarnningFullData) -> None:
-        """Initialize a Full object."""
+        """Initialize a Full object.
+
+        Args:
+            raw_data: A dictionary representing the JSON response from'warning/full'
+                REST API request. The structure is described by the WarnningFullData
+                class.
+        """
         self.raw_data = raw_data
 
     @property
