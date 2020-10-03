@@ -45,7 +45,7 @@ class Forecast:
             current hour.
     """
 
-    def __init__(self, raw_data: ForecastData):
+    def __init__(self, raw_data: ForecastData) -> None:
         """Initialize a Forecast object."""
         self.raw_data = raw_data
 

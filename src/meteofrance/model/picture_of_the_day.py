@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Picture of the Day@ Python model for the Météo-France REST API."""
+"""Picture of the Day Python model for the Météo-France REST API."""
 import sys
 from typing import Mapping
 
@@ -27,7 +27,7 @@ class PictureOfTheDay:
         descritpion: A string with the description of the picture of the day.
     """
 
-    def __init__(self, raw_data: Mapping[str, PictureOfTheDayData]):
+    def __init__(self, raw_data: Mapping[str, PictureOfTheDayData]) -> None:
         """Initialize a PictureOfTheDay object."""
         self.raw_data = raw_data["result"]
 

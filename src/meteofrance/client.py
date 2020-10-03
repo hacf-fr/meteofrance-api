@@ -32,7 +32,7 @@ class MeteoFranceClient:
     weather alert bulletin.
     """
 
-    def __init__(self, access_token: Optional[str] = None):
+    def __init__(self, access_token: Optional[str] = None) -> None:
         """Initialize the API and store the auth so we can make requests."""
         self.session = MeteoFranceSession(access_token)
         self.session_ws = MeteoFranceWSSession()

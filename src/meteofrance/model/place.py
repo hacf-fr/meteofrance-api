@@ -38,7 +38,7 @@ class Place:
         postCode: A string corresponding to the ZIP code of location.
     """
 
-    def __init__(self, raw_data: PlaceData):
+    def __init__(self, raw_data: PlaceData) -> None:
         """Initialize a Place object."""
         self.raw_data = raw_data
 
