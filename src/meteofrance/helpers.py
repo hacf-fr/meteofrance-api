@@ -72,13 +72,13 @@ def is_coastal_department(department_number: str) -> bool:
 def is_valid_warning_department(department_number: str) -> bool:
     """Identify if there is a weather alert bulletin for this department (Helper).
 
-    Weather alert buletins are available only for France métropole and Andorre.
+    Weather alert buletins are available only for metropolitan France and Andorre.
 
     Args:
         department_number: Department number on 2 characters.
 
     Returns:
-        True if a department is France Métropole or Andorre.
+        True if a department is metropolitan France or Andorre.
     """
     return department_number in VALID_DEPARTMENT_LIST
 

@@ -156,14 +156,14 @@ class MeteoFranceClient:
         """Return the current weather phenomenoms (or alerts) for a given domain.
 
         Args:
-            domain: could be `france` or any France métropole department numbers on two
-                digits. For some departments you can access an additional bulletin for
-                coastal phenomenoms. To access it add `10` after the domain id (example:
-                `1310`).
+            domain: could be `france` or any metropolitan France department numbers on
+                two digits. For some departments you can access an additional bulletin
+                for coastal phenomenoms. To access it add `10` after the domain id
+                (example: `1310`).
             depth: Optional; To be used with domain = 'france'. With depth = 0 the
                 results will show only natinal sum up of the weather alerts. If
-                depth = 1, you wil have in addtion the buletin for all France métropole
-                department and Andorre
+                depth = 1, you wil have in addtion the buletin for all metropolitan
+                France department and Andorre
             with_costal_bulletin: Optional; If set to True (default is False), you can
                 get the basic bulletin and coastal bulletin merged.
 
@@ -205,10 +205,10 @@ class MeteoFranceClient:
         coastal bulletin merged.
 
         Args:
-            domain: could be `france` or any France métropole department numbers on two
-                digits. For some departments you can access an additional bulletin for
-                coastal phenomenoms. To access it add `10` after the domain id (example:
-                `1310`).
+            domain: could be `france` or any metropolitan France department numbers on
+                two digits. For some departments you can access an additional bulletin
+                for coastal phenomenoms. To access it add `10` after the domain id
+                (example: `1310`).
             with_costal_bulletin: Optional; If set to True (default is False), you can
                 get the basic bulletin and coastal bulletin merged.
 
@@ -237,8 +237,8 @@ class MeteoFranceClient:
         """Retrieve the thumbnail URL of the weather phenomenoms or alerts map.
 
         Args:
-            domain: could be `france` or any France métropole department numbers on two
-                digits.
+            domain: could be `france` or any metropolitan France department numbers on
+                two digits.
 
         Returns:
             The URL of the thumbnail representing the weather alert status.
