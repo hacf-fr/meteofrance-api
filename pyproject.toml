@@ -48,6 +48,7 @@ mypy = "^0.782"
 typeguard = "^2.9.1"
 darglint = "^1.5.2"
 sphinx = "^3.2.1"
+sphinx-autobuild = "^2020.9.1"
 
 [tool.coverage.paths]
 source = ["src", "*/site-packages"]
