@@ -10,7 +10,7 @@ else:
 
 
 class PictureOfTheDayData(TypedDict):
-    """Describe the structure of the API returned ImageJour object."""
+    """Describing the data structure of ImageJour object returned by the REST API."""
 
     vignette: str
     imageHD: str  # noqa: N815
@@ -18,7 +18,14 @@ class PictureOfTheDayData(TypedDict):
 
 
 class PictureOfTheDay:
-    """Class to access the results of a `ImageJour/last` API command."""
+    """Class to access the results of a `ImageJour/last` REST API request.
+
+    Attributes:
+        image_url: A string corresponding to the picture of the day URL.
+        image_hd_url: A string corresponding to the URL for the HD version of the
+            picture of the day.
+        descritpion: A string with the description of the picture of the day.
+    """
 
     def __init__(self, raw_data: Mapping[str, PictureOfTheDayData]):
         """Initialize a PictureOfTheDay object."""
