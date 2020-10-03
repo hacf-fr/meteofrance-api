@@ -10,7 +10,7 @@ else:
 
 
 class PlaceData(TypedDict):
-    """Describe the structure of the API returned place object."""
+    """Describing the data structure of place object returned by the REST API."""
 
     insee: str
     name: str
@@ -23,14 +23,34 @@ class PlaceData(TypedDict):
 
 
 class Place:
-    """Class to access the results of 'places' API command."""
+    """Class to access the results of 'places' REST API request.
+
+    Attributes:
+        insee: A string corresponding to the INSEE ID of the place.
+        name: Name of the place.
+        lat: A float with the latitude in degree of the place.
+        lon: A float with the longitude in degree of the place
+        country: A string corresponding to the country code of the place.
+        admin: A string with the name of the administrative area ('Département' for
+            France and Region for other countries).
+        admin2: A string correponding to an administrative code ( 'Département' number
+            for France)
+        postCode: A string corresponding to the ZIP code of location.
+    """
 
     def __init__(self, raw_data: PlaceData):
         """Initialize a Place object."""
         self.raw_data = raw_data
 
     def __repr__(self) -> str:
-        """Return string representation of this class."""
+        """Return string representation of this class.
+
+        Returns:
+            A string to represent the instance of the Place class using the name,
+            country and amdin area  of the location.
+
+            Example: <Place(name=Montréal, country=FR, admin=Languedoc-Roussillon)>
+        """
         return "<{}(name={}, country={}, admin={})>".format(
             self.__class__.__name__, self.name, self.country, self.admin
         )
@@ -38,7 +58,13 @@ class Place:
     def __str__(self) -> str:
         """Provide an easy way to identify the Place.
 
-        examples: `Toulouse - (31)` or `Montréal - (Quebec)`
+        Returns:
+            A string to represent a Place instance with city name, Region name,
+            department ID and the country name.
+
+            For Examples:
+                `Marseille - Provence-Alpes-Côte d'Azur (13) - FR`
+                or `Montréal - Quebec - CA`
         """
         if self.country == "FR":
             return f"{self.name} - {self.admin} ({self.admin2}) - {self.country}"
@@ -72,18 +98,12 @@ class Place:
 
     @property
     def admin(self) -> Optional[str]:
-        """Return the admin of the place.
-
-        Seems to be the department in text ex: "Gers".
-        """
+        """Return the admin of the place."""
         return self.raw_data.get("admin")
 
     @property
     def admin2(self) -> Optional[str]:
-        """Return the admin2 of the place.
-
-        Seems to be the department in numbers "32".
-        """
+        """Return the admin2 of the place."""
         return self.raw_data.get("admin2")
 
     @property
