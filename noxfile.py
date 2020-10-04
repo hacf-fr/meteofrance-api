@@ -12,7 +12,14 @@ from nox.sessions import Session
 
 python_versions = ["3.8", "3.7", "3.6"]
 package = "meteofrance_api"
-nox.options.sessions = "pre-commit", "safety", "mypy", "tests", "typeguard"
+nox.options.sessions = (
+    "pre-commit",
+    "safety",
+    "mypy",
+    "tests",
+    "typeguard",
+    "docs-build",
+)
 locations = "src", "tests", "noxfile.py", "docs/conf.py"
 
 
