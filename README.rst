@@ -1,5 +1,5 @@
-Météo-France API
-================
+Météo-France Python API
+=======================
 
 Client Python pour l'API Météo-France. | Python client for Météo-France API.
 
@@ -86,7 +86,7 @@ Contribuer
 ^^^^^^^^^^
 
 Les contributions sont les bienvenues. Veuillez consulter les bonnes pratiques
-détaillées dans `CONTRIBUTING.md <CONTRIBUTING.md>`_.
+détaillées dans `CONTRIBUTING.rst`_.
 
 
 .. _english:
@@ -127,4 +127,8 @@ You will find an example ot usage in a Python program in the `integration test <
 Contributing
 ^^^^^^^^^^^^
 
-Contributions are welcomed. Please check the guidelines in `CONTRIBUTING.md <CONTRIBUTING.md>`_.
+Contributions are welcomed. Please check the guidelines in `CONTRIBUTING.rst`_.
+
+.. github-only
+
+.. _CONTRIBUTING.rst: CONTRIBUTING.rst
