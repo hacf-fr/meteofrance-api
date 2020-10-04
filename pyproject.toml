@@ -7,7 +7,7 @@ authors = ["oncleben31 <oncleben31@gmail.com>"]
 homepage = "https://github.com/hacf-fr/meteofrance-api"
 repository = "https://github.com/hacf-fr/meteofrance-api"
 keywords = ["weather", "weather-api", "meteo"]
-readme = "README.md"
+readme = "README.rst"
 packages = [
     { include = "meteofrance", from = "src" },
 ]
