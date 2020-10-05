@@ -1,11 +1,9 @@
 Contribuer | Contributing
 =========================
 
-You will find instructions in English in the section :ref:`english-contribution`.
+You will find instructions in English in the section `Contributing`_.
 
-Vous trouverez les instructions en français dans la section :ref:`french-contribution`.
-
-.. _french-contribution:
+Vous trouverez les instructions en français dans la section `Contribuer`_.
 
 Contribuer
 ----------
@@ -81,8 +79,6 @@ Proposer une nouvelle fonctionnalité
 
 Pour proposer vos idées d'amélioration, ouvrez une `issue <https://github.com/hacf-fr/meteofrance-api/issues>`_
 en utilisant le modèle ``feature request``.
-
-.. _english-contribution:
 
 Contributing
 ------------
