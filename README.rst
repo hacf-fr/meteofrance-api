@@ -41,11 +41,9 @@ Client Python pour l'API Météo-France. | Python client for Météo-France API.
    :target: https://github.com/psf/black
    :alt: Black
 
-You will find English README content in the section :ref:`english`.
+You will find English README content in the section `For English speaking users`_.
 
-Vous trouverez le contenu francophone du README dans la section :ref:`french`.
-
-.. _french:
+Vous trouverez le contenu francophone du README dans la section `Pour les francophones`_.
 
 Pour les francophones
 ---------------------
@@ -87,9 +85,6 @@ Contribuer
 
 Les contributions sont les bienvenues. Veuillez consulter les bonnes pratiques
 détaillées dans `CONTRIBUTING.rst`_.
-
-
-.. _english:
 
 
 For English speaking users
