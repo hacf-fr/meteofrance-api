@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 """Consts for Météo-France weather forecast python API."""
-# TODO: add package version
 METEOFRANCE_API_URL = "http://webservice.meteofrance.com"
 # Additionan API URL used with getDetail, getAllVigilances, getVigilance
 METEOFRANCE_WS_API_URL = "http://ws.meteofrance.com/ws"
