@@ -43,7 +43,7 @@ jobs:
           version-command: |
             bash -o pipefail -c "poetry version | awk '{ print \$2 }'"
 
-      - name: Bump version for developmental release
+      - name: Bump version for development release
         if: "! steps.check-version.outputs.tag"
         run: |
           poetry version patch &&
@@ -69,7 +69,7 @@ jobs:
           password: ${{ secrets.TEST_PYPI_TOKEN }}
           repository_url: https://test.pypi.org/legacy/
 
-      - name: Publish the release notes
+      - name: Publish release notes
         uses: release-drafter/release-drafter@v5.11.0
         with:
           publish: ${{ steps.check-version.outputs.tag != '' }}
