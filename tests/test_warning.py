@@ -4,7 +4,7 @@ from unittest.mock import Mock
 
 import pytest
 
-from meteofrance.client import MeteoFranceClient
+from meteofrance import MeteoFranceClient
 from meteofrance.const import METEOFRANCE_API_URL
 
 WARNING_COLOR_LIST = [1, 2, 3, 4]

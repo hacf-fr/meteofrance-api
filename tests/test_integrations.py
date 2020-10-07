@@ -2,7 +2,7 @@
 """Tests Météo-France module."""
 import pytest
 
-from meteofrance.client import MeteoFranceClient
+from meteofrance import MeteoFranceClient
 from meteofrance.helpers import readeable_phenomenoms_dict
 
 
