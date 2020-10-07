@@ -67,7 +67,10 @@ class MeteoFranceClient:
     # Forecast
     #
     def get_forecast(
-        self, latitude: float, longitude: float, language: str = "fr",
+        self,
+        latitude: float,
+        longitude: float,
+        language: str = "fr",
     ) -> Forecast:
         """Return the weather forecast for a GPS location.
 
@@ -83,7 +86,11 @@ class MeteoFranceClient:
         )
         return Forecast(resp.json())
 
-    def get_forecast_for_place(self, place: Place, language: str = "fr",) -> Forecast:
+    def get_forecast_for_place(
+        self,
+        place: Place,
+        language: str = "fr",
+    ) -> Forecast:
         """Return the weather forecast for a Place.
 
         Results can be fetched in french or english according to the language parameter.
@@ -175,7 +182,9 @@ class MeteoFranceClient:
         if with_costal_bulletin:
             if domain in COASTAL_DEPARTMENT_LIST:
                 resp = self.session.request(
-                    "get", "warning/full", params={"domain": domain + "10"},
+                    "get",
+                    "warning/full",
+                    params={"domain": domain + "10"},
                 )
                 full_phenomenoms.merge_with_coastal_phenomenons(Full(resp.json()))
 
