@@ -1,2 +1,4 @@
 """Météo-France API."""
-__all__ = ["client/MeteoFranceClient"]
+from .client import MeteoFranceClient
+
+__all__ = ["MeteoFranceClient"]
