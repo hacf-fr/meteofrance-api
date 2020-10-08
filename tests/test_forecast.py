@@ -4,7 +4,7 @@ import time
 from datetime import datetime
 
 from .const import MOUNTAIN_CITY
-from meteofrance.client import MeteoFranceClient
+from meteofrance import MeteoFranceClient
 from meteofrance.model import Place
 
 

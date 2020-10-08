@@ -1,6 +1,6 @@
 # coding: utf-8
 """Tests Météo-France module. PictureOfTheDay class."""
-from meteofrance.client import MeteoFranceClient
+from meteofrance import MeteoFranceClient
 
 
 def test_picture_of_the_day() -> None:

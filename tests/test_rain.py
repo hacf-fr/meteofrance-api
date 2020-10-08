@@ -5,7 +5,7 @@ from unittest.mock import Mock
 import pytest
 import requests
 
-from meteofrance.client import MeteoFranceClient
+from meteofrance import MeteoFranceClient
 from meteofrance.const import METEOFRANCE_API_URL
 
 
