@@ -37,7 +37,7 @@ class Forecast:
         forecast: A list of dictionaries to describe the hourly forecast for the next
             days.
         probability_forecast: A list of dictionaries to describe the event probability
-            forecast (rain, snwow, freezing) for next 10 days.
+            forecast (rain, snow, freezing) for next 10 days.
         today_forecast: A dictionary corresponding to the daily forecast for the current
         day.
         nearest_forecast: A dictionary corresponding to the nearest hourly forecast.

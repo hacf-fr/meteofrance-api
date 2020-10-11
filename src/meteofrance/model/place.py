@@ -52,7 +52,7 @@ class Place:
 
         Returns:
             A string to represent the instance of the Place class using the name,
-            country and amdin area  of the location.
+            country and admin area of the location.
 
             Example: <Place(name=Montréal, country=FR, admin=Languedoc-Roussillon)>
         """

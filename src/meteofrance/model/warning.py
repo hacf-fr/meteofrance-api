@@ -108,7 +108,7 @@ class CurrentPhenomenons:
         """Get the maximum level of alert of a given domain (class helper).
 
         Returns:
-            An integer correspondingt to the status code representing the maximul alert.
+            An integer corresponding to the status code representing the maximum alert.
         """
         max_int_color = max(
             x["phenomenon_max_color_id"] for x in self.phenomenons_max_colors
@@ -132,7 +132,7 @@ class Full:
             the phenomenoms.
         domain_id: A string corresponding do the domain ID of the bulletin. Value is
             'France' or a department number.
-        color_max: An integer reprenting the maximum alert level in the domain.
+        color_max: An integer representing the maximum alert level in the domain.
         timelaps: A list of dictionnaries corresponding to the schedule of each
             phenomenoms in the next 24 hours.
         phenomenons_items: list of dictionnaries corresponding the alert level for each
@@ -180,7 +180,7 @@ class Full:
         return self.raw_data["phenomenons_items"]
 
     def merge_with_coastal_phenomenons(self, coastal_phenomenoms: "Full") -> None:
-        """Merge the classical phenomenoms bulleting with the coastal one.
+        """Merge the classical phenomenon bulletin with the coastal one.
 
         Extend the color_max, timelaps and phenomenons_items properties with the content
             of the coastal weather alert bulletin.

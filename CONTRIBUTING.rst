@@ -9,7 +9,7 @@ Contribuer
 ----------
 
 Vous êtes tous invités à contribuer à ce projet pour le maintenir ou l'améliorer.
-Même si vous n'êtes pas un développeur, vous pouvez suremnent donner un coup de
+Même si vous n'êtes pas un développeur, vous pouvez sûrement donner un coup de
 main en remontant les bugs constatés, en partageant vos idées d'amélioration ou
 en participant à la documentation.
 
@@ -84,7 +84,7 @@ Contributing
 ------------
 
 You are all invited to contribute to this project for maintenance or improvement.
-Even if you are not a developer, you can probably help to report some bugs, share
+Even if you are not a developer, you can help to report some bugs, share
 improvements ideas, or contribute to the documentation.
 
 How to set up your development environment

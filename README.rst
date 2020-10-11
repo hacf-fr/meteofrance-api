@@ -52,14 +52,14 @@ Déscription
 ^^^^^^^^^^^
 
 Ce package Python permet de gérer la communication avec l'API non publique de
-Météo-France utilisée par les applications moblies officielles.
+Météo-France utilisée par les applications mobiles officielles.
 
 Le client permet:
 
 * Rechercher des lieux de prévisions.
-* Accéder aux prévisions météorologiques horraires ou quotidiennes.
+* Accéder aux prévisions météorologiques horaires ou quotidiennes.
 * Accéder aux prévisions de pluie dans l'heure quand disponibles.
-* Accéder aux alertes météo pour chaque département français et l'Andorre. Deux
+* Accéder aux alertes météo pour chaque département français et d'Andorre. Deux
   bulletins sont disponibles : un synthétique et un second avec l'évolution des alertes
   pour les prochaines 24 heures (exemple `ici <https://vigilance.meteofrance.fr/fr/gers>`_).
 
@@ -94,7 +94,7 @@ Descritption
 ^^^^^^^^^^^^
 
 This Python package manages the communication with the private Météo-France API
-used by the official moblie applications.
+used by the official mobile applications.
 
 The client allows:
 

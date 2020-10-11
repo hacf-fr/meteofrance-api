@@ -89,14 +89,14 @@ def readeable_phenomenoms_dict(
     """Create a dictionary with human readable keys and values (Helper).
 
     Args:
-        list_phenomenoms: Dictionnary with phenomnom ID and color code of status.
+        list_phenomenoms: Dictionary with phenomenon ID and color code of status.
         language: Optional; If language is equal "fr" (default value) results will
             be in French. All other value will give results in English.
 
     Returns:
-        Dictionnary with keys and value human readable.
+        Dictionary with keys and value human readable.
     """
-    # Init empty dictionnary
+    # Init empty dictionary
     readable_dict = {}
 
     # Translate phenomenom name and alert level
@@ -142,7 +142,7 @@ def sort_places_versus_distance_from_coordinates(
     """Oder list of places according to the distance to a reference coordinates.
 
     Note: this helper is compensating the bad results of the API. Results in the API
-    are generaly sorted, but lot of cases identified where the order is inconsistent
+    are generally sorted, but lot of cases identified where the order is inconsistent
     (example: Montréal)
 
     Args:

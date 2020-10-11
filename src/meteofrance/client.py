@@ -166,7 +166,7 @@ class MeteoFranceClient:
                 (example: `1310`).
             depth: Optional; To be used with domain = 'france'. With depth = 0 the
                 results will show only natinal sum up of the weather alerts. If
-                depth = 1, you wil have in addtion the buletin for all metropolitan
+                depth = 1, you will have in addition, the bulletin for all metropolitan
                 France department and Andorre
             with_costal_bulletin: Optional; If set to True (default is False), you can
                 get the basic bulletin and coastal bulletin merged.

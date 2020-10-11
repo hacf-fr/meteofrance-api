@@ -29,7 +29,7 @@ class Rain:
 
     Attributes:
         position: A dictionary with metadata about the position of the forecast place.
-        position: A dictionary with metadata about the position of the forecast place.
+        updated_on:  A timestamp as int corresponding to the latest update date.
         forecast: A list of dictionaries to describe the following next hour rain
             forecast.
         quality: An integer. Don't know yet the usage.
