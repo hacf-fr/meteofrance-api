@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Météo-France weather forecast python API."""
+"""Client for the Météo-France REST API."""
 from typing import List
 from typing import Optional
 
@@ -26,14 +26,18 @@ from .session import MeteoNetSession
 
 
 class MeteoFranceClient:
-    """Proxy to the Météo-France API.
+    """Proxy to the Météo-France REST API.
 
     You will find methods and helpers to request weather forecast, rain forecast and
     weather alert bulletin.
     """
 
-    def __init__(self, access_token: Optional[str] = None):
-        """Initialize the API and store the auth so we can make requests."""
+    def __init__(self, access_token: Optional[str] = None) -> None:
+        """Initialize the API and store the auth so we can make requests.
+
+        Args:
+            access_token: a string containing the authentication token for the REST API.
+        """
         self.session = MeteoFranceSession(access_token)
         self.session_ws = MeteoFranceWSSession()
         self.session_net = MeteoNetSession()
@@ -47,10 +51,21 @@ class MeteoFranceClient:
         latitude: Optional[str] = None,
         longitude: Optional[str] = None,
     ) -> List[Place]:
-        """Return the places link to a search.
+        """Search the places (cities) linked to a query by name.
 
         You can add GPS coordinates in parameter to search places arround a given
         location.
+
+        Args:
+            search_query: A complete name, only a part of a name or a postal code (for
+                France only) corresponding to a city in the world.
+            latitude: Optional; Latitude in degree of a reference point to order
+                results. The nearest places first.
+            longitude: Optional; Longitude in degree of a reference point to order
+                results. The nearest places first.
+
+        Returns:
+            A list of places (Place instance) corresponding to the query.
         """
         # Construct the list of the GET parameters
         params = {"q": search_query}
@@ -72,9 +87,20 @@ class MeteoFranceClient:
         longitude: float,
         language: str = "fr",
     ) -> Forecast:
-        """Return the weather forecast for a GPS location.
+        """Retrieve the weather forecast for a given GPS location.
 
         Results can be fetched in french or english according to the language parameter.
+
+        Args:
+            latitude: Latitude in degree of the GPS point corresponding to the weather
+                forecast.
+            longitude: Longitude in degree of the GPS point corresponding to the weather
+                forecast.
+            language: Optional; If language is equal "fr" (default value) results will
+                be in French. All other value will give results in English.
+
+        Returns:
+            A Forecast intance representing the hourly and daily weather forecast.
         """
         # TODO: add possibility to request forecast from id
 
@@ -91,9 +117,17 @@ class MeteoFranceClient:
         place: Place,
         language: str = "fr",
     ) -> Forecast:
-        """Return the weather forecast for a Place.
+        """Retrieve the weather forecast for a given Place instance.
 
         Results can be fetched in french or english according to the language parameter.
+
+        Args:
+            place: Place class instance corresponding to a location.
+            language: Optional; If language is equal "fr" (default value) results will
+                be in French. All other value will give results in English.
+
+        Returns:
+            A Forecast intance representing the hourly and daily weather forecast.
         """
         return self.get_forecast(place.latitude, place.longitude, language)
 
@@ -101,9 +135,20 @@ class MeteoFranceClient:
     # Rain
     #
     def get_rain(self, latitude: float, longitude: float, language: str = "fr") -> Rain:
-        """Return the next 1 hour rain forecast for a GPS the location.
+        """Retrieve the next 1 hour rain forecast for a given GPS the location.
 
         Results can be fetched in french or english according to the language parameter.
+
+        Args:
+            latitude: Latitude in degree of the GPS point corresponding to the rain
+                forecast.
+            longitude: Longitude in degree of the GPS point corresponding to the rain
+                forecast.
+            language: Optional; If language is equal "fr" (default value) results will
+                be in French. All other value will give results in English.
+
+        Returns:
+            A Rain instance representing the next hour rain forecast.
         """
         # TODO: add protection if no rain forecast for this position
 
@@ -121,15 +166,21 @@ class MeteoFranceClient:
     ) -> CurrentPhenomenons:
         """Return the current weather phenomenoms (or alerts) for a given domain.
 
-        domain: could be `france` or any department numbers on two digits.
-        For some departments you ca access an additional bulletin for coastal
-        phenomenoms.
-        To access it add `10` after the domain id (example: `1310`).
+        Args:
+            domain: could be `france` or any metropolitan France department numbers on
+                two digits. For some departments you can access an additional bulletin
+                for coastal phenomenoms. To access it add `10` after the domain id
+                (example: `1310`).
+            depth: Optional; To be used with domain = 'france'. With depth = 0 the
+                results will show only natinal sum up of the weather alerts. If
+                depth = 1, you will have in addition, the bulletin for all metropolitan
+                France department and Andorre
+            with_costal_bulletin: Optional; If set to True (default is False), you can
+                get the basic bulletin and coastal bulletin merged.
 
-        with_costal_bulletin: If set to True, you can get the basic bulletin and
-        coastal bulletin merged.
-
-        depth: use 1 with `france` domain to have all sub location phenomenoms.
+        Returns:
+            A warning.CurrentPhenomenons instance representing the weather alert
+            bulletin.
         """
         # Send the API request
         resp = self.session.request(
@@ -156,19 +207,21 @@ class MeteoFranceClient:
         return phenomenoms
 
     def get_warning_full(self, domain: str, with_costal_bulletin: bool = False) -> Full:
-        """Return a complete bulletin of the weather phenomenons for a given domain.
+        """Retrieve a complete bulletin of the weather phenomenons for a given domain.
 
         For a given domain we can access the maximum alert, a timelaps of the alert
-        evolution for
-        the next 24 hours, a list of alerts and other metadatas.
+        evolution for the next 24 hours, a list of alerts and other metadatas.
 
-        domain: could be `france` or any department numbers on two digits.
-        For some department you can access an additional bulletin for coastal
-        phenomenoms.
-        To access it add `10` after the domain id (example: `1310`).
+        Args:
+            domain: could be `france` or any metropolitan France department numbers on
+                two digits. For some departments you can access an additional bulletin
+                for coastal phenomenoms. To access it add `10` after the domain id
+                (example: `1310`).
+            with_costal_bulletin: Optional; If set to True (default is False), you can
+                get the basic bulletin and coastal bulletin merged.
 
-        with_costal_bulletin: If set to True, you can get the basic bulletin and
-        coastal bulletin merged.
+        Returns:
+            A warning.Full instance representing the complete weather alert bulletin.
         """
         # TODO: add formatDate parameter
 
@@ -191,7 +244,15 @@ class MeteoFranceClient:
         return full_phenomenoms
 
     def get_warning_thumbnail(self, domain: str = "france") -> str:
-        """Return the thumbnail of the weather phenomenoms or alerts map."""
+        """Retrieve the thumbnail URL of the weather phenomenoms or alerts map.
+
+        Args:
+            domain: could be `france` or any metropolitan France department numbers on
+                two digits.
+
+        Returns:
+            The URL of the thumbnail representing the weather alert status.
+        """
         # Return directly the URL of the gif image
         return (
             f"{METEOFRANCE_API_URL}/warning/thumbnail?&token={METEOFRANCE_API_TOKEN}"
@@ -202,6 +263,11 @@ class MeteoFranceClient:
     # Picture of the day
     #
     def get_picture_of_the_day(self) -> PictureOfTheDay:
-        """Return the picture of the day image URL & description."""
+        """Retrieve the picture of the day image URL & description.
+
+        Returns:
+            PictureOfTheDay instance with the URL and the description of the picture of
+            the day.
+        """
         resp = self.session_net.request("get", "ImageJour/last.txt")
         return PictureOfTheDay(resp.json())

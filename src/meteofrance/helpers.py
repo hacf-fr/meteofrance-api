@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Météo-France helpers."""
+"""Helpers to be used with the Météo-France REST API ."""
 import math
 from datetime import datetime
 from typing import Dict
@@ -24,7 +24,13 @@ def get_warning_text_status_from_indice_color(
 ) -> Optional[str]:
     """Convert the color code (in int) in readable text (Helper).
 
-    Returned text is in French or English according to the lang parameter.
+    Args:
+        int_color: Color status in int. Value expected between 1 and 4.
+        lang: Optional; If language is equal 'fr' (default value) results will
+            be in French. All other value will give results in English.
+
+    Returns:
+        Color status in text. French or English according to the lang parameter.
     """
     if lang == "fr":
         return ALERT_COLOR_LIST_FR[int_color]
@@ -37,7 +43,13 @@ def get_phenomenon_name_from_indice(
 ) -> Optional[str]:
     """Convert the phenomenom code in readable text (Hepler).
 
-    Returned text is in French or English according to the lang parameter.
+    Args:
+        int_phenomenon: ID of the phenomenom in int. Value expected between 1 and 9.
+        lang: Optional; If language is equal "fr" (default value) results will
+            be in French. All other value will give results in English.
+
+    Returns:
+        Phenomenom in text. French or English according to the lang parameter.
     """
     if lang == "fr":
         return ALERT_TYPE_LIST_FR[int_phenomenon]
@@ -46,14 +58,27 @@ def get_phenomenon_name_from_indice(
 
 
 def is_coastal_department(department_number: str) -> bool:
-    """Identify when a second bulletin is availabe for coastal risks (Helper)."""
+    """Identify when a second bulletin is availabe for coastal risks (Helper).
+
+    Args:
+        department_number: Department number on 2 characters
+
+    Returns:
+        True if the department have an additional coastal bulletin. False otherwise.
+    """
     return department_number in COASTAL_DEPARTMENT_LIST
 
 
 def is_valid_warning_department(department_number: str) -> bool:
     """Identify if there is a weather alert bulletin for this department (Helper).
 
-    Weather alert buletins are available only for France métropole and Andorre.
+    Weather alert buletins are available only for metropolitan France and Andorre.
+
+    Args:
+        department_number: Department number on 2 characters.
+
+    Returns:
+        True if a department is metropolitan France or Andorre.
     """
     return department_number in VALID_DEPARTMENT_LIST
 
@@ -61,8 +86,17 @@ def is_valid_warning_department(department_number: str) -> bool:
 def readeable_phenomenoms_dict(
     list_phenomenoms: List[Dict[str, int]], language: str = "fr"
 ) -> Dict[Optional[str], Optional[str]]:
-    """Create a dictionary with human readable keys and values (Helper)."""
-    # Init empty dictionnary
+    """Create a dictionary with human readable keys and values (Helper).
+
+    Args:
+        list_phenomenoms: Dictionary with phenomenon ID and color code of status.
+        language: Optional; If language is equal "fr" (default value) results will
+            be in French. All other value will give results in English.
+
+    Returns:
+        Dictionary with keys and value human readable.
+    """
+    # Init empty dictionary
     readable_dict = {}
 
     # Translate phenomenom name and alert level
@@ -78,8 +112,14 @@ def readeable_phenomenoms_dict(
 def haversine(coord1: Tuple[float, float], coord2: Tuple[float, float]) -> float:
     """Compute distance in meters between to GPS coordinates using Harvesine formula.
 
-    coord1 and coord2 are tuple with latitude and longitude in degrees.
     source: https://janakiev.com/blog/gps-points-distance-python/
+
+    Args:
+        coord1: Tuple with latitude and longitude in degrees for first point
+        coord2: Tuple with latitude and longitude in degrees for second point
+
+    Returns:
+        Distance in meters between the two points
     """
     radius = 6372800  # Earth radius in meters
     lat1, lon1 = coord1
@@ -101,9 +141,17 @@ def sort_places_versus_distance_from_coordinates(
 ) -> List[Place]:
     """Oder list of places according to the distance to a reference coordinates.
 
-    gps_coordinates are in degrees.
     Note: this helper is compensating the bad results of the API. Results in the API
-    are sorted but lot of case identified where it doesn't work (example: Montréal)
+    are generally sorted, but lot of cases identified where the order is inconsistent
+    (example: Montréal)
+
+    Args:
+        list_places: List of Place instances to be ordered
+        gps_coord: Tuple with latitude and longitude in degrees for the reference point
+
+    Returns:
+        List of Place instances ordered by distance to the reference point (nearest
+            first)
     """
     sorted_places = sorted(
         list_places,
@@ -115,7 +163,12 @@ def sort_places_versus_distance_from_coordinates(
 def timestamp_to_dateime_with_locale_tz(timestamp: int, local_tz: str) -> datetime:
     """Convert timestamp in datetime (Helper).
 
-    The local timezone corresponding to the forecast location is used.
+    Args:
+        timestamp: Timestamp.
+        local_tz: Name of the timezone to be used to convert the timestamp.
+
+    Returns:
+        Datetime instance corresponding to the timestamp with a timezone.
     """
     # convert timestamp in datetime with UTC timezone
     dt_utc = utc.localize(datetime.utcfromtimestamp(timestamp))

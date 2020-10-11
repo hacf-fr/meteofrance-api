@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Météo-France weather forecast python API."""
+"""Session managers for the Météo-France REST API."""
 from typing import Any
 from typing import Optional
 
@@ -13,19 +13,36 @@ from .const import METEONET_API_URL
 
 
 class MeteoFranceSession(Session):
-    """Session for Météo-France."""
+    """HTTP session manager for Météo-France.
+
+    This session object allows to manage the authentication in the API using a token.
+    """
 
     host: str = METEOFRANCE_API_URL
 
-    def __init__(self, access_token: Optional[str] = None):
-        """Initialize the auth."""
+    def __init__(self, access_token: Optional[str] = None) -> None:
+        """Initialize the authentication.
+
+        Args:
+            access_token: a string containing the authentication token for the REST API.
+        """
         self.access_token = access_token or METEOFRANCE_API_TOKEN
         Session.__init__(self)
 
     def request(  # type: ignore
         self, method: str, path: str, *args: Any, **kwargs: Any
     ) -> Response:
-        """Make a request."""
+        """Make a request using token authentication.
+
+        Args:
+            method: Method for the HTTP request (example "get").
+            path: path of the REST API endpoint.
+            args: all other non-keyword arguments.
+            kwargs: all other keyword arguments.
+
+        Returns:
+            the Response object corresponding to the result of the API request.
+        """
         params_inputs = kwargs.pop("params", None)
 
         params = {"token": self.access_token}
@@ -40,20 +57,36 @@ class MeteoFranceSession(Session):
 
 
 class MeteoFranceWSSession(MeteoFranceSession):
-    """Session for Météo-France WS."""
+    """HTTP session manager for Météo-France WS.
+
+    Child class dedicated to additional REST API URI for specific command like getDetail
+    , getAllVigilances, getVigilance.
+    """
 
     host: str = METEOFRANCE_WS_API_URL
 
-    def __init__(self, access_token: Optional[str] = None):
-        """Initialize the Météo-France WS."""
+    def __init__(self, access_token: Optional[str] = None) -> None:
+        """Initialize the Météo-France WS.
+
+        Args:
+            access_token: a string containing the authentication token for the REST API.
+        """
         super().__init__(access_token)
 
 
 class MeteoNetSession(MeteoFranceSession):
-    """Session for MétéoNet."""
+    """HTTP session manager for MétéoNet.
+
+    Child class dedicated to additional REST API URI for specific command like ImageJour
+    , radarEU.
+    """
 
     host: str = METEONET_API_URL
 
-    def __init__(self, access_token: Optional[str] = None):
-        """Initialize the MétéoNet."""
+    def __init__(self, access_token: Optional[str] = None) -> None:
+        """Initialize the MétéoNet.
+
+        Args:
+            access_token: a string containing the authentication token for the REST API.
+        """
         super().__init__(access_token)

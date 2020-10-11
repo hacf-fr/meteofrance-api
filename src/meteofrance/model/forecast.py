@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Météo-France weather forecast python API. Forecast class."""
+"""Weather forecast Python model for the Météo-France REST API."""
 import sys
 from datetime import datetime
 from typing import Any
@@ -17,7 +17,7 @@ else:
 
 
 class ForecastData(TypedDict):
-    """Describing the structure of the API returned forecast object."""
+    """Describing the data structure of the forecast object returned by the REST API."""
 
     position: Dict[str, Any]
     updated_on: int
@@ -27,10 +27,31 @@ class ForecastData(TypedDict):
 
 
 class Forecast:
-    """Class to access the results of a `forecast` API command."""
+    """Class to access the results of a `forecast` API request.
 
-    def __init__(self, raw_data: ForecastData):
-        """Initialize a Forecast object."""
+    Attributes:
+        position: A dictionary with metadata about the position of the forecast place.
+        updated_on: A timestamp as int corresponding to the latest update date.
+        daily_forecast: A list of dictionaries to describe the daily forecast for the
+            next 15 days.
+        forecast: A list of dictionaries to describe the hourly forecast for the next
+            days.
+        probability_forecast: A list of dictionaries to describe the event probability
+            forecast (rain, snow, freezing) for next 10 days.
+        today_forecast: A dictionary corresponding to the daily forecast for the current
+        day.
+        nearest_forecast: A dictionary corresponding to the nearest hourly forecast.
+        current_forecast: A dictionary corresponding to the hourly forecast for the
+            current hour.
+    """
+
+    def __init__(self, raw_data: ForecastData) -> None:
+        """Initialize a Forecast object.
+
+        Args:
+            raw_data: A dictionary representing the JSON response from 'forecast' REST
+                API request. The structure is described by the ForecastData class.
+        """
         self.raw_data = raw_data
 
     @property
@@ -68,7 +89,7 @@ class Forecast:
         """Return the nearest hourly forecast."""
         # get timestamp for current time
         now_timestamp = int(utc.localize(datetime.utcnow()).timestamp())
-        # sort list of foerecast by distance between current timestamp and
+        # sort list of forecast by distance between current timestamp and
         # forecast timestamp
         sorted_forecast = sorted(
             self.forecast, key=lambda x: abs(x["dt"] - now_timestamp)
@@ -91,8 +112,13 @@ class Forecast:
         return forecast_by_datetime.get(current_hour_timestamp, self.nearest_forecast)
 
     def timestamp_to_locale_time(self, timestamp: int) -> datetime:
-        """Convert timestamp in datetime (Helper).
+        """Convert timestamp in datetime in the forecast location timezone (Helper).
 
-        The timezone corresponding to the forecast location is used.
+        Args:
+            timestamp: An integer to describe the UNIX timestamp.
+
+        Returns:
+            Datetime instance corresponding to the timestamp with the timezone of the
+                forecast location.
         """
         return timestamp_to_dateime_with_locale_tz(timestamp, self.position["timezone"])

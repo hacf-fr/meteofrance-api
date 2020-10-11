@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Météo-France exceptions."""
+"""Météo-France API module exceptions."""
 
 
 class MeteoFranceException(Exception):
