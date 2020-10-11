@@ -82,7 +82,10 @@ class MeteoFranceClient:
     # Forecast
     #
     def get_forecast(
-        self, latitude: float, longitude: float, language: str = "fr",
+        self,
+        latitude: float,
+        longitude: float,
+        language: str = "fr",
     ) -> Forecast:
         """Retrieve the weather forecast for a given GPS location.
 
@@ -109,7 +112,11 @@ class MeteoFranceClient:
         )
         return Forecast(resp.json())
 
-    def get_forecast_for_place(self, place: Place, language: str = "fr",) -> Forecast:
+    def get_forecast_for_place(
+        self,
+        place: Place,
+        language: str = "fr",
+    ) -> Forecast:
         """Retrieve the weather forecast for a given Place instance.
 
         Results can be fetched in french or english according to the language parameter.
@@ -205,9 +212,6 @@ class MeteoFranceClient:
         For a given domain we can access the maximum alert, a timelaps of the alert
         evolution for the next 24 hours, a list of alerts and other metadatas.
 
-        with_costal_bulletin: If set to True, you can get the basic bulletin and
-        coastal bulletin merged.
-
         Args:
             domain: could be `france` or any metropolitan France department numbers on
                 two digits. For some departments you can access an additional bulletin
@@ -231,7 +235,9 @@ class MeteoFranceClient:
         if with_costal_bulletin:
             if domain in COASTAL_DEPARTMENT_LIST:
                 resp = self.session.request(
-                    "get", "warning/full", params={"domain": domain + "10"},
+                    "get",
+                    "warning/full",
+                    params={"domain": domain + "10"},
                 )
                 full_phenomenoms.merge_with_coastal_phenomenons(Full(resp.json()))
 

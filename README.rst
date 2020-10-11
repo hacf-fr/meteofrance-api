@@ -48,7 +48,7 @@ Vous trouverez le contenu francophone du README dans la section `Pour les franco
 Pour les francophones
 ---------------------
 
-Déscription
+Description
 ^^^^^^^^^^^
 
 Ce package Python permet de gérer la communication avec l'API non publique de
@@ -90,7 +90,7 @@ détaillées dans `CONTRIBUTING.rst`_.
 For English speaking users
 --------------------------
 
-Descritption
+Descrtption
 ^^^^^^^^^^^^
 
 This Python package manages the communication with the private Météo-France API
