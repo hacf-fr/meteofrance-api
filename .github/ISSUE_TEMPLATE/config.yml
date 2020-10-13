@@ -2,7 +2,8 @@ blank_issues_enabled: false
 contact_links:
   - name: HACF Discord
     url: https://discord.gg/PaZFEjX
-    about: The HACF discord server
+    about: The HACF discord server - Join the community! This discord server is french speaking.
   - name: HACF Forums
     url: https://forum.hacf.fr/
-    about: The HACF forum
+    about: The HACF forum - Use the forums to find tutorials, help other people, and communicate with others.
+    
