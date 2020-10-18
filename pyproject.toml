@@ -1,54 +1,59 @@
 [tool.poetry]
 name = "meteofrance-api"
 version = "0.1.1"
-license = "MIT"
 description = "Python client for Météo-France API."
-authors = ["oncleben31 <oncleben31@gmail.com>"]
+authors = ["oncleben31 <oncleben31@gmail.com>", "quentame <polletquentin74@me.com>", "HACF <contact@hacf.fr>"]
+license = "MIT"
+readme = "README.rst"
 homepage = "https://github.com/hacf-fr/meteofrance-api"
 repository = "https://github.com/hacf-fr/meteofrance-api"
+documentation = "https://meteofrance-api.readthedocs.io"
 keywords = ["weather", "weather-api", "meteo"]
-readme = "README.rst"
 packages = [
     { include = "meteofrance", from = "src" },
 ]
 classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
-    "Development Status :: 3 - Alpha",
     "Programming Language :: Python :: 3.6",
     "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
 ]
 
+[tool.poetry.urls]
+Changelog = "https://github.com/hacf-fr/meteofrance-api/releases"
 
 [tool.poetry.dependencies]
 python = "^3.6.1"
 requests = "^2.24.0"
 pytz = "^2020.1"
 typing-extensions = {version = "^3.7.4", python = "~3.6 || ~3.7"}
-
 [tool.poetry.dev-dependencies]
 pytest = "^6.1.1"
 requests_mock = "^1.8.0"
-pytest-cov = "^2.10.1"
-coverage = {version = "^5.3", extras = ["toml"]}
-flake8 = "^3.8.4"
-flake8-docstrings = "^1.5.0"
-codecov = "^2.1.10"
-pre-commit = "^2.7.1"
-pre-commit-hooks = "^3.1.0"
-black = "^20.8b1"
-reorder_python_imports = "^2.3.4"
-flake8-bugbear = "^20.1.4"
-flake8-bandit = "^2.1.2"
+coverage = {extras = ["toml"], version = "^5.3"}
 safety = "^1.9.0"
-pep8-naming = "^0.11.1"
-mypy = "^0.782"
+mypy = "^0.790"
 typeguard = "^2.10.0"
-darglint = "^1.5.2"
+xdoctest = {extras = ["colors"], version = "^0.15.0"}
 sphinx = "^3.2.1"
 sphinx-autobuild = "^2020.9.1"
+pre-commit = "^2.7.1"
+flake8 = "^3.8.4"
+black = "^20.8b1"
+flake8-bandit = "^2.1.2"
+flake8-bugbear = "^20.1.4"
+flake8-docstrings = "^1.5.0"
+flake8-rst-docstrings = "^0.0.14"
+pep8-naming = "^0.11.1"
+darglint = "^1.5.5"
+reorder-python-imports = "^2.3.5"
+pre-commit-hooks = "^3.2.0"
+sphinx-rtd-theme = "^0.5.0"
+sphinx-click = "^2.5.0"
+Pygments = "^2.7.1"
+
+[tool.poetry.scripts]
+meteofrance-api = "meteofrance.__main__:main"
 
 [tool.coverage.paths]
 source = ["src", "*/site-packages"]
@@ -59,7 +64,6 @@ source = ["meteofrance"]
 
 [tool.coverage.report]
 show_missing = true
-precision = 1
 fail_under = 100
 
 [build-system]
