@@ -1,0 +1,10 @@
+{
+  "_template": "gh:cjolowicz/cookiecutter-hypermodern-python",
+  "author": "oncleben31",
+  "email": "oncleben31@gmail.com",
+  "friendly_name": "M\u00e9t\u00e9o-France API",
+  "github_user": "hacf-fr",
+  "package_name": "meteofrance",
+  "project_name": "meteofrance-api",
+  "version": "0.1.1"
+}
