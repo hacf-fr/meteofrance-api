@@ -135,5 +135,6 @@ This project was generated from `@cjolowicz`_'s `Hypermodern Python Cookiecutter
 .. _PyPI: https://pypi.org/
 .. _Hypermodern Python Cookiecutter: https://github.com/cjolowicz/cookiecutter-hypermodern-python
 .. _pip: https://pip.pypa.io/
-. github-only
+
+.. github-only
 .. _CONTRIBUTING.rst: CONTRIBUTING.rst
