@@ -7,6 +7,7 @@ import sys
 from typing import Any
 from typing import Dict
 from typing import List
+from typing import Optional
 
 if sys.version_info >= (3, 8):
     from typing import TypedDict  # pylint: disable=no-name-in-module
@@ -32,11 +33,11 @@ class WarnningFullData(TypedDict):
     color_max: int
     timelaps: List[Dict[str, Any]]
     phenomenons_items: List[Dict[str, int]]
-    advices: List[Dict[str, Any]]
-    consequences: List[Dict[str, Any]]
+    advices: Optional[List[Dict[str, Any]]]
+    consequences: Optional[List[Dict[str, Any]]]
     max_count_items: Any  # Didn't see any value yet
     comments: Dict[str, Any]
-    text: Dict[str, Any]
+    text: Optional[Dict[str, Any]]
     text_avalanche: Any  # Didn't see any value yet
 
 
