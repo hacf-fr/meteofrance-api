@@ -55,13 +55,11 @@ Install the package with development requirements:
 
    $ poetry install
 
-You can now run an interactive Python session,
-or the command-line interface:
+You can now run an interactive Python session:
 
 .. code:: console
 
    $ poetry run python
-   $ poetry run meteofrance-api
 
 .. _Poetry: https://python-poetry.org/
 .. _Nox: https://nox.thea.codes/
