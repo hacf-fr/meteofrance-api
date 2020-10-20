@@ -16,7 +16,7 @@ else:
     from typing_extensions import TypedDict
 
 
-class ForecastData(TypedDict):
+class ForecastData(TypedDict, total=False):
     """Describing the data structure of the forecast object returned by the REST API."""
 
     position: Dict[str, Any]
@@ -92,7 +92,8 @@ class Forecast:
         # sort list of forecast by distance between current timestamp and
         # forecast timestamp
         sorted_forecast = sorted(
-            self.forecast, key=lambda x: abs(x["dt"] - now_timestamp)
+            self.forecast,
+            key=lambda x: abs(x["dt"] - now_timestamp),  # type: ignore[no-any-return]
         )
         return sorted_forecast[0]
 

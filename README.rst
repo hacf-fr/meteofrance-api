@@ -70,7 +70,7 @@ Installation
 ^^^^^^^^^^^^
 
 Pour utiliser le module Python ``meteofrance`` vous devez en premier installer
-le package:
+le package en utilisant pip_ depuis PyPI_:
 
 .. code:: console
 
@@ -111,7 +111,8 @@ but it can be used in other contexts.
 Installation
 ^^^^^^^^^^^^
 
-To use the ``meteofrance`` Python module, you have to install this package first:
+To use the ``meteofrance`` Python module, you have to install this package first via
+pip_ from PyPI_:
 
 .. code:: console
 
@@ -124,6 +125,16 @@ Contributing
 
 Contributions are welcomed. Please check the guidelines in `CONTRIBUTING.rst`_.
 
-.. github-only
+Credits
+-------
 
+This project was generated from `@cjolowicz`_'s `Hypermodern Python Cookiecutter`_ template.
+
+.. _@cjolowicz: https://github.com/cjolowicz
+.. _Cookiecutter: https://github.com/audreyr/cookiecutter
+.. _PyPI: https://pypi.org/
+.. _Hypermodern Python Cookiecutter: https://github.com/cjolowicz/cookiecutter-hypermodern-python
+.. _pip: https://pip.pypa.io/
+
+.. github-only
 .. _CONTRIBUTING.rst: CONTRIBUTING.rst

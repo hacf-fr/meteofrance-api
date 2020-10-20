@@ -1,1 +1,1 @@
-"""Météo-France API tests."""
+"""Test suite for the meteofrance package."""

@@ -12,14 +12,14 @@ else:
 class PlaceData(TypedDict):
     """Describing the data structure of place object returned by the REST API."""
 
-    insee: str
+    insee: Optional[str]
     name: str
     lat: float
     lon: float
     country: str
     admin: str
-    admin2: str
-    postCode: str  # noqa: N815
+    admin2: Optional[str]
+    postCode: Optional[str]  # noqa: N815
 
 
 class Place:

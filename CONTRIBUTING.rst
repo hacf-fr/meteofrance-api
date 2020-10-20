@@ -1,99 +1,53 @@
-Contribuer | Contributing
-=========================
+Contributor Guide
+=================
 
-You will find instructions in English in the section `Contributing`_.
+Thank you for your interest in improving this project.
+This project is open-source under the `MIT license`_ and
+welcomes contributions in the form of bug reports, feature requests, and pull requests.
 
-Vous trouverez les instructions en français dans la section `Contribuer`_.
+Here is a list of important resources for contributors:
 
-Contribuer
-----------
+- `Source Code`_
+- `Documentation`_
+- `Issue Tracker`_
+- `Code of Conduct`_
 
-Vous êtes tous invités à contribuer à ce projet pour le maintenir ou l'améliorer.
-Même si vous n'êtes pas un développeur, vous pouvez sûrement donner un coup de
-main en remontant les bugs constatés, en partageant vos idées d'amélioration ou
-en participant à la documentation.
+.. _MIT license: https://opensource.org/licenses/MIT
+.. _Source Code: https://github.com/hacf-fr/meteofrance-api
+.. _Documentation: https://meteofrance-api.readthedocs.io/
+.. _Issue Tracker: https://github.com/hacf-fr/meteofrance-api/issues
 
-Préparer votre environement de développement
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+How to report a bug
+-------------------
 
-Vous aurez besoin de Python 3.6+ et des outils suivants:
+Report bugs on the `Issue Tracker`_.
 
-- Poetry_
-- Nox_
+When filing an issue, make sure to answer these questions:
 
-Installez le package avec les dépendances de développement:
+- Which operating system and Python version are you using?
+- Which version of this project are you using?
+- What did you do?
+- What did you expect to see?
+- What did you see instead?
 
-.. code:: console
+The best way to get your bug fixed is to provide a test case,
+and/or steps to reproduce the issue.
 
-   $ poetry install
 
-Vous pouvez maintenant utiliser une session interactive Python:
+How to request a feature
+------------------------
 
-.. code:: console
+Request features on the `Issue Tracker`_.
 
-   $ poetry run python
-
-Je vous recommande d'installer un pre-commit-hook pour lancer automatiquement quelques
-vérfication avant de commit vos modifications.
-
-.. code:: console
-
-   $ nox -s pre-commit -- install
-
-Tester le projet
-^^^^^^^^^^^^^^^^
-
-Dérouler la suite de tests complète:
-
-.. code:: console
-
-   $ nox
-
-Lister toutes les sessions disponibles dans Nox:
-
-.. code:: console
-
-   $ nox --list-sessions
-
-Vous pouvez lancer une session Nox spécifique. Par exemple, lancez la suite de
-tests unitaires avec:
-
-.. code:: console
-
-   $ nox --session=tests
-
-Les tests unitaires sont dans le répertoire `tests` et utilisent le framework pytest.
-
-Soumettre votre Pull Request (PR)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Ouvrez une `pull request`_ pour proposer des changements à ce projet.
-
-Votre pull request doit vérifier les conditions suivantes pour être acceptée:
-
-* La suite de tests Nox doit réussir sans erreurs ni warning.
-* Doit inclure des tests unitaires. Ce projet maintien une couverture de code à 100%.
-
-Proposer une nouvelle fonctionnalité
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Pour proposer vos idées d'amélioration, ouvrez une `issue <https://github.com/hacf-fr/meteofrance-api/issues>`_
-en utilisant le modèle ``feature request``.
-
-Contributing
-------------
-
-You are all invited to contribute to this project for maintenance or improvement.
-Even if you are not a developer, you can help to report some bugs, share
-improvements ideas, or contribute to the documentation.
 
 How to set up your development environment
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------------------------
 
 You need Python 3.6+ and the following tools:
 
 - Poetry_
 - Nox_
+- nox-poetry_
 
 Install the package with development requirements:
 
@@ -101,20 +55,19 @@ Install the package with development requirements:
 
    $ poetry install
 
-You can now run an interactive Python session, or the command-line interface:
+You can now run an interactive Python session:
 
 .. code:: console
 
    $ poetry run python
 
-I recommand to install a pre-commit-hook to have some checks done automatically before you commit your changes.
+.. _Poetry: https://python-poetry.org/
+.. _Nox: https://nox.thea.codes/
+.. _nox-poetry: https://nox-poetry.readthedocs.io/
 
-.. code:: console
-
-   $ nox -s pre-commit -- install
 
 How to test the project
-^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------
 
 Run the full test suite:
 
@@ -128,31 +81,41 @@ List the available Nox sessions:
 
    $ nox --list-sessions
 
-You can also run a specific Nox session. For example, invoke the unit test suite like this:
+You can also run a specific Nox session.
+For example, invoke the unit test suite like this:
 
 .. code:: console
 
    $ nox --session=tests
 
-Unit tests are located in the tests directory, and are written using the pytest testing framework.
+Unit tests are located in the ``tests`` directory,
+and are written using the pytest_ testing framework.
+
+.. _pytest: https://pytest.readthedocs.io/
+
 
 How to submit changes
-^^^^^^^^^^^^^^^^^^^^^
+---------------------
 
-Open a `pull request`_ to submit
-changes to this project.
+Open a `pull request`_ to submit changes to this project.
 
 Your pull request needs to meet the following guidelines for acceptance:
 
 - The Nox test suite must pass without errors and warnings.
 - Include unit tests. This project maintains 100% code coverage.
+- If your changes add functionality, update the documentation accordingly.
 
-Feature suggestion
-^^^^^^^^^^^^^^^^^^
+Feel free to submit early, though—we can always iterate on this.
 
-If you want to suggest a new feature for this project, please open an `issue <https://github.com/hacf-fr/meteofrance-api/issues>`_
-by using the `feature request` template.
+To run linting and code formatting checks before commiting your change, you can install pre-commit as a Git hook by running the following command:
 
-.. _Poetry: https://python-poetry.org/
-.. _Nox: https://nox.thea.codes/
+.. code:: console
+
+   $ nox --session=pre-commit -- install
+
+It is recommended to open an issue before starting work on anything.
+This will allow a chance to talk it over with the owners and validate your approach.
+
 .. _pull request: https://github.com/hacf-fr/meteofrance-api/pulls
+.. github-only
+.. _Code of Conduct: CODE_OF_CONDUCT.rst
