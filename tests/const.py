@@ -1,5 +1,5 @@
 """Météo-France API test constants."""
-from meteofrance.model.place import PlaceData
+from meteofrance_api.model.place import PlaceData
 
 MOUNTAIN_CITY: PlaceData = {
     "insee": "74080",

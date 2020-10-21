@@ -1,6 +1,6 @@
 # coding: utf-8
 """Tests Météo-France module. Place class."""
-from meteofrance import MeteoFranceClient
+from meteofrance_api import MeteoFranceClient
 
 
 def test_places() -> None:

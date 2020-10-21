@@ -3,7 +3,7 @@
 import pytest
 from requests.exceptions import RequestException
 
-from meteofrance.session import MeteoFranceSession
+from meteofrance_api.session import MeteoFranceSession
 
 
 def test_session() -> None:

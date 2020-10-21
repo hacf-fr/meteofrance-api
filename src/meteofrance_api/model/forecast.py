@@ -8,7 +8,7 @@ from typing import List
 
 from pytz import utc
 
-from meteofrance.helpers import timestamp_to_dateime_with_locale_tz
+from meteofrance_api.helpers import timestamp_to_dateime_with_locale_tz
 
 if sys.version_info >= (3, 8):
     from typing import TypedDict  # pylint: disable=no-name-in-module
