@@ -31,7 +31,7 @@ def test_workflow(city: str) -> None:
         else:
             rain_status = next_rain_dt.strftime("%H:%M")
     else:
-        rain_status = "No rain forecast availble."
+        rain_status = "No rain forecast available."
 
     # Fetch weather alerts.
     if my_place.admin2:
