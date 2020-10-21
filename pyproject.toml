@@ -9,9 +9,6 @@ homepage = "https://github.com/hacf-fr/meteofrance-api"
 repository = "https://github.com/hacf-fr/meteofrance-api"
 documentation = "https://meteofrance-api.readthedocs.io"
 keywords = ["weather", "weather-api", "meteo"]
-packages = [
-    { include = "meteofrance", from = "src" },
-]
 classifiers = [
     "Operating System :: OS Independent",
     "Development Status :: 5 - Production/Stable",
@@ -57,14 +54,14 @@ sphinx-click = "^2.5.0"
 Pygments = "^2.7.1"
 
 [tool.poetry.scripts]
-meteofrance-api = "meteofrance.__main__:main"
+meteofrance-api = "meteofrance_api.__main__:main"
 
 [tool.coverage.paths]
 source = ["src", "*/site-packages"]
 
 [tool.coverage.run]
 branch = true
-source = ["meteofrance"]
+source = ["meteofrance_api"]
 
 [tool.coverage.report]
 show_missing = true

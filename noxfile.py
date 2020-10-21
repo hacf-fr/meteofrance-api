@@ -9,7 +9,7 @@ import nox_poetry.patch
 from nox.sessions import Session
 
 
-package = "meteofrance"
+package = "meteofrance_api"
 python_versions = ["3.9", "3.8", "3.7", "3.6"]
 nox.options.sessions = (
     "pre-commit",

@@ -2,7 +2,7 @@
 """Tests for meteofrance module. Exception classes."""
 import pytest
 
-from meteofrance.exceptions import MeteoFranceException
+from meteofrance_api.exceptions import MeteoFranceException
 
 
 def test_meteofrance_exception() -> None:

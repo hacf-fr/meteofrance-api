@@ -4,14 +4,14 @@ from typing import List
 
 import pytest
 
-from meteofrance.helpers import get_phenomenon_name_from_indice
-from meteofrance.helpers import get_warning_text_status_from_indice_color
-from meteofrance.helpers import is_coastal_department
-from meteofrance.helpers import is_valid_warning_department
-from meteofrance.helpers import readeable_phenomenoms_dict
-from meteofrance.helpers import sort_places_versus_distance_from_coordinates
-from meteofrance.model import Place
-from meteofrance.model.place import PlaceData
+from meteofrance_api.helpers import get_phenomenon_name_from_indice
+from meteofrance_api.helpers import get_warning_text_status_from_indice_color
+from meteofrance_api.helpers import is_coastal_department
+from meteofrance_api.helpers import is_valid_warning_department
+from meteofrance_api.helpers import readeable_phenomenoms_dict
+from meteofrance_api.helpers import sort_places_versus_distance_from_coordinates
+from meteofrance_api.model import Place
+from meteofrance_api.model.place import PlaceData
 
 
 def test_text_helpers_fr() -> None:

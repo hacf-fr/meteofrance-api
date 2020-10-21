@@ -2,8 +2,8 @@
 """Tests Météo-France module."""
 import pytest
 
-from meteofrance import MeteoFranceClient
-from meteofrance.helpers import readeable_phenomenoms_dict
+from meteofrance_api import MeteoFranceClient
+from meteofrance_api.helpers import readeable_phenomenoms_dict
 
 
 @pytest.mark.parametrize("city", ["montreal", "Foix"])

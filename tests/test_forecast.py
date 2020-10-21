@@ -4,8 +4,8 @@ import time
 from datetime import datetime
 
 from .const import MOUNTAIN_CITY
-from meteofrance import MeteoFranceClient
-from meteofrance.model import Place
+from meteofrance_api import MeteoFranceClient
+from meteofrance_api.model import Place
 
 
 def test_forecast_france() -> None:
