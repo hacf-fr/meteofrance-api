@@ -64,7 +64,7 @@ Le client permet:
   pour les prochaines 24 heures (exemple `ici <https://vigilance.meteofrance.fr/fr/gers>`_).
 
 Ce package a été développé avec l'intention d'être utilisé par `Home-Assistant <https://home-assistant.io/>`_
-mais il peut être utilsé dans d'autres contextes.
+mais il peut être utilisé dans d'autres contextes.
 
 Installation
 ^^^^^^^^^^^^
@@ -90,7 +90,7 @@ détaillées dans `CONTRIBUTING.rst`_.
 For English speaking users
 --------------------------
 
-Descrtption
+Description
 ^^^^^^^^^^^^
 
 This Python package manages the communication with the private Météo-France API
