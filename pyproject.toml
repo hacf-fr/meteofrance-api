@@ -30,7 +30,7 @@ pytz = ">=2020.4,<2022.0"
 typing-extensions = {version = "^3.7.4", python = "~3.6 || ~3.7"}
 
 [tool.poetry.dev-dependencies]
-pytest = "^6.2.2"
+pytest = "^6.2.3"
 requests_mock = "^1.8.0"
 coverage = {extras = ["toml"], version = "^5.5"}
 safety = "^1.10.3"
