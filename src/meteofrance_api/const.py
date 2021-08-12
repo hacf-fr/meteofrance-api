@@ -5,7 +5,7 @@ METEOFRANCE_API_URL = "http://webservice.meteofrance.com"
 METEOFRANCE_WS_API_URL = "http://ws.meteofrance.com/ws"
 # Additionan API URL used with ImageJour, radarEU
 METEONET_API_URL = "http://www.meteo.fr/meteonet/temps"
-METEOFRANCE_API_TOKEN = "__Wj7dVSTjV9YGu1guveLyDq0g7S7TfTjaHBTPTpO0kj8__"
+METEOFRANCE_API_TOKEN = "__Wj7dVSTjV9YGu1guveLyDq0g7S7TfTjaHBTPTpO0kj8__"  # noqa: S105
 
 # enums used in all Warning classes. First indice is 0
 # Weather alert criticity
