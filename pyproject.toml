@@ -33,7 +33,7 @@ typing-extensions = {version = "^3.7.4", python = "~3.6 || ~3.7"}
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.4"
 requests_mock = "^1.9.2"
-coverage = {extras = ["toml"], version = "^5.5"}
+coverage = {extras = ["toml"], version = "^6.0"}
 safety = "^1.10.3"
 mypy = "^0.812"
 typeguard = "^2.12.0"
