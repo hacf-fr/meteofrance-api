@@ -35,7 +35,7 @@ pytest = "^6.2.4"
 requests_mock = "^1.9.2"
 coverage = {extras = ["toml"], version = "^6.0"}
 safety = "^1.10.3"
-mypy = "^0.812"
+mypy = "^0.910"
 typeguard = "^2.12.0"
 xdoctest = {extras = ["colors"], version = "^0.15.10"}
 sphinx = "^4.1.2"
@@ -54,6 +54,8 @@ pre-commit-hooks = "^4.0.1"
 sphinx-rtd-theme = "^0.5.2"
 sphinx-click = "^3.0.1"
 Pygments = "^2.10.0"
+types-requests = "^2.25.9"
+types-pytz = "^2021.1.2"
 
 [tool.poetry.scripts]
 meteofrance-api = "meteofrance_api.__main__:main"
