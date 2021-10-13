@@ -993,7 +993,7 @@ test = ["pytest", "typing-extensions", "mypy"]
 
 [[package]]
 name = "types-pytz"
-version = "2021.1.2"
+version = "2021.3.0"
 description = "Typing stubs for pytz"
 category = "dev"
 optional = false
@@ -1084,7 +1084,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6.1"
-content-hash = "37ef7b8df639082046d76d935f7f448f8e493ef169b7d4e861cca1355de2c630"
+content-hash = "2dce0b837bb105687936252e970f0dc499249d7865772ae05d7303e0a6297cd4"
 
 [metadata.files]
 alabaster = [
@@ -1680,8 +1680,8 @@ typeguard = [
     {file = "typeguard-2.13.0.tar.gz", hash = "sha256:04e38f92eb59410c9375d3be23df65e0a7643f2e8bcbd421423d808d2f9e99df"},
 ]
 types-pytz = [
-    {file = "types-pytz-2021.1.2.tar.gz", hash = "sha256:448828a06f2aaa840e57364d866c661645a045e532f817e4f10c8c3ab2b66651"},
-    {file = "types_pytz-2021.1.2-py3-none-any.whl", hash = "sha256:28fb1c0f77f59aebe9b792d073ebfbbbf7b329f9d4af6a6079713a618a1c0f31"},
+    {file = "types-pytz-2021.3.0.tar.gz", hash = "sha256:86a61967834dceeaaf98b6902ed8357efdd262bb8afcaf4bc8ccecf748592778"},
+    {file = "types_pytz-2021.3.0-py3-none-any.whl", hash = "sha256:b5027e5de50a4c978cd60ca16849d934d44c44ebd7d29cf13ada009efaa9feef"},
 ]
 types-requests = [
     {file = "types-requests-2.25.9.tar.gz", hash = "sha256:4ec8b71da73e5344adb9bee725a74ec8598e7286f9bcb17500d627f259fe4fb9"},
