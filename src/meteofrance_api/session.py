@@ -8,8 +8,6 @@ from requests import Session
 
 from .const import METEOFRANCE_API_TOKEN
 from .const import METEOFRANCE_API_URL
-from .const import METEOFRANCE_WS_API_URL
-from .const import METEONET_API_URL
 
 
 class MeteoFranceSession(Session):
@@ -54,39 +52,3 @@ class MeteoFranceSession(Session):
         response.raise_for_status()
 
         return response
-
-
-class MeteoFranceWSSession(MeteoFranceSession):
-    """HTTP session manager for Météo-France WS.
-
-    Child class dedicated to additional REST API URI for specific command like getDetail
-    , getAllVigilances, getVigilance.
-    """
-
-    host: str = METEOFRANCE_WS_API_URL
-
-    def __init__(self, access_token: Optional[str] = None) -> None:
-        """Initialize the Météo-France WS.
-
-        Args:
-            access_token: a string containing the authentication token for the REST API.
-        """
-        super().__init__(access_token)
-
-
-class MeteoNetSession(MeteoFranceSession):
-    """HTTP session manager for MétéoNet.
-
-    Child class dedicated to additional REST API URI for specific command like ImageJour
-    , radarEU.
-    """
-
-    host: str = METEONET_API_URL
-
-    def __init__(self, access_token: Optional[str] = None) -> None:
-        """Initialize the MétéoNet.
-
-        Args:
-            access_token: a string containing the authentication token for the REST API.
-        """
-        super().__init__(access_token)
