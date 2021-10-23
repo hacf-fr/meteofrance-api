@@ -9,8 +9,10 @@ def test_picture_of_the_day() -> None:
 
     potd = client.get_picture_of_the_day()
 
-    assert "http://" in potd.image_url
-    assert ".jpg" in potd.image_url
-    assert "http://" in potd.image_hd_url
-    assert ".jpg" in potd.image_hd_url
     assert potd.description
+    assert potd.image_url == (
+        "https://webservice.meteofrance.com/v2/report"
+        "?domain=france&report_type=observation"
+        "&report_subtype=image%20du%20jour&format=jpg"
+        "&token=__Wj7dVSTjV9YGu1guveLyDq0g7S7TfTjaHBTPTpO0kj8__"
+    )
