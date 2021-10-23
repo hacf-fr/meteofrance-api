@@ -13,8 +13,6 @@ from .model import PictureOfTheDay
 from .model import Place
 from .model import Rain
 from .session import MeteoFranceSession
-from .session import MeteoFranceWSSession
-from .session import MeteoNetSession
 
 # TODO: http://webservice.meteofrance.com/observation
 # TODO: investigate bulletincote, montagne, etc...
@@ -39,8 +37,6 @@ class MeteoFranceClient:
             access_token: a string containing the authentication token for the REST API.
         """
         self.session = MeteoFranceSession(access_token)
-        self.session_ws = MeteoFranceWSSession()
-        self.session_net = MeteoNetSession()
 
     #
     # Place
@@ -262,12 +258,35 @@ class MeteoFranceClient:
     #
     # Picture of the day
     #
-    def get_picture_of_the_day(self) -> PictureOfTheDay:
+    def get_picture_of_the_day(self, domain: str = "france") -> PictureOfTheDay:
         """Retrieve the picture of the day image URL & description.
+
+        Args:
+            domain: could be `france`
 
         Returns:
             PictureOfTheDay instance with the URL and the description of the picture of
             the day.
         """
-        resp = self.session_net.request("get", "ImageJour/last.txt")
-        return PictureOfTheDay(resp.json())
+        # Send the API request
+        # TODO: check if other value of domain are usable
+
+        resp = self.session.request(
+            "get",
+            "v2/report",
+            params={
+                "domain": domain,
+                "report_type": "observation",
+                "report_subtype": "image du jour",
+                "format": "txt",
+            },
+        )
+
+        image_url = (
+            f"{METEOFRANCE_API_URL}/v2/report"
+            f"?domain={domain}"
+            f"&report_type=observation&report_subtype=image%20du%20jour&format=jpg"
+            f"&token={METEOFRANCE_API_TOKEN}"
+        )
+
+        return PictureOfTheDay({"image_url": image_url, "description": resp.text})
