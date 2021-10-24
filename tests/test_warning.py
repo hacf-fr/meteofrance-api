@@ -68,7 +68,7 @@ def test_thumbnail() -> None:
     thumbnail_url = client.get_warning_thumbnail()
 
     assert thumbnail_url == (
-        "https://webservice.meteofrance.com/warning/thumbnail"
+        "https://webservice.meteofrance.com/v2/warning/thumbnail"
         "?&token=__Wj7dVSTjV9YGu1guveLyDq0g7S7TfTjaHBTPTpO0kj8__&"
         "domain=france"
     )
