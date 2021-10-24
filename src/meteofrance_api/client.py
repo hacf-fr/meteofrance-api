@@ -283,7 +283,7 @@ class MeteoFranceClient:
         )
 
         image_url = (
-            f"{METEOFRANCE_API_URL}/v2/report"
+            f"{METEOFRANCE_API_URL}/report"
             f"?domain={domain}"
             f"&report_type=observation&report_subtype=image%20du%20jour&format=jpg"
             f"&token={METEOFRANCE_API_TOKEN}"
