@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """Picture of the Day Python model for the Météo-France REST API."""
 import sys
-from typing import Mapping
 
 if sys.version_info >= (3, 8):
     from typing import TypedDict  # pylint: disable=no-name-in-module
@@ -10,11 +9,10 @@ else:
 
 
 class PictureOfTheDayData(TypedDict):
-    """Describing the data structure of ImageJour object returned by the REST API."""
+    """Describing the data structure of ImageJour object."""
 
-    vignette: str
-    imageHD: str  # noqa: N815
-    commentaire: str
+    image_url: str  # noqa: N815
+    description: str
 
 
 class PictureOfTheDay:
@@ -27,7 +25,7 @@ class PictureOfTheDay:
         descritpion: A string with the description of the picture of the day.
     """
 
-    def __init__(self, raw_data: Mapping[str, PictureOfTheDayData]) -> None:
+    def __init__(self, raw_data: PictureOfTheDayData) -> None:
         """Initialize a PictureOfTheDay object.
 
         Args:
@@ -35,19 +33,14 @@ class PictureOfTheDay:
                 REST API request. The structure is described by the PictureOfTheDayData
                 class.
         """
-        self.raw_data = raw_data["result"]
+        self.raw_data = raw_data
 
     @property
     def image_url(self) -> str:
         """Return the image URL of the picture of the day."""
-        return self.raw_data["vignette"]
-
-    @property
-    def image_hd_url(self) -> str:
-        """Return the image HD URL of the picture of the day."""
-        return self.raw_data["imageHD"]
+        return self.raw_data["image_url"]
 
     @property
     def description(self) -> str:
         """Return the description of the picture of the day."""
-        return self.raw_data["commentaire"]
+        return self.raw_data["description"]
