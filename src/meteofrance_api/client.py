@@ -273,7 +273,7 @@ class MeteoFranceClient:
 
         resp = self.session.request(
             "get",
-            "v2/report",
+            "report",
             params={
                 "domain": domain,
                 "report_type": "observation",
