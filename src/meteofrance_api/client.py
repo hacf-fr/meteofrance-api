@@ -3,6 +3,9 @@
 from typing import List
 from typing import Optional
 
+import desert
+import marshmallow
+
 from .const import COASTAL_DEPARTMENT_LIST
 from .const import METEOFRANCE_API_TOKEN
 from .const import METEOFRANCE_API_URL
@@ -14,13 +17,12 @@ from .model import Place
 from .model import Rain
 from .session import MeteoFranceSession
 
-# TODO: http://webservice.meteofrance.com/observation
 # TODO: investigate bulletincote, montagne, etc...
-#       http://ws.meteofrance.com/ws//getDetail/france/330630.json
 # TODO: add protection for warning if domain not valid
 # TODO: strategy for HTTP errors
 # TODO: next rain in minute. Necessary ?
 # TODO: forecast/metadata from ID to get gps ?
+# TODO: check if we can use date instead of timestamp
 
 
 class MeteoFranceClient:
@@ -148,11 +150,20 @@ class MeteoFranceClient:
         """
         # TODO: add protection if no rain forecast for this position
 
+        schema = desert.schema(Rain, meta={"unknown": marshmallow.EXCLUDE})
+
         # Send the API request
         resp = self.session.request(
-            "get", "rain", params={"lat": latitude, "lon": longitude, "lang": language}
+            "get",
+            "rain",
+            params={
+                "lat": latitude,
+                "lon": longitude,
+                "lang": language,
+                "formatDate": "timestamp",
+            },
         )
-        return Rain(resp.json())
+        return schema.load(resp.json())
 
     #
     # Warning

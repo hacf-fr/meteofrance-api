@@ -29,6 +29,8 @@ requests = "^2.25.1"
 urllib3 = "^1.26.6"
 pytz = ">=2020.4,<2022.0"
 typing-extensions = {version = "^3.7.4", python = "~3.6 || ~3.7"}
+desert = "^2020.11.18"
+marshmallow = "^3.14.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"
