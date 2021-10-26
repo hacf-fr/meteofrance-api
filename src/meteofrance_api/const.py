@@ -4,11 +4,7 @@ METEOFRANCE_API_URL = "https://webservice.meteofrance.com/v2"
 METEOFRANCE_API_TOKEN = "__Wj7dVSTjV9YGu1guveLyDq0g7S7TfTjaHBTPTpO0kj8__"  # noqa: S105
 
 # TODO:
-# new token ? eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzRjdFOTVGOS04QjIxLTQwMDctOTFCQi0wQ0M3QjlBNTQxQzQiLCJjbGFzcyI6Im1vYmlsZSIsImlhdCI6MTYzNDg0NjM1Mi40NzU0MTE5fQ.F02c4y95-HqMsMbQeJ5Cx-qQ4LDJgaYwl47YsNvJM0E # noqa: B950
-# new api v2
-# https://webservice.meteofrance.com/v2/report?domain=france&report_type=observation&report_subtype=image%20du%20jour&format=jpg&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzRjdFOTVGOS04QjIxLTQwMDctOTFCQi0wQ0M3QjlBNTQxQzQiLCJjbGFzcyI6Im1vYmlsZSIsImlhdCI6MTYzNDg0NjM1Mi40NzU0MTE5fQ.F02c4y95-HqMsMbQeJ5Cx-qQ4LDJgaYwl47YsNvJM0E # noqa: B950
-# http://webservice.meteofrance.com/v2/report?domain=france&report_type=observation&report_subtype=image%20du%20jour&format=txt&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzRjdFOTVGOS04QjIxLTQwMDctOTFCQi0wQ0M3QjlBNTQxQzQiLCJjbGFzcyI6Im1vYmlsZSIsImlhd # noqa: B950
-# http://webservice.meteofrance.com/v2/ephemeris?lat=43.566079&lon=1.057237&lang=fr&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzRjdFOTVGOS04QjIxLTQwMDctOTFCQi0wQ0M3QjlBNTQxQzQiLCJjbGFzcyI6Im1vYmlsZSIsImlhdCI6MTYzNDg0NjM1Mi40NzU0 # noqa: B950
+# new dynamic token ?
 
 # enums used in all Warning classes. First indice is 0
 # Weather alert criticity

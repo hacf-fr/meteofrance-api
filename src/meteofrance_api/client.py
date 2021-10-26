@@ -22,7 +22,7 @@ from .session import MeteoFranceSession
 # TODO: strategy for HTTP errors
 # TODO: next rain in minute. Necessary ?
 # TODO: forecast/metadata from ID to get gps ?
-# TODO: check if we can use date instead of timestamp
+# TODO: check if we can use date instead of timestamp / https://developers.home-assistant.io/blog/2021/05/07/switch-pytz-to-python-dateutil/ # noqa: B950
 
 
 class MeteoFranceClient:
@@ -102,13 +102,20 @@ class MeteoFranceClient:
         """
         # TODO: add possibility to request forecast from id
 
+        schema = desert.schema(Forecast, meta={"unknown": marshmallow.EXCLUDE})
+
         # Send the API request
         resp = self.session.request(
             "get",
             "forecast",
-            params={"lat": latitude, "lon": longitude, "lang": language},
+            params={
+                "lat": latitude,
+                "lon": longitude,
+                "lang": language,
+                "formatDate": "timestamp",
+            },
         )
-        return Forecast(resp.json())
+        return schema.load(resp.json())
 
     def get_forecast_for_place(
         self,

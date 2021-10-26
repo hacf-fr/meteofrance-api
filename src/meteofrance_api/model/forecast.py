@@ -1,31 +1,18 @@
 # -*- coding: utf-8 -*-
 """Weather forecast Python model for the Météo-France REST API."""
-import sys
+from dataclasses import dataclass
 from datetime import datetime
 from typing import Any
 from typing import Dict
 from typing import List
+from typing import Optional
 
 from pytz import utc
 
 from meteofrance_api.helpers import timestamp_to_dateime_with_locale_tz
 
-if sys.version_info >= (3, 8):
-    from typing import TypedDict  # pylint: disable=no-name-in-module
-else:
-    from typing_extensions import TypedDict
 
-
-class ForecastData(TypedDict, total=False):
-    """Describing the data structure of the forecast object returned by the REST API."""
-
-    position: Dict[str, Any]
-    updated_on: int
-    daily_forecast: List[Dict[str, Any]]
-    forecast: List[Dict[str, Any]]
-    probability_forecast: List[Dict[str, Any]]
-
-
+@dataclass
 class Forecast:
     """Class to access the results of a `forecast` API request.
 
@@ -45,44 +32,30 @@ class Forecast:
             current hour.
     """
 
-    def __init__(self, raw_data: ForecastData) -> None:
-        """Initialize a Forecast object.
+    geometry: Dict[str, Any]
+    update_time: int
+    type: str
+    properties: Dict[str, Optional[Any]]
 
-        Args:
-            raw_data: A dictionary representing the JSON response from 'forecast' REST
-                API request. The structure is described by the ForecastData class.
-        """
-        self.raw_data = raw_data
+    # @property
+    # def daily_forecast(self) -> List[Dict[str, Any]]:
+    #     """Return the daily forecast for the following days."""
+    #     return self.raw_data["daily_forecast"]
 
-    @property
-    def position(self) -> Dict[str, Any]:
-        """Return the position information of the forecast."""
-        return self.raw_data["position"]
-
-    @property
-    def updated_on(self) -> int:
-        """Return the update timestamp of the forecast."""
-        return self.raw_data["updated_on"]
-
-    @property
-    def daily_forecast(self) -> List[Dict[str, Any]]:
-        """Return the daily forecast for the following days."""
-        return self.raw_data["daily_forecast"]
-
-    @property
-    def forecast(self) -> List[Dict[str, Any]]:
-        """Return the hourly forecast."""
-        return self.raw_data["forecast"]
+    # @property
+    # def forecast(self) -> List[Dict[str, Any]]:
+    #     """Return the hourly forecast."""
+    #     return self.raw_data["forecast"]
 
     @property
     def probability_forecast(self) -> List[Dict[str, Any]]:
         """Return the wheather event forecast."""
-        return self.raw_data.get("probability_forecast", [])
+        return self.properties.get("probability_forecast", [])
 
     @property
     def today_forecast(self) -> Dict[str, Any]:
         """Return the forecast for today."""
-        return self.daily_forecast[0]
+        return self.properties["daily_forecast"][0]
 
     @property
     def nearest_forecast(self) -> Dict[str, Any]:
@@ -92,8 +65,8 @@ class Forecast:
         # sort list of forecast by distance between current timestamp and
         # forecast timestamp
         sorted_forecast = sorted(
-            self.forecast,
-            key=lambda x: abs(x["dt"] - now_timestamp),  # type: ignore[no-any-return]
+            self.properties["forecast"],
+            key=lambda x: abs(x["time"] - now_timestamp),  # type: ignore[no-any-return]
         )
         return sorted_forecast[0]
 
@@ -107,9 +80,11 @@ class Forecast:
             ).timestamp()
         )
         # create a dict using timestamp as keys
-        forecast_by_datetime = {item["dt"]: item for item in self.forecast}
+        forecast_by_datetime = {
+            item["time"]: item for item in self.properties["forecast"]
+        }
         # Return the forecast corresponding to the timestamp of the current hour if
-        # exists. If not exists, returns the nearest forecast (not France countries)
+        # exists. If not exists, returns the nearest forecast (for not France countries)
         return forecast_by_datetime.get(current_hour_timestamp, self.nearest_forecast)
 
     def timestamp_to_locale_time(self, timestamp: int) -> datetime:
@@ -122,4 +97,6 @@ class Forecast:
             Datetime instance corresponding to the timestamp with the timezone of the
                 forecast location.
         """
-        return timestamp_to_dateime_with_locale_tz(timestamp, self.position["timezone"])
+        return timestamp_to_dateime_with_locale_tz(
+            timestamp, self.properties["timezone"]
+        )
