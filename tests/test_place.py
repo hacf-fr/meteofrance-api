@@ -14,9 +14,9 @@ def test_places() -> None:
     place = list_places[0]
 
     assert place.insee
-    assert place.latitude
-    assert place.longitude
-    assert place.postal_code
+    assert place.lat
+    assert place.lon
+    assert place.postCode
 
     assert place.name == "Montréal"
     assert place.country == "FR"

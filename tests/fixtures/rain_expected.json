@@ -1,0 +1,60 @@
+{
+  "update_time": 1589995200,
+  "type": "Feature",
+  "geometry": { "type": "Point", "coordinates": [2.239895, 48.807166] },
+  "properties": {
+    "altitude": 76,
+    "name": "Meudon",
+    "country": "FR - France",
+    "french_department": "92",
+    "timezone": "Europe/Paris",
+    "confidence": 0,
+    "forecast": [
+      {
+        "time": 1589996100,
+        "rain_intensity": 1,
+        "rain_intensity_description": "Temps sec"
+      },
+      {
+        "time": 1589996400,
+        "rain_intensity": 1,
+        "rain_intensity_description": "Temps sec"
+      },
+      {
+        "time": 1589996700,
+        "rain_intensity": 1,
+        "rain_intensity_description": "Temps sec"
+      },
+      {
+        "time": 1589997000,
+        "rain_intensity": 2,
+        "rain_intensity_description": "Pluie faible"
+      },
+      {
+        "time": 1589997300,
+        "rain_intensity": 3,
+        "rain_intensity_description": "Pluie modérée"
+      },
+      {
+        "time": 1589997600,
+        "rain_intensity": 2,
+        "rain_intensity_description": "Pluie faible"
+      },
+      {
+        "time": 1589998200,
+        "rain_intensity": 1,
+        "rain_intensity_description": "Temps sec"
+      },
+      {
+        "time": 1589998800,
+        "rain_intensity": 1,
+        "rain_intensity_description": "Temps sec"
+      },
+      {
+        "time": 1589999400,
+        "rain_intensity": 1,
+        "rain_intensity_description": "Temps sec"
+      }
+    ]
+  }
+}

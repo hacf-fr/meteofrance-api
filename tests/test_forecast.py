@@ -5,7 +5,6 @@ from datetime import datetime
 
 from .const import MOUNTAIN_CITY
 from meteofrance_api import MeteoFranceClient
-from meteofrance_api.model import Place
 
 
 def test_forecast_france() -> None:
@@ -81,7 +80,7 @@ def test_forecast_place() -> None:
     """Test weather forecast results from API."""
     client = MeteoFranceClient()
 
-    weather_forecast = client.get_forecast_for_place(place=Place(MOUNTAIN_CITY))
+    weather_forecast = client.get_forecast_for_place(place=MOUNTAIN_CITY)
 
     assert type(weather_forecast.geometry) == dict
     assert type(weather_forecast.update_time) == int

@@ -1,17 +1,18 @@
 # coding: utf-8
 """Tests for meteofrance module. Helpers."""
+from typing import Any
+from typing import Dict
 from typing import List
 
 import pytest
 
+from meteofrance_api.client import schema_place
 from meteofrance_api.helpers import get_phenomenon_name_from_indice
 from meteofrance_api.helpers import get_warning_text_status_from_indice_color
 from meteofrance_api.helpers import is_coastal_department
 from meteofrance_api.helpers import is_valid_warning_department
 from meteofrance_api.helpers import readeable_phenomenoms_dict
 from meteofrance_api.helpers import sort_places_versus_distance_from_coordinates
-from meteofrance_api.model import Place
-from meteofrance_api.model.place import PlaceData
 
 
 def test_text_helpers_fr() -> None:
@@ -62,7 +63,7 @@ def test_readeable_phenomenoms_dict() -> None:
 
 def test_sort_places_versus_distance_from_coordinates() -> None:
     """Test the helper to order the Places list return by the search."""
-    json_places: List[PlaceData] = [
+    json_places: List[Dict[str, Any]] = [
         {
             "insee": "11254",
             "name": "Montréal",
@@ -184,7 +185,7 @@ def test_sort_places_versus_distance_from_coordinates() -> None:
             "postCode": "null",
         },
     ]
-    list_places = [Place(place_data) for place_data in json_places]
+    list_places = [schema_place.load(place_data) for place_data in json_places]
 
     # Sort Places by distance from Auch (32) coordinates.
     list_places_ordered = sort_places_versus_distance_from_coordinates(

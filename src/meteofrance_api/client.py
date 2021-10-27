@@ -24,6 +24,10 @@ from .session import MeteoFranceSession
 # TODO: forecast/metadata from ID to get gps ?
 # TODO: check if we can use date instead of timestamp / https://developers.home-assistant.io/blog/2021/05/07/switch-pytz-to-python-dateutil/ # noqa: B950
 
+schema_forecast = desert.schema(Forecast, meta={"unknown": marshmallow.EXCLUDE})
+schema_place = desert.schema(Place, meta={"unknown": marshmallow.EXCLUDE})
+schema_rain = desert.schema(Rain, meta={"unknown": marshmallow.EXCLUDE})
+
 
 class MeteoFranceClient:
     """Proxy to the Météo-France REST API.
@@ -74,7 +78,7 @@ class MeteoFranceClient:
 
         # Send the API resuest
         resp = self.session.request("get", "places", params=params)
-        return [Place(place_data) for place_data in resp.json()]
+        return [schema_place.load(place_data) for place_data in resp.json()]
 
     #
     # Forecast
@@ -102,8 +106,6 @@ class MeteoFranceClient:
         """
         # TODO: add possibility to request forecast from id
 
-        schema = desert.schema(Forecast, meta={"unknown": marshmallow.EXCLUDE})
-
         # Send the API request
         resp = self.session.request(
             "get",
@@ -115,7 +117,7 @@ class MeteoFranceClient:
                 "formatDate": "timestamp",
             },
         )
-        return schema.load(resp.json())
+        return schema_forecast.load(resp.json())
 
     def get_forecast_for_place(
         self,
@@ -134,7 +136,7 @@ class MeteoFranceClient:
         Returns:
             A Forecast intance representing the hourly and daily weather forecast.
         """
-        return self.get_forecast(place.latitude, place.longitude, language)
+        return self.get_forecast(place.lat, place.lon, language)
 
     #
     # Rain
@@ -157,8 +159,6 @@ class MeteoFranceClient:
         """
         # TODO: add protection if no rain forecast for this position
 
-        schema = desert.schema(Rain, meta={"unknown": marshmallow.EXCLUDE})
-
         # Send the API request
         resp = self.session.request(
             "get",
@@ -170,7 +170,7 @@ class MeteoFranceClient:
                 "formatDate": "timestamp",
             },
         )
-        return schema.load(resp.json())
+        return schema_rain.load(resp.json())
 
     #
     # Warning

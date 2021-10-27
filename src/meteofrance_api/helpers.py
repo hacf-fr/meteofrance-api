@@ -155,7 +155,7 @@ def sort_places_versus_distance_from_coordinates(
     """
     sorted_places = sorted(
         list_places,
-        key=lambda x: haversine((float(x.latitude), float(x.longitude)), gps_coord),
+        key=lambda x: haversine((float(x.lat), float(x.lon)), gps_coord),
     )
     return sorted_places
 

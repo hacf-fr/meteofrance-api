@@ -1,27 +1,10 @@
 # -*- coding: utf-8 -*-
 """Place Python model for the Météo-France REST API."""
-import sys
+from dataclasses import dataclass
 from typing import Optional
 
-if sys.version_info >= (3, 8):
-    from typing import TypedDict  # pylint: disable=no-name-in-module
-else:
-    from typing_extensions import TypedDict
 
-
-class PlaceData(TypedDict):
-    """Describing the data structure of place object returned by the REST API."""
-
-    insee: Optional[str]
-    name: str
-    lat: float
-    lon: float
-    country: str
-    admin: str
-    admin2: Optional[str]
-    postCode: Optional[str]  # noqa: N815
-
-
+@dataclass
 class Place:
     """Class to access the results of 'places' REST API request.
 
@@ -38,14 +21,14 @@ class Place:
         postCode: A string corresponding to the ZIP code of location.
     """
 
-    def __init__(self, raw_data: PlaceData) -> None:
-        """Initialize a Place object.
-
-        Args:
-            raw_data: A dictionary representing the JSON response from 'places' REST API
-                request. The structure is described by the PlaceData class.
-        """
-        self.raw_data = raw_data
+    insee: Optional[str]
+    name: str
+    lat: float
+    lon: float
+    country: str
+    admin: str
+    admin2: Optional[str]
+    postCode: Optional[str]  # noqa: N815
 
     def __repr__(self) -> str:
         """Return string representation of this class.
@@ -76,42 +59,4 @@ class Place:
 
         return f"{self.name} - {self.admin} - {self.country}"
 
-    @property
-    def insee(self) -> Optional[str]:
-        """Return the INSEE ID of the place."""
-        return self.raw_data.get("insee")
-
-    @property
-    def name(self) -> str:
-        """Return the name of the place."""
-        return self.raw_data["name"]
-
-    @property
-    def latitude(self) -> float:
-        """Return the latitude of the place."""
-        return self.raw_data["lat"]
-
-    @property
-    def longitude(self) -> float:
-        """Return the longitude of the place."""
-        return self.raw_data["lon"]
-
-    @property
-    def country(self) -> str:
-        """Return the country code of the place."""
-        return self.raw_data["country"]
-
-    @property
-    def admin(self) -> Optional[str]:
-        """Return the admin of the place."""
-        return self.raw_data.get("admin")
-
-    @property
-    def admin2(self) -> Optional[str]:
-        """Return the admin2 of the place."""
-        return self.raw_data.get("admin2")
-
-    @property
-    def postal_code(self) -> Optional[str]:
-        """Return the postal code of the place."""
-        return self.raw_data.get("postCode")
+    # TODO: check when insee, admin and admin2 are null
