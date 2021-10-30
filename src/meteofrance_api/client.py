@@ -27,6 +27,9 @@ from .session import MeteoFranceSession
 schema_forecast = desert.schema(Forecast, meta={"unknown": marshmallow.EXCLUDE})
 schema_place = desert.schema(Place, meta={"unknown": marshmallow.EXCLUDE})
 schema_rain = desert.schema(Rain, meta={"unknown": marshmallow.EXCLUDE})
+schema_picture_of_the_day = desert.schema(
+    PictureOfTheDay, meta={"unknown": marshmallow.EXCLUDE}
+)
 
 
 class MeteoFranceClient:
@@ -307,4 +310,6 @@ class MeteoFranceClient:
             f"&token={METEOFRANCE_API_TOKEN}"
         )
 
-        return PictureOfTheDay({"image_url": image_url, "description": resp.text})
+        return schema_picture_of_the_day.load(
+            {"image_url": image_url, "description": resp.text}
+        )
