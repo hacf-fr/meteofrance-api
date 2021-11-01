@@ -4,6 +4,7 @@
 For getting weather alerts in France Metropole and Andorre.
 """
 import sys
+from dataclasses import dataclass
 from typing import Any
 from typing import Dict
 from typing import List
@@ -22,23 +23,6 @@ class WarnningCurrentPhenomenonsData(TypedDict):
     end_validity_time: int
     domain_id: str
     phenomenons_max_colors: List[Dict[str, int]]
-
-
-class WarnningFullData(TypedDict):
-    """Describing the data structure of full object from the REST API."""
-
-    update_time: int
-    end_validity_time: int
-    domain_id: str
-    color_max: int
-    timelaps: List[Dict[str, Any]]
-    phenomenons_items: List[Dict[str, int]]
-    advices: Optional[List[Dict[str, Any]]]
-    consequences: Optional[List[Dict[str, Any]]]
-    max_count_items: Any  # Didn't see any value yet
-    comments: Dict[str, Any]
-    text: Optional[Dict[str, Any]]
-    text_avalanche: Any  # Didn't see any value yet
 
 
 class CurrentPhenomenons:
@@ -117,6 +101,7 @@ class CurrentPhenomenons:
         return max_int_color
 
 
+@dataclass
 class Full:
     """This class allows to access the results of a `warning/full` API command.
 
@@ -138,47 +123,26 @@ class Full:
             phenomenoms in the next 24 hours.
         phenomenons_items: list of dictionnaries corresponding the alert level for each
             phenomenoms type.
+        advices: to be described
+        consequences: to be described
+        max_count_items: to be desribed. Didn't see any value yet
+        comments: A disct containing general comment for France situation
+        text: to be described
+        test_avalancehe: to be desribed. Didn't see any value yet
     """
 
-    def __init__(self, raw_data: WarnningFullData) -> None:
-        """Initialize a Full object.
-
-        Args:
-            raw_data: A dictionary representing the JSON response from'warning/full'
-                REST API request. The structure is described by the WarnningFullData
-                class.
-        """
-        self.raw_data = raw_data
-
-    @property
-    def update_time(self) -> int:
-        """Return the update time of the full bulletin."""
-        return self.raw_data["update_time"]
-
-    @property
-    def end_validity_time(self) -> int:
-        """Return the end of validty time of the full bulletin."""
-        return self.raw_data["end_validity_time"]
-
-    @property
-    def domain_id(self) -> str:
-        """Return the domain ID of the the full bulletin."""
-        return self.raw_data["domain_id"]
-
-    @property
-    def color_max(self) -> int:
-        """Return the color max of the domain."""
-        return self.raw_data["color_max"]
-
-    @property
-    def timelaps(self) -> List[Dict[str, Any]]:
-        """Return the timelaps of each phenomenom for the domain."""
-        return self.raw_data["timelaps"]
-
-    @property
-    def phenomenons_items(self) -> List[Dict[str, int]]:
-        """Return the phenomenom list of the domain."""
-        return self.raw_data["phenomenons_items"]
+    update_time: int
+    end_validity_time: int
+    domain_id: str
+    color_max: int
+    timelaps: List[Dict[str, Any]]
+    phenomenons_items: List[Dict[str, int]]
+    advices: Optional[List[Dict[str, Any]]]
+    consequences: Optional[List[Dict[str, Any]]]
+    max_count_items: Optional[Any]  # Didn't see any value yet
+    comments: Dict[str, Any]
+    text: Optional[Dict[str, Any]]
+    text_avalanche: Optional[Any]  # Didn't see any value yet
 
     def merge_with_coastal_phenomenons(self, coastal_phenomenoms: "Full") -> None:
         """Merge the classical phenomenon bulletin with the coastal one.
@@ -194,12 +158,12 @@ class Full:
         # TODO: Check if other data need to be merged
 
         # Merge color_max property
-        self.raw_data["color_max"] = max(self.color_max, coastal_phenomenoms.color_max)
+        self.color_max = max(self.color_max, coastal_phenomenoms.color_max)
 
         # Merge timelaps
-        self.raw_data["timelaps"].extend(coastal_phenomenoms.timelaps)
+        self.timelaps.extend(coastal_phenomenoms.timelaps)
 
         # Merge phenomenons_items
-        self.raw_data["phenomenons_items"].extend(coastal_phenomenoms.phenomenons_items)
+        self.phenomenons_items.extend(coastal_phenomenoms.phenomenons_items)
 
     # TODO: check opportunity to complete class

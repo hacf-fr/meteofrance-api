@@ -30,6 +30,7 @@ schema_rain = desert.schema(Rain, meta={"unknown": marshmallow.EXCLUDE})
 schema_picture_of_the_day = desert.schema(
     PictureOfTheDay, meta={"unknown": marshmallow.EXCLUDE}
 )
+schema_warning_full = desert.schema(Full, meta={"unknown": marshmallow.EXCLUDE})
 
 
 class MeteoFranceClient:
@@ -246,7 +247,7 @@ class MeteoFranceClient:
         resp = self.session.request("get", "warning/full", params={"domain": domain})
 
         # Create object with API response
-        full_phenomenoms = Full(resp.json())
+        full_phenomenoms = schema_warning_full.load(resp.json())
 
         # if user ask to have the coastal bulletin merged
         if with_costal_bulletin:
@@ -256,7 +257,9 @@ class MeteoFranceClient:
                     "warning/full",
                     params={"domain": domain + "10"},
                 )
-                full_phenomenoms.merge_with_coastal_phenomenons(Full(resp.json()))
+                full_phenomenoms.merge_with_coastal_phenomenons(
+                    schema_warning_full.load(resp.json())
+                )
 
         return full_phenomenoms
 
@@ -283,7 +286,7 @@ class MeteoFranceClient:
         """Retrieve the picture of the day image URL & description.
 
         Args:
-            domain: could be `france`
+            domain: known working value is `france`
 
         Returns:
             PictureOfTheDay instance with the URL and the description of the picture of

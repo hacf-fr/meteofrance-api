@@ -1,8 +1,10 @@
 # coding: utf-8
 """Tests Météo-France module. Warning classes."""
+import re
 from unittest.mock import Mock
 
 import pytest
+from tests.fixtures import get_file_content
 
 from meteofrance_api import MeteoFranceClient
 from meteofrance_api.const import METEOFRANCE_API_URL
@@ -41,9 +43,15 @@ def test_currentphenomenons(requests_mock: Mock) -> None:
     assert current_phenomenoms.get_domain_max_color() == 3
 
 
-def test_fulls() -> None:
+def test_fulls(requests_mock: Mock) -> None:
     """Test advanced weather alert results from API."""
     client = MeteoFranceClient()
+
+    requests_mock.request(
+        "get",
+        f"{METEOFRANCE_API_URL}/warning/full",
+        text=get_file_content("tests/fixtures/warning_full_31.json"),
+    )
 
     warning_full = client.get_warning_full(domain="31")
 
@@ -89,10 +97,29 @@ def test_currentphenomenons_with_coastal_bulletin(dep: str, res: bool) -> None:
     assert has_coastal_phenomenom == res
 
 
-@pytest.mark.parametrize("dep, res", [("13", True), ("32", False)])
-def test_full_with_coastal_bulletint(dep: str, res: bool) -> None:
+@pytest.mark.parametrize("dep, res", [("13", True), ("31", False)])
+def test_full_with_coastal_bulletin(dep: str, res: bool, requests_mock: Mock) -> None:
     """Test getting a complete advanced bulletin for coastal department."""
     client = MeteoFranceClient()
+
+    matcher_31 = re.compile(r"domain=31")
+    requests_mock.request(
+        "get",
+        matcher_31,
+        text=get_file_content("tests/fixtures/warning_full_31.json"),
+    )
+    matcher_13 = re.compile(r"domain=13\D?")
+    requests_mock.request(
+        "get",
+        matcher_13,
+        text=get_file_content("tests/fixtures/warning_full_13.json"),
+    )
+    matcher_1310 = re.compile(r"domain=1310")
+    requests_mock.request(
+        "get",
+        matcher_1310,
+        text=get_file_content("tests/fixtures/warning_full_1310.json"),
+    )
 
     full_phenomenoms = client.get_warning_full(domain=dep, with_costal_bulletin=True)
 

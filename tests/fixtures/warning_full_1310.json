@@ -1,0 +1,35 @@
+{
+  "update_time": 1635656400,
+  "end_validity_time": 1635742800,
+  "domain_id": "1310",
+  "color_max": 2,
+  "timelaps": [
+    {
+      "phenomenon_id": 9,
+      "timelaps_items": [
+        { "begin_time": 1635656400, "color_id": 2 },
+        { "begin_time": 1635692400, "color_id": 1 }
+      ]
+    }
+  ],
+  "phenomenons_items": [{ "phenomenon_id": 9, "phenomenon_max_color_id": 2 }],
+  "advices": null,
+  "consequences": null,
+  "max_count_items": null,
+  "comments": {
+    "begin_time": 1635656400,
+    "end_time": 1635742800,
+    "text_bloc_item": [
+      {
+        "title": "Commentaire carte",
+        "title_html": "",
+        "text_html": [],
+        "text": [
+          "Coup de vent ce matin sur la Bretagne et la Basse-Normandie, se décalant cet après-midi sur la Haute-Normandie, l'Ile de France, les Hauts de France et la Champagne."
+        ]
+      }
+    ]
+  },
+  "text": null,
+  "text_avalanche": null
+}
