@@ -13,10 +13,10 @@ classifiers = [
     "Operating System :: OS Independent",
     "Development Status :: 5 - Production/Stable",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.6",
     "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
     "License :: OSI Approved :: MIT License",
 ]
 
@@ -24,11 +24,11 @@ classifiers = [
 Changelog = "https://github.com/hacf-fr/meteofrance-api/releases"
 
 [tool.poetry.dependencies]
-python = "^3.6.1"
+python = "^3.7.4"
 requests = "^2.25.1"
 urllib3 = "^1.26.6"
 pytz = ">=2020.4"
-typing-extensions = {version = "^3.7.4", python = "~3.6 || ~3.7"}
+typing-extensions = {version = "^3.7.4", python = "~3.7 || ~3.8 || ~3.9 || ~3.10"}
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"
