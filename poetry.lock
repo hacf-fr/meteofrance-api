@@ -717,18 +717,23 @@ python-versions = ">=3.5"
 
 [[package]]
 name = "safety"
-version = "1.10.3"
-description = "Checks installed dependencies for known vulnerabilities."
+version = "2.3.1"
+description = "Checks installed dependencies for known vulnerabilities and licenses."
 category = "dev"
 optional = false
-python-versions = ">=3.5"
+python-versions = "*"
 
 [package.dependencies]
-Click = ">=6.0"
-dparse = ">=0.5.1"
-packaging = "*"
+Click = ">=8.0.2"
+dparse = ">=0.6.2"
+packaging = ">=21.0"
 requests = "*"
-setuptools = "*"
+"ruamel.yaml" = ">=0.17.21"
+setuptools = ">=19.3"
+
+[package.extras]
+github = ["jinja2 (>=3.1.0)", "pygithub (>=1.43.3)"]
+gitlab = ["python-gitlab (>=1.3.0)"]
 
 [[package]]
 name = "setuptools"
@@ -1071,7 +1076,7 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7.4"
-content-hash = "f1c7f144ba3a1b33cc7fec44faccbdc17a83c6fb22ff47ba6693512844c9e7e9"
+content-hash = "d65df6cea492450c996367d179ce04b7bf9ad312c4163ea84f543b7a01f227d8"
 
 [metadata.files]
 alabaster = [
@@ -1512,8 +1517,8 @@ ruamel-yaml-clib = [
     {file = "ruamel.yaml.clib-0.2.6.tar.gz", hash = "sha256:4ff604ce439abb20794f05613c374759ce10e3595d1867764dd1ae675b85acbd"},
 ]
 safety = [
-    {file = "safety-1.10.3-py2.py3-none-any.whl", hash = "sha256:5f802ad5df5614f9622d8d71fedec2757099705c2356f862847c58c6dfe13e84"},
-    {file = "safety-1.10.3.tar.gz", hash = "sha256:30e394d02a20ac49b7f65292d19d38fa927a8f9582cdfd3ad1adbbc66c641ad5"},
+    {file = "safety-2.3.1-py3-none-any.whl", hash = "sha256:8f098d12b607db2756886280e85c28ece8db1bba4f45fc5f981f4663217bd619"},
+    {file = "safety-2.3.1.tar.gz", hash = "sha256:6e6fcb7d4e8321098cf289f59b65051cafd3467f089c6e57c9f894ae32c23b71"},
 ]
 setuptools = [
     {file = "setuptools-65.4.1-py3-none-any.whl", hash = "sha256:1b6bdc6161661409c5f21508763dc63ab20a9ac2f8ba20029aaaa7fdb9118012"},
