@@ -24,11 +24,11 @@ classifiers = [
 Changelog = "https://github.com/hacf-fr/meteofrance-api/releases"
 
 [tool.poetry.dependencies]
-python = "^3.6.1"
+python = "^3.9"
 requests = "^2.25.1"
 urllib3 = "^1.26.6"
 pytz = ">=2020.4,<2023.0"
-typing-extensions = {version = "^3.7.4", python = "~3.6 || ~3.7"}
+typing-extensions = {version = "^3.7.4", python = "~3.6 || ~3.7 || ~3.8"}
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"
