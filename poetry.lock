@@ -972,7 +972,7 @@ test = ["mypy", "pytest", "typing-extensions"]
 
 [[package]]
 name = "types-pytz"
-version = "2021.3.8"
+version = "2022.4.0.0"
 description = "Typing stubs for pytz"
 category = "dev"
 optional = false
@@ -1071,7 +1071,7 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7.4"
-content-hash = "b04b33aa20cba92c96e399bc4ba0d52ec9ffe3c0091c7d1901a287898f2906b0"
+content-hash = "f1c7f144ba3a1b33cc7fec44faccbdc17a83c6fb22ff47ba6693512844c9e7e9"
 
 [metadata.files]
 alabaster = [
@@ -1633,8 +1633,8 @@ typeguard = [
     {file = "typeguard-2.13.3.tar.gz", hash = "sha256:00edaa8da3a133674796cf5ea87d9f4b4c367d77476e185e80251cc13dfbb8c4"},
 ]
 types-pytz = [
-    {file = "types-pytz-2021.3.8.tar.gz", hash = "sha256:41253a3a2bf028b6a3f17b58749a692d955af0f74e975de94f6f4d2d3cd01dbd"},
-    {file = "types_pytz-2021.3.8-py3-none-any.whl", hash = "sha256:aef4a917ab28c585d3f474bfce4f4b44b91e95d9d47d4de29dd845e0db8e3910"},
+    {file = "types-pytz-2022.4.0.0.tar.gz", hash = "sha256:17d66e4b16e80ceae0787726f3a22288df7d3f9fdebeb091dc64b92c0e4ea09d"},
+    {file = "types_pytz-2022.4.0.0-py3-none-any.whl", hash = "sha256:950b0f3d64ed5b03a3e29c1e38fe2be8371c933c8e97922d0352345336eb8af4"},
 ]
 types-requests = [
     {file = "types-requests-2.28.11.2.tar.gz", hash = "sha256:fdcd7bd148139fb8eef72cf4a41ac7273872cad9e6ada14b11ff5dfdeee60ed3"},
