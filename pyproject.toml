@@ -55,7 +55,7 @@ sphinx-rtd-theme = "^1.0.0"
 sphinx-click = "^4.3.0"
 Pygments = "^2.10.0"
 types-requests = "^2.25.9"
-types-pytz = "^2022.4.0"
+types-pytz = "^2022.5.0"
 
 [tool.poetry.scripts]
 meteofrance-api = "meteofrance_api.__main__:main"
