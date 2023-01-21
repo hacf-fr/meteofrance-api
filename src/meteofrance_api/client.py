@@ -15,7 +15,6 @@ from .model import Place
 from .model import Rain
 from .session import MeteoFranceSession
 
-# TODO: http://webservice.meteofrance.com/observation
 # TODO: investigate bulletincote, montagne, etc...
 #       http://ws.meteofrance.com/ws//getDetail/france/330630.json
 # TODO: add protection for warning if domain not valid
@@ -85,6 +84,21 @@ class MeteoFranceClient:
         longitude: float,
         language: str = "fr",
     ) -> Observation:
+        """Retrieve the weather observation for a given GPS location.
+
+        Results can be fetched in french or english according to the language parameter.
+
+        Args:
+            latitude: Latitude in degree of the GPS point corresponding to the weather
+                forecast.
+            longitude: Longitude in degree of the GPS point corresponding to the weather
+                forecast.
+            language: Optional; If language is equal "fr" (default value) results will
+                be in French. All other value will give results in English.
+
+        Returns:
+            An Observation instance.
+        """
         resp = self.session.request(
             "get",
             "v2/observation",
@@ -97,6 +111,18 @@ class MeteoFranceClient:
         place: Place,
         language: str = "fr",
     ) -> Observation:
+        """Retrieve the weather observation for a given Place instance.
+
+        Results can be fetched in french or english according to the language parameter.
+
+        Args:
+            place: Place class instance corresponding to a location.
+            language: Optional; If language is equal "fr" (default value) results will
+                be in French. All other value will give results in English.
+
+        Returns:
+            An Observation intance.
+        """
         return self.get_observation(place.latitude, place.longitude, language)
 
 
