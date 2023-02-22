@@ -2,6 +2,8 @@
 """Weather observation Python model for the Météo-France REST API."""
 import sys
 from datetime import datetime
+from typing import Any
+from typing import Dict
 from typing import Optional
 
 if sys.version_info >= (3, 8):
@@ -32,6 +34,9 @@ class ObservationDataProperties(TypedDict, total=False):
 class ObservationData(TypedDict, total=False):
     """Data structure of the observation object from the REST API."""
 
+    update_time: str
+    geometry: Dict[str, Any]
+    type: str
     properties: ObservationDataProperties
 
 
