@@ -7,4 +7,12 @@ from .rain import Rain
 from .warning import CurrentPhenomenons
 from .warning import Full
 
-__all__ = ["Forecast", "Observation", "Place", "PictureOfTheDay", "Rain", "CurrentPhenomenons", "Full"]
+__all__ = [
+    "Forecast",
+    "Observation",
+    "Place",
+    "PictureOfTheDay",
+    "Rain",
+    "CurrentPhenomenons",
+    "Full",
+]
