@@ -7,9 +7,9 @@ from .const import COASTAL_DEPARTMENT_LIST
 from .const import METEOFRANCE_API_TOKEN
 from .const import METEOFRANCE_API_URL
 from .model import CurrentPhenomenons
-from .model import Observation
 from .model import Forecast
 from .model import Full
+from .model import Observation
 from .model import PictureOfTheDay
 from .model import Place
 from .model import Rain
@@ -74,10 +74,9 @@ class MeteoFranceClient:
         resp = self.session.request("get", "places", params=params)
         return [Place(place_data) for place_data in resp.json()]
 
-
     #
     # Observation
-    # 
+    #
     def get_observation(
         self,
         latitude: float,
@@ -102,9 +101,9 @@ class MeteoFranceClient:
         resp = self.session.request(
             "get",
             "v2/observation",
-            params={"lat": latitude, "lon": longitude, "lang": language})
+            params={"lat": latitude, "lon": longitude, "lang": language},
+        )
         return Observation(resp.json())
-
 
     def get_observation_for_place(
         self,
@@ -124,7 +123,6 @@ class MeteoFranceClient:
             An Observation intance.
         """
         return self.get_observation(place.latitude, place.longitude, language)
-
 
     #
     # Forecast
