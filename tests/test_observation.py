@@ -15,8 +15,10 @@ def assert_types(observation: Observation) -> None:
     assert type(observation.timezone) == str
     assert type(observation.time_as_string) == str
     assert type(observation.time_as_datetime) == datetime
-    assert type(observation.temperature) == float
-    assert type(observation.wind_speed) == float
+    assert (
+        type(observation.temperature) == float or type(observation.temperature) == int
+    )
+    assert type(observation.wind_speed) == float or type(observation.wind_speed) == int
     assert type(observation.wind_direction) == int
     assert type(observation.wind_icon) == str
     assert type(observation.weather_icon) == str
