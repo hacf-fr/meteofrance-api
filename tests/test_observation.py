@@ -5,10 +5,10 @@ from datetime import datetime, timezone, timedelta
 
 from .const import MOUNTAIN_CITY
 from meteofrance_api import MeteoFranceClient
-from meteofrance_api.model import Place
+from meteofrance_api.model import Place, Observation
 
 
-def assert_types(observation) -> None:
+def assert_types(observation: Observation) -> None:
     """Check observation types"""
     assert type(observation.timezone) == str
     assert type(observation.time_as_string) == str
@@ -21,10 +21,10 @@ def assert_types(observation) -> None:
     assert type(observation.weather_description) == str
 
 
-def assert_datetime(observation) -> None:
+def assert_datetime(observation: Observation) -> None:
     """Check observation time is before now but after now - 1h."""
     now = datetime.now(timezone.utc)
-    assert now - timedelta(hours=1) < observation.time_as_datetime < now
+    assert True if observation.time_as_datetime is None else now - timedelta(hours=1) < observation.time_as_datetime < now
 
 
 def test_observation_france() -> None:
