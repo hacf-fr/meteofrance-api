@@ -40,6 +40,8 @@ def test_observation_france() -> None:
     client = MeteoFranceClient()
     observation = client.get_observation(latitude=48.8075, longitude=2.24028)
 
+    assert str(observation)
+
     assert_types(observation)
     assert_datetime(observation)
 
@@ -48,6 +50,8 @@ def test_observation_world() -> None:
     """Test weather observation results from API (null result)."""
     client = MeteoFranceClient()
     observation = client.get_observation(latitude=45.5016889, longitude=73.567256)
+
+    assert str(observation)
 
     assert observation.timezone is None
     assert observation.time_as_string is None
@@ -64,6 +68,8 @@ def test_observation_place() -> None:
     """Test weather observation results from API (valid result, from place)."""
     client = MeteoFranceClient()
     observation = client.get_observation_for_place(place=Place(MOUNTAIN_CITY))
+
+    assert str(observation)
 
     assert_types(observation)
     assert_datetime(observation)
