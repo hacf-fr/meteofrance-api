@@ -1,18 +1,13 @@
 # -*- coding: utf-8 -*-
 """Rain in the next hour Python model for the Météo-France REST API."""
-import sys
 from datetime import datetime
 from typing import Any
 from typing import Dict
 from typing import List
 from typing import Optional
+from typing import TypedDict
 
 from meteofrance_api.helpers import timestamp_to_dateime_with_locale_tz
-
-if sys.version_info >= (3, 8):
-    from typing import TypedDict  # pylint: disable=no-name-in-module
-else:
-    from typing_extensions import TypedDict
 
 
 class RainData(TypedDict):

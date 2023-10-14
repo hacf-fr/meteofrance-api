@@ -1,15 +1,10 @@
 # -*- coding: utf-8 -*-
 """Weather observation Python model for the Météo-France REST API."""
-import sys
 from datetime import datetime
 from typing import Any
 from typing import Dict
 from typing import Optional
-
-if sys.version_info >= (3, 8):
-    from typing import TypedDict  # pylint: disable=no-name-in-module
-else:
-    from typing_extensions import TypedDict
+from typing import TypedDict
 
 
 class ObservationDataPropertiesGridded(TypedDict, total=False):
