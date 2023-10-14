@@ -10,6 +10,7 @@ from meteofrance_api.const import METEOFRANCE_API_URL
 WARNING_COLOR_LIST = [1, 2, 3, 4]
 
 
+@pytest.mark.skip(reason="Returns 502 Server Error: Bad Gateway from summer 2023")
 def test_currentphenomenons(requests_mock: Mock) -> None:
     """Test basic weather alert results from API."""
     client = MeteoFranceClient()
@@ -41,6 +42,7 @@ def test_currentphenomenons(requests_mock: Mock) -> None:
     assert current_phenomenoms.get_domain_max_color() == 3
 
 
+@pytest.mark.skip(reason="Returns 502 Server Error: Bad Gateway from summer 2023")
 def test_fulls() -> None:
     """Test advanced weather alert results from API."""
     client = MeteoFranceClient()
@@ -74,6 +76,7 @@ def test_thumbnail() -> None:
     )
 
 
+@pytest.mark.skip(reason="Returns 502 Server Error: Bad Gateway from summer 2023")
 @pytest.mark.parametrize("dep, res", [("13", True), ("32", False)])
 def test_currentphenomenons_with_coastal_bulletin(dep: str, res: bool) -> None:
     """Test getting a complete basic bulletin for coastal department."""
@@ -89,6 +92,7 @@ def test_currentphenomenons_with_coastal_bulletin(dep: str, res: bool) -> None:
     assert has_coastal_phenomenom == res
 
 
+@pytest.mark.skip(reason="Returns 502 Server Error: Bad Gateway from summer 2023")
 @pytest.mark.parametrize("dep, res", [("13", True), ("32", False)])
 def test_full_with_coastal_bulletint(dep: str, res: bool) -> None:
     """Test getting a complete advanced bulletin for coastal department."""

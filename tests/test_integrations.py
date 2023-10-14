@@ -6,6 +6,7 @@ from meteofrance_api import MeteoFranceClient
 from meteofrance_api.helpers import readeable_phenomenoms_dict
 
 
+@pytest.mark.skip(reason="Returns 502 Server Error: Bad Gateway from summer 2023")
 @pytest.mark.parametrize("city", ["montreal", "Foix"])
 def test_workflow(city: str) -> None:
     """Test classical workflow usage with the Python library."""

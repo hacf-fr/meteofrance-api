@@ -1,19 +1,14 @@
 # -*- coding: utf-8 -*-
 """Weather forecast Python model for the Météo-France REST API."""
-import sys
 from datetime import datetime
 from typing import Any
 from typing import Dict
 from typing import List
+from typing import TypedDict
 
 from pytz import utc
 
 from meteofrance_api.helpers import timestamp_to_dateime_with_locale_tz
-
-if sys.version_info >= (3, 8):
-    from typing import TypedDict  # pylint: disable=no-name-in-module
-else:
-    from typing_extensions import TypedDict
 
 
 class ForecastData(TypedDict, total=False):
@@ -93,7 +88,7 @@ class Forecast:
         # forecast timestamp
         sorted_forecast = sorted(
             self.forecast,
-            key=lambda x: abs(x["dt"] - now_timestamp),  # type: ignore[no-any-return]
+            key=lambda x: abs(x["dt"] - now_timestamp),
         )
         return sorted_forecast[0]
 

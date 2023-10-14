@@ -1,12 +1,7 @@
 # -*- coding: utf-8 -*-
 """Place Python model for the Météo-France REST API."""
-import sys
 from typing import Optional
-
-if sys.version_info >= (3, 8):
-    from typing import TypedDict  # pylint: disable=no-name-in-module
-else:
-    from typing_extensions import TypedDict
+from typing import TypedDict
 
 
 class PlaceData(TypedDict):
