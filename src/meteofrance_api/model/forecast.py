@@ -93,7 +93,7 @@ class Forecast:
         # forecast timestamp
         sorted_forecast = sorted(
             self.forecast,
-            key=lambda x: abs(x["dt"] - now_timestamp),  # type: ignore[no-any-return]
+            key=lambda x: abs(x["dt"] - now_timestamp),
         )
         return sorted_forecast[0]
 
