@@ -2,8 +2,8 @@
 from datetime import datetime
 
 
-project = "meteofrance-api"
-author = "HACF"
+project = "Météo-France API"
+author = "HACF (created by @oncleben31 & @Quentame, maintained by @Quentame)"
 copyright = f"{datetime.now().year}, {author}"
 extensions = [
     "sphinx.ext.autodoc",
