@@ -69,7 +69,7 @@ source = ["meteofrance_api"]
 
 [tool.coverage.report]
 show_missing = true
-# fail_under = 100 reduce targetwaiting for tests creation
+# fail_under = 100 reduce target, waiting for tests creation
 fail_under = 90
 
 [tool.mypy]
