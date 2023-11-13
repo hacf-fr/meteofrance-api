@@ -4,6 +4,7 @@ import pytest
 
 from meteofrance_api import MeteoFranceClient
 from meteofrance_api.helpers import readeable_phenomenoms_dict
+from meteofrance_api.model import Rain
 
 
 @pytest.mark.skip(reason="Returns 502 Server Error: Bad Gateway from summer 2023")
@@ -26,6 +27,7 @@ def test_workflow(city: str) -> None:
     # If rain in the hour forecast is available, get it.
     if my_place_weather_forecast.position["rain_product_available"] == 1:
         my_place_rain_forecast = client.get_rain(my_place.latitude, my_place.longitude)
+        assert isinstance(my_place_rain_forecast, Rain)
         next_rain_dt = my_place_rain_forecast.next_rain_date_locale()
         if not next_rain_dt:
             rain_status = "No rain expected in the following hour."
@@ -43,6 +45,6 @@ def test_workflow(city: str) -> None:
             my_place_weather_alerts.phenomenons_max_colors
         )
 
-    assert type(my_place_daily_forecast) == list
+    assert isinstance(my_place_daily_forecast, list)
     assert rain_status
-    assert type(readable_warnings) == dict
+    assert isinstance(readable_warnings, dict)

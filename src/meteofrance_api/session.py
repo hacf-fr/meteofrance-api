@@ -40,6 +40,7 @@ class MeteoFranceSession(Session):
 
         Returns:
             the Response object corresponding to the result of the API request.
+
         """
         params_inputs = kwargs.pop("params", None)
 

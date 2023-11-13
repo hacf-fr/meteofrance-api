@@ -3,6 +3,8 @@
 from typing import List
 from typing import Optional
 
+from requests import HTTPError
+
 from .const import COASTAL_DEPARTMENT_LIST
 from .const import METEOFRANCE_API_TOKEN
 from .const import METEOFRANCE_API_URL
@@ -14,6 +16,7 @@ from .model import PictureOfTheDay
 from .model import Place
 from .model import Rain
 from .session import MeteoFranceSession
+
 
 # TODO: investigate bulletincote, montagne, etc...
 #       http://ws.meteofrance.com/ws//getDetail/france/330630.json
@@ -180,7 +183,9 @@ class MeteoFranceClient:
     #
     # Rain
     #
-    def get_rain(self, latitude: float, longitude: float, language: str = "fr") -> Rain:
+    def get_rain(
+        self, latitude: float, longitude: float, language: str = "fr"
+    ) -> Optional[Rain]:
         """Retrieve the next 1 hour rain forecast for a given GPS the location.
 
         Results can be fetched in french or english according to the language parameter.
@@ -195,13 +200,22 @@ class MeteoFranceClient:
 
         Returns:
             A Rain instance representing the next hour rain forecast.
-        """
-        # TODO: add protection if no rain forecast for this position
 
-        # Send the API request
-        resp = self.session.request(
-            "get", "rain", params={"lat": latitude, "lon": longitude, "lang": language}
-        )
+        Raises:
+            HTTPError: Si une erreur HTTP se produit pendant l'exécution de la fonction.
+        """
+        try:
+            # Send the API request
+            resp = self.session.request(
+                "get",
+                "rain",
+                params={"lat": latitude, "lon": longitude, "lang": language},
+            )
+        except HTTPError as error:
+            if error.response.status_code == 400:
+                return None
+            else:
+                raise
         return Rain(resp.json())
 
     #
