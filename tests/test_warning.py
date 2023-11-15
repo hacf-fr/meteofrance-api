@@ -10,25 +10,24 @@ from meteofrance_api.const import METEOFRANCE_API_URL
 WARNING_COLOR_LIST = [1, 2, 3, 4]
 
 
-@pytest.mark.skip(reason="Returns 502 Server Error: Bad Gateway from summer 2023")
 def test_currentphenomenons(requests_mock: Mock) -> None:
     """Test basic weather alert results from API."""
     client = MeteoFranceClient()
 
     requests_mock.request(
         "get",
-        f"{METEOFRANCE_API_URL}/warning/currentphenomenons",
+        f"{METEOFRANCE_API_URL}/v3/warning/currentphenomenons",
         json={
             "update_time": 1591279200,
             "end_validity_time": 1591365600,
             "domain_id": "32",
             "phenomenons_max_colors": [
-                {"phenomenon_id": 6, "phenomenon_max_color_id": 1},
-                {"phenomenon_id": 4, "phenomenon_max_color_id": 1},
-                {"phenomenon_id": 5, "phenomenon_max_color_id": 3},
-                {"phenomenon_id": 2, "phenomenon_max_color_id": 1},
-                {"phenomenon_id": 1, "phenomenon_max_color_id": 1},
-                {"phenomenon_id": 3, "phenomenon_max_color_id": 2},
+                {"phenomenon_id": "6", "phenomenon_max_color_id": 1},
+                {"phenomenon_id": "4", "phenomenon_max_color_id": 1},
+                {"phenomenon_id": "5", "phenomenon_max_color_id": 3},
+                {"phenomenon_id": "2", "phenomenon_max_color_id": 1},
+                {"phenomenon_id": "1", "phenomenon_max_color_id": 1},
+                {"phenomenon_id": "3", "phenomenon_max_color_id": 2},
             ],
         },
     )
@@ -42,7 +41,6 @@ def test_currentphenomenons(requests_mock: Mock) -> None:
     assert current_phenomenoms.get_domain_max_color() == 3
 
 
-@pytest.mark.skip(reason="Returns 502 Server Error: Bad Gateway from summer 2023")
 def test_fulls() -> None:
     """Test advanced weather alert results from API."""
     client = MeteoFranceClient()
@@ -70,13 +68,12 @@ def test_thumbnail() -> None:
     thumbnail_url = client.get_warning_thumbnail()
 
     assert thumbnail_url == (
-        "https://webservice.meteofrance.com/warning/thumbnail"
+        "https://webservice.meteofrance.com/v3/warning/thumbnail"
         "?&token=__Wj7dVSTjV9YGu1guveLyDq0g7S7TfTjaHBTPTpO0kj8__&"
         "domain=france"
     )
 
 
-@pytest.mark.skip(reason="Returns 502 Server Error: Bad Gateway from summer 2023")
 @pytest.mark.parametrize("dep, res", [("13", True), ("32", False)])
 def test_currentphenomenons_with_coastal_bulletin(dep: str, res: bool) -> None:
     """Test getting a complete basic bulletin for coastal department."""
@@ -86,13 +83,12 @@ def test_currentphenomenons_with_coastal_bulletin(dep: str, res: bool) -> None:
         domain=dep, depth=1, with_costal_bulletin=True
     )
     has_coastal_phenomenom = any(
-        phenomenom["phenomenon_id"] == 9
+        phenomenom["phenomenon_id"] == "9"
         for phenomenom in current_phenomenoms.phenomenons_max_colors
     )
     assert has_coastal_phenomenom == res
 
 
-@pytest.mark.skip(reason="Returns 502 Server Error: Bad Gateway from summer 2023")
 @pytest.mark.parametrize("dep, res", [("13", True), ("32", False)])
 def test_full_with_coastal_bulletint(dep: str, res: bool) -> None:
     """Test getting a complete advanced bulletin for coastal department."""
@@ -101,7 +97,7 @@ def test_full_with_coastal_bulletint(dep: str, res: bool) -> None:
     full_phenomenoms = client.get_warning_full(domain=dep, with_costal_bulletin=True)
 
     has_coastal_phenomenom = any(
-        phenomenom["phenomenon_id"] == 9
+        phenomenom["phenomenon_id"] == "9"
         for phenomenom in full_phenomenoms.phenomenons_items
     )
     assert has_coastal_phenomenom == res

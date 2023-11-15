@@ -12,18 +12,19 @@ from meteofrance_api.helpers import readeable_phenomenoms_dict
 from meteofrance_api.helpers import sort_places_versus_distance_from_coordinates
 from meteofrance_api.model import Place
 from meteofrance_api.model.place import PlaceData
+from meteofrance_api.model.warning import PhenomenonMaxColor
 
 
 def test_text_helpers_fr() -> None:
     """Test helpers to have readable alert type and alert level in French."""
     assert get_warning_text_status_from_indice_color(1) == "Vert"
-    assert get_phenomenon_name_from_indice(2) == "Pluie-inondation"
+    assert get_phenomenon_name_from_indice("2") == "Pluie-inondation"
 
 
 def test_get_warning_text_status_from_indice_color_en() -> None:
     """Test helpers to have readable alert type and alert level in English."""
     assert get_warning_text_status_from_indice_color(4, "en") == "Red"
-    assert get_phenomenon_name_from_indice(4, "en") == "Flood"
+    assert get_phenomenon_name_from_indice("4", "en") == "Flood"
 
 
 @pytest.mark.parametrize("dep, res", [("03", False), ("06", True), ("2B", True)])
@@ -43,12 +44,13 @@ def test_is_valid_warning_department(dep: str, res: bool) -> None:
 def test_readeable_phenomenoms_dict() -> None:
     """Test the helper constructing a human readable dictionary for phenomenom."""
     api_list = [
-        {"phenomenon_id": 4, "phenomenon_max_color_id": 1},
-        {"phenomenon_id": 5, "phenomenon_max_color_id": 1},
-        {"phenomenon_id": 3, "phenomenon_max_color_id": 2},
-        {"phenomenon_id": 2, "phenomenon_max_color_id": 1},
-        {"phenomenon_id": 1, "phenomenon_max_color_id": 3},
+        PhenomenonMaxColor(phenomenon_id="4", phenomenon_max_color_id=1),
+        PhenomenonMaxColor(phenomenon_id="5", phenomenon_max_color_id=1),
+        PhenomenonMaxColor(phenomenon_id="3", phenomenon_max_color_id=2),
+        PhenomenonMaxColor(phenomenon_id="2", phenomenon_max_color_id=1),
+        PhenomenonMaxColor(phenomenon_id="1", phenomenon_max_color_id=3),
     ]
+
     expected_dictionary = {
         "Inondation": "Vert",
         "Neige-verglas": "Vert",

@@ -10,13 +10,35 @@ from typing import Optional
 from typing import TypedDict
 
 
+# Define a custom type for items in the phenomenons_max_colors list
+class PhenomenonMaxColor(TypedDict):
+    """A type definition for representing a meteorological phenomenon and its maximum color code.
+
+    Attributes:
+        phenomenon_id (str): A unique identifier for the meteorological phenomenon.
+                             This is kept as a string to match the format provided by
+                             the API and could represent various types of weather
+                             phenomena (e.g., storms, heavy rain, etc.).
+
+        phenomenon_max_color_id (int): An integer representing the maximum alert color
+                                       code associated with the phenomenon. The color
+                                       codes typically indicate the severity or urgency
+                                       of the weather-related alerts or warnings, with
+                                       each color corresponding to a specific level of
+                                       alert.
+    """
+
+    phenomenon_id: str
+    phenomenon_max_color_id: int
+
+
 class WarnningCurrentPhenomenonsData(TypedDict):
     """Describing the data structure of CurrentPhenomenons object from the REST API."""
 
     update_time: int
     end_validity_time: int
     domain_id: str
-    phenomenons_max_colors: List[Dict[str, int]]
+    phenomenons_max_colors: List[PhenomenonMaxColor]
 
 
 class WarnningFullData(TypedDict):
@@ -27,7 +49,7 @@ class WarnningFullData(TypedDict):
     domain_id: str
     color_max: int
     timelaps: List[Dict[str, Any]]
-    phenomenons_items: List[Dict[str, int]]
+    phenomenons_items: List[PhenomenonMaxColor]
     advices: Optional[List[Dict[str, Any]]]
     consequences: Optional[List[Dict[str, Any]]]
     max_count_items: Any  # Didn't see any value yet
@@ -79,7 +101,7 @@ class CurrentPhenomenons:
         return self.raw_data["domain_id"]
 
     @property
-    def phenomenons_max_colors(self) -> List[Dict[str, int]]:
+    def phenomenons_max_colors(self) -> List[PhenomenonMaxColor]:
         """Return the list and colors of the phenomenoms."""
         return self.raw_data["phenomenons_max_colors"]
 
@@ -171,7 +193,7 @@ class Full:
         return self.raw_data["timelaps"]
 
     @property
-    def phenomenons_items(self) -> List[Dict[str, int]]:
+    def phenomenons_items(self) -> List[PhenomenonMaxColor]:
         """Return the phenomenom list of the domain."""
         return self.raw_data["phenomenons_items"]
 
