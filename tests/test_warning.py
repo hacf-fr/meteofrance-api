@@ -35,9 +35,9 @@ def test_currentphenomenons(requests_mock: Mock) -> None:
 
     current_phenomenoms = client.get_warning_current_phenomenoms(domain="32", depth=1)
 
-    assert type(current_phenomenoms.update_time) == int
-    assert type(current_phenomenoms.end_validity_time) == int
-    assert type(current_phenomenoms.domain_id) == str
+    assert isinstance(current_phenomenoms.update_time, int)
+    assert isinstance(current_phenomenoms.end_validity_time, int)
+    assert isinstance(current_phenomenoms.domain_id, str)
     assert "phenomenon_id" in current_phenomenoms.phenomenons_max_colors[0].keys()
     assert current_phenomenoms.get_domain_max_color() == 3
 
@@ -49,9 +49,9 @@ def test_fulls() -> None:
 
     warning_full = client.get_warning_full(domain="31")
 
-    assert type(warning_full.update_time) == int
-    assert type(warning_full.end_validity_time) == int
-    assert type(warning_full.domain_id) == str
+    assert isinstance(warning_full.update_time, int)
+    assert isinstance(warning_full.end_validity_time, int)
+    assert isinstance(warning_full.domain_id, str)
     assert warning_full.domain_id == "31"
     assert warning_full.color_max in WARNING_COLOR_LIST
     assert (

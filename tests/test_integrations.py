@@ -43,6 +43,6 @@ def test_workflow(city: str) -> None:
             my_place_weather_alerts.phenomenons_max_colors
         )
 
-    assert type(my_place_daily_forecast) == list
+    assert isinstance(my_place_daily_forecast, list)
     assert rain_status
-    assert type(readable_warnings) == dict
+    assert isinstance(readable_warnings, dict)

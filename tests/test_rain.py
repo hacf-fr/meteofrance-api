@@ -15,9 +15,9 @@ def test_rain() -> None:
 
     rain = client.get_rain(latitude=48.8075, longitude=2.24028)
 
-    assert type(rain.position) == dict
-    assert type(rain.updated_on) == int
-    assert type(rain.quality) == int
+    assert isinstance(rain.position, dict)
+    assert isinstance(rain.updated_on, int)
+    assert isinstance(rain.quality, int)
     assert "rain" in rain.forecast[0].keys()
 
 
