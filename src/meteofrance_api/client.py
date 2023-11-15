@@ -13,6 +13,7 @@ from .model import Observation
 from .model import PictureOfTheDay
 from .model import Place
 from .model import Rain
+from .model import WarningDictionary
 from .session import MeteoFranceSession
 
 # TODO: investigate bulletincote, montagne, etc...
@@ -304,6 +305,29 @@ class MeteoFranceClient:
             f"{METEOFRANCE_API_URL}/warning/thumbnail?&token={METEOFRANCE_API_TOKEN}"
             f"&domain={domain}"
         )
+
+    def get_warning_dictionary(self, language: str = "fr") -> WarningDictionary:
+        """Retrieves the meteorological dictionary from the Météo-France API.
+
+        This dictionary includes information about various meteorological
+        phenomena and color codes used for weather warnings.
+
+        Args:
+            language (str): The language in which to retrieve the
+                dictionary data. Default is 'fr' for French. Other language codes
+                can be used if supported by the API.
+
+        Returns:
+            WarningDictionary: An object containing structured data about
+                meteorological phenomena and warning color codes. It has two main
+                attributes: 'phenomenons' (list of PhenomenonDictionaryEntry) and
+                'colors' (list of ColorDictionaryEntry).
+        """
+        resp = self.session.request(
+            "get", "v3/warning/dictionary", params={"lang": language}
+        )
+        dictionary = WarningDictionary(resp.json())
+        return dictionary
 
     #
     # Picture of the day
