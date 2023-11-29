@@ -209,7 +209,7 @@ class MeteoFranceClient:
     # Warning
     #
     def get_warning_current_phenomenoms(
-        self, domain: str, depth: int = 0, with_costal_bulletin: bool = False
+        self, domain: str, depth: int = 0, with_coastal_bulletin: bool = False
     ) -> CurrentPhenomenons:
         """Return the current weather phenomenoms (or alerts) for a given domain.
 
@@ -222,7 +222,7 @@ class MeteoFranceClient:
                 results will show only natinal sum up of the weather alerts. If
                 depth = 1, you will have in addition, the bulletin for all metropolitan
                 France department and Andorre
-            with_costal_bulletin: Optional; If set to True (default is False), you can
+            with_coastal_bulletin: Optional; If set to True (default is False), you can
                 get the basic bulletin and coastal bulletin merged.
 
         Returns:
@@ -239,7 +239,7 @@ class MeteoFranceClient:
         # Create object with API response
         phenomenoms = CurrentPhenomenons(resp.json())
         # if user ask to have the coastal bulletin merged
-        if with_costal_bulletin:
+        if with_coastal_bulletin:
             if domain in COASTAL_DEPARTMENT_LIST:
                 resp = self.session.request(
                     "get",
@@ -252,7 +252,9 @@ class MeteoFranceClient:
 
         return phenomenoms
 
-    def get_warning_full(self, domain: str, with_costal_bulletin: bool = False) -> Full:
+    def get_warning_full(
+        self, domain: str, with_coastal_bulletin: bool = False
+    ) -> Full:
         """Retrieve a complete bulletin of the weather phenomenons for a given domain.
 
         For a given domain we can access the maximum alert, a timelaps of the alert
@@ -263,7 +265,7 @@ class MeteoFranceClient:
                 two digits. For some departments you can access an additional bulletin
                 for coastal phenomenoms. To access it add `10` after the domain id
                 (example: `1310`).
-            with_costal_bulletin: Optional; If set to True (default is False), you can
+            with_coastal_bulletin: Optional; If set to True (default is False), you can
                 get the basic bulletin and coastal bulletin merged.
 
         Returns:
@@ -280,7 +282,7 @@ class MeteoFranceClient:
         full_phenomenoms = Full(resp.json())
 
         # if user ask to have the coastal bulletin merged
-        if with_costal_bulletin:
+        if with_coastal_bulletin:
             if domain in COASTAL_DEPARTMENT_LIST:
                 resp = self.session.request(
                     "get",

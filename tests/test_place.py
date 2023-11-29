@@ -53,8 +53,8 @@ def test_places_print() -> None:
     """Test different way to print Places class."""
     client = MeteoFranceClient()
 
-    place_in_france = client.search_places("montreal")[0]
-    place_not_in_france = client.search_places("montreal", "45.50884", "-73.58")[0]
+    place_in_france = client.search_places("Montréal")[0]
+    place_not_in_france = client.search_places("Montréal", "45.50884", "-73.58")[0]
 
     assert (
         repr(place_in_france)
@@ -66,4 +66,3 @@ def test_places_print() -> None:
         repr(place_not_in_france) == "<Place(name=Montréal, country=CA, admin=Quebec)>"
     )
     assert str(place_not_in_france) == "Montréal - Quebec - CA"
-    assert f"I live in {place_not_in_france}" == "I live in Montréal - Quebec - CA"

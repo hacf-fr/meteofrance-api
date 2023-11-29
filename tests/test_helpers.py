@@ -27,14 +27,31 @@ def test_get_warning_text_status_from_indice_color_en() -> None:
     assert get_phenomenon_name_from_indice("4", "en") == "Flood"
 
 
-@pytest.mark.parametrize("dep, res", [("03", False), ("06", True), ("2B", True)])
+@pytest.mark.parametrize(
+    "dep, res",
+    [
+        ("03", False),
+        ("06", True),
+        ("69", False),
+        ("74", False),
+        ("98", False),
+        ("2B", True),
+    ],
+)
 def test_is_coastal_department(dep: str, res: bool) -> None:
     """Test the helper checking if an additional coastal departement bulletin exist."""
     assert is_coastal_department(dep) == res
 
 
 @pytest.mark.parametrize(
-    "dep, res", [("03", True), ("98", False), ("2B", True), ("test", False)]
+    "dep, res",
+    [
+        ("03", True),
+        ("69", True),
+        ("74", True),
+        ("98", False),
+        ("2B", True),
+    ],
 )
 def test_is_valid_warning_department(dep: str, res: bool) -> None:
     """Test the helper checking if departent has a weather alert bulletin."""

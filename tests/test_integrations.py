@@ -6,7 +6,7 @@ from meteofrance_api import MeteoFranceClient
 from meteofrance_api.helpers import readeable_phenomenoms_dict
 
 
-@pytest.mark.parametrize("city", ["montreal", "Foix"])
+@pytest.mark.parametrize("city", ["Montréal", "Foix"])
 def test_workflow(city: str) -> None:
     """Test classical workflow usage with the Python library."""
     # Init client

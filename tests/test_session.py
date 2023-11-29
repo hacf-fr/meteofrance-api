@@ -10,7 +10,7 @@ def test_session() -> None:
     """Test generic session."""
     session = MeteoFranceSession()
 
-    resp = session.request("get", "places", params={"q": "montreal"})
+    resp = session.request("get", "places", params={"q": "Montréal"})
 
     assert resp.status_code == 200
 
