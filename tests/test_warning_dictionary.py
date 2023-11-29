@@ -4,14 +4,14 @@ import pytest
 
 from meteofrance_api import MeteoFranceClient
 from meteofrance_api.model import WarningDictionary
-from meteofrance_api.model.dictionary import WarningDisctionaryData
+from meteofrance_api.model.dictionary import WarningDictionaryData
 
 
 class TestWarningDictionary:
     """Tests for WarningDictionary class in the Météo-France module."""
 
     @pytest.fixture
-    def sample_dictionary_data(self) -> WarningDisctionaryData:
+    def sample_dictionary_data(self) -> WarningDictionaryData:
         """Provide sample data for WarningDictionary."""
         return {
             "phenomenons": [
@@ -46,7 +46,7 @@ class TestWarningDictionary:
         assert isinstance(phenomenon, str)
 
     def test_get_phenomenon_by_id(
-        self, sample_dictionary_data: WarningDisctionaryData
+        self, sample_dictionary_data: WarningDictionaryData
     ) -> None:
         """Test get_phenomenon_by_id method."""
         dictionary = WarningDictionary(sample_dictionary_data)
@@ -58,7 +58,7 @@ class TestWarningDictionary:
         assert dictionary.get_phenomenon_by_id(99) is None
 
     def test_get_phenomenon_name_by_id(
-        self, sample_dictionary_data: WarningDisctionaryData
+        self, sample_dictionary_data: WarningDictionaryData
     ) -> None:
         """Test get_phenomenon_name_by_id method."""
         dictionary = WarningDictionary(sample_dictionary_data)
@@ -70,7 +70,7 @@ class TestWarningDictionary:
         assert dictionary.get_phenomenon_name_by_id(99) is None
 
     def test_get_color_by_id(
-        self, sample_dictionary_data: WarningDisctionaryData
+        self, sample_dictionary_data: WarningDictionaryData
     ) -> None:
         """Test get_color_by_id method."""
         dictionary = WarningDictionary(sample_dictionary_data)
@@ -82,7 +82,7 @@ class TestWarningDictionary:
         assert dictionary.get_color_by_id(99) is None
 
     def test_get_color_name_by_id(
-        self, sample_dictionary_data: WarningDisctionaryData
+        self, sample_dictionary_data: WarningDictionaryData
     ) -> None:
         """Test get_color_name_by_id method."""
         dictionary = WarningDictionary(sample_dictionary_data)

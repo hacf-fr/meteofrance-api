@@ -33,7 +33,7 @@ class ColorDictionaryEntry(TypedDict):
     hexaCode: str  # noqa: N815
 
 
-class WarningDisctionaryData(TypedDict):
+class WarningDictionaryData(TypedDict):
     """Structured data representing the meteorological dictionary.
 
     Attributes:
@@ -53,7 +53,7 @@ class WarningDictionary:
         get_color_name_by_id(color_id: int): Returns the name of the color for the given ID.
     """
 
-    def __init__(self, raw_data: WarningDisctionaryData) -> None:
+    def __init__(self, raw_data: WarningDictionaryData) -> None:
         """Initializes the WarningDictionary with raw dictionary data.
 
         Args:

@@ -74,30 +74,53 @@ def test_thumbnail() -> None:
     )
 
 
-@pytest.mark.parametrize("dep, res", [("13", True), ("32", False)])
-def test_currentphenomenons_with_coastal_bulletin(dep: str, res: bool) -> None:
+@pytest.mark.parametrize(
+    "dep, res_coastal, res_avalanche",
+    [("13", True, False), ("32", False, False), ("74", False, True)],
+)
+def test_currentphenomenons_with_coastal_bulletin(
+    dep: str, res_coastal: bool, res_avalanche: bool
+) -> None:
     """Test getting a complete basic bulletin for coastal department."""
     client = MeteoFranceClient()
 
     current_phenomenoms = client.get_warning_current_phenomenoms(
-        domain=dep, depth=1, with_costal_bulletin=True
+        domain=dep, depth=1, with_coastal_bulletin=True
+    )
+
+    has_avalanche_phenomenom = any(
+        phenomenom["phenomenon_id"] == "8"
+        for phenomenom in current_phenomenoms.phenomenons_max_colors
     )
     has_coastal_phenomenom = any(
         phenomenom["phenomenon_id"] == "9"
         for phenomenom in current_phenomenoms.phenomenons_max_colors
     )
-    assert has_coastal_phenomenom == res
+
+    assert has_avalanche_phenomenom == res_avalanche
+    assert has_coastal_phenomenom == res_coastal
 
 
-@pytest.mark.parametrize("dep, res", [("13", True), ("32", False)])
-def test_full_with_coastal_bulletint(dep: str, res: bool) -> None:
+@pytest.mark.parametrize(
+    "dep, res_coastal, res_avalanche",
+    [("13", True, False), ("32", False, False), ("74", False, True)],
+)
+def test_full_with_coastal_bulletin(
+    dep: str, res_coastal: bool, res_avalanche: bool
+) -> None:
     """Test getting a complete advanced bulletin for coastal department."""
     client = MeteoFranceClient()
 
-    full_phenomenoms = client.get_warning_full(domain=dep, with_costal_bulletin=True)
+    full_phenomenoms = client.get_warning_full(domain=dep, with_coastal_bulletin=True)
 
+    has_avalanche_phenomenom = any(
+        phenomenom["phenomenon_id"] == "8"
+        for phenomenom in full_phenomenoms.phenomenons_items
+    )
     has_coastal_phenomenom = any(
         phenomenom["phenomenon_id"] == "9"
         for phenomenom in full_phenomenoms.phenomenons_items
     )
-    assert has_coastal_phenomenom == res
+
+    assert has_avalanche_phenomenom == res_avalanche
+    assert has_coastal_phenomenom == res_coastal
