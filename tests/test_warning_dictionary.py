@@ -14,10 +14,22 @@ class TestWarningDictionary:
     def sample_dictionary_data(self) -> WarningDisctionaryData:
         """Provide sample data for WarningDictionary."""
         return {
-            "phenomenons": [{"id": 1, "name": "Wind"}, {"id": 2, "name": "Rain"}],
+            "phenomenons": [
+                {"id": 1, "name": "Wind"},
+                {"id": 2, "name": "Rain-flood"},
+                {"id": 3, "name": "Thunderstorms"},
+                {"id": 4, "name": "Flood"},
+                {"id": 5, "name": "Snow-ice"},
+                {"id": 6, "name": "Heat wave"},
+                {"id": 7, "name": "Extreme Cold"},
+                {"id": 8, "name": "Avalanche"},
+                {"id": 9, "name": "Waves-flooding"},
+            ],
             "colors": [
-                {"id": 1, "level": 1, "name": "Green", "hexaCode": "#00FF00"},
-                {"id": 2, "level": 2, "name": "Yellow", "hexaCode": "#FFFF00"},
+                {"id": 1, "level": 1, "name": "green", "hexaCode": "#31aa35"},
+                {"id": 2, "level": 2, "name": "yellow", "hexaCode": "#fff600"},
+                {"id": 3, "level": 3, "name": "orange", "hexaCode": "#ffb82b"},
+                {"id": 4, "level": 4, "name": "red", "hexaCode": "#CC0000"},
             ],
         }
 
@@ -52,7 +64,7 @@ class TestWarningDictionary:
         dictionary = WarningDictionary(sample_dictionary_data)
 
         name = dictionary.get_phenomenon_name_by_id(2)
-        assert name == "Rain"
+        assert name == "Rain-flood"
 
         # Test for non-existing ID
         assert dictionary.get_phenomenon_name_by_id(99) is None
@@ -64,7 +76,7 @@ class TestWarningDictionary:
         dictionary = WarningDictionary(sample_dictionary_data)
 
         color = dictionary.get_color_by_id(2)
-        assert color == {"id": 2, "level": 2, "name": "Yellow", "hexaCode": "#FFFF00"}
+        assert color == {"id": 2, "level": 2, "name": "yellow", "hexaCode": "#fff600"}
 
         # Test for non-existing ID
         assert dictionary.get_color_by_id(99) is None
@@ -76,7 +88,7 @@ class TestWarningDictionary:
         dictionary = WarningDictionary(sample_dictionary_data)
 
         name = dictionary.get_color_name_by_id(1)
-        assert name == "Green"
+        assert name == "green"
 
         # Test for non-existing ID
         assert dictionary.get_color_name_by_id(99) is None
