@@ -232,19 +232,18 @@ class MeteoFranceClient:
         # Send the API request
         resp = self.session.request(
             "get",
-            "warning/currentphenomenons",
+            "v3/warning/currentphenomenons",
             params={"domain": domain, "depth": depth},
         )
 
         # Create object with API response
         phenomenoms = CurrentPhenomenons(resp.json())
-
         # if user ask to have the coastal bulletin merged
         if with_costal_bulletin:
             if domain in COASTAL_DEPARTMENT_LIST:
                 resp = self.session.request(
                     "get",
-                    "warning/currentphenomenons",
+                    "v3/warning/currentphenomenons",
                     params={"domain": domain + "10"},
                 )
                 phenomenoms.merge_with_coastal_phenomenons(
@@ -273,7 +272,9 @@ class MeteoFranceClient:
         # TODO: add formatDate parameter
 
         # Send the API request
-        resp = self.session.request("get", "warning/full", params={"domain": domain})
+        resp = self.session.request(
+            "get", "/v3/warning/full", params={"domain": domain}
+        )
 
         # Create object with API response
         full_phenomenoms = Full(resp.json())
@@ -283,7 +284,7 @@ class MeteoFranceClient:
             if domain in COASTAL_DEPARTMENT_LIST:
                 resp = self.session.request(
                     "get",
-                    "warning/full",
+                    "v3/warning/full",
                     params={"domain": domain + "10"},
                 )
                 full_phenomenoms.merge_with_coastal_phenomenons(Full(resp.json()))
@@ -302,7 +303,7 @@ class MeteoFranceClient:
         """
         # Return directly the URL of the gif image
         return (
-            f"{METEOFRANCE_API_URL}/warning/thumbnail?&token={METEOFRANCE_API_TOKEN}"
+            f"{METEOFRANCE_API_URL}/v3/warning/thumbnail?&token={METEOFRANCE_API_TOKEN}"
             f"&domain={domain}"
         )
 

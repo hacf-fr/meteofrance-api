@@ -12,11 +12,12 @@ from pytz import utc
 
 from .const import ALERT_COLOR_LIST_EN
 from .const import ALERT_COLOR_LIST_FR
-from .const import ALERT_TYPE_LIST_EN
-from .const import ALERT_TYPE_LIST_FR
+from .const import ALERT_TYPE_DICTIONARY_EN
+from .const import ALERT_TYPE_DICTIONARY_FR
 from .const import COASTAL_DEPARTMENT_LIST
 from .const import VALID_DEPARTMENT_LIST
 from .model.place import Place
+from .model.warning import PhenomenonMaxColor
 
 
 def get_warning_text_status_from_indice_color(
@@ -39,7 +40,7 @@ def get_warning_text_status_from_indice_color(
 
 
 def get_phenomenon_name_from_indice(
-    int_phenomenon: int, lang: str = "fr"
+    int_phenomenon: str, lang: str = "fr"
 ) -> Optional[str]:
     """Convert the phenomenom code in readable text (Hepler).
 
@@ -52,9 +53,9 @@ def get_phenomenon_name_from_indice(
         Phenomenom in text. French or English according to the lang parameter.
     """
     if lang == "fr":
-        return ALERT_TYPE_LIST_FR[int_phenomenon]
+        return ALERT_TYPE_DICTIONARY_FR[int_phenomenon]
 
-    return ALERT_TYPE_LIST_EN[int_phenomenon]
+    return ALERT_TYPE_DICTIONARY_EN[int_phenomenon]
 
 
 def is_coastal_department(department_number: str) -> bool:
@@ -84,7 +85,7 @@ def is_valid_warning_department(department_number: str) -> bool:
 
 
 def readeable_phenomenoms_dict(
-    list_phenomenoms: List[Dict[str, int]], language: str = "fr"
+    list_phenomenoms: List[PhenomenonMaxColor], language: str = "fr"
 ) -> Dict[Optional[str], Optional[str]]:
     """Create a dictionary with human readable keys and values (Helper).
 
