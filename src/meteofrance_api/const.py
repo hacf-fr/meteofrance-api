@@ -16,31 +16,31 @@ ALERT_COLOR_LIST_FR = [None, "Vert", "Jaune", "Orange", "Rouge"]
 ALERT_COLOR_LIST_EN = [None, "Green", "Yellow", "Orange", "Red"]
 
 # Weather alert type
-ALERT_TYPE_LIST_FR = [
-    None,
-    "Vent violent",
-    "Pluie-inondation",
-    "Orages",
-    "Inondation",
-    "Neige-verglas",
-    "Canicule",
-    "Grand-froid",
-    "Avalanches",
-    "Vagues-submersion",
-]
+ALERT_TYPE_DICTIONARY_FR = {
+    "0": None,
+    "1": "Vent violent",
+    "2": "Pluie-inondation",
+    "3": "Orages",
+    "4": "Inondation",
+    "5": "Neige-verglas",
+    "6": "Canicule",
+    "7": "Grand-froid",
+    "8": "Avalanches",
+    "9": "Vagues-submersion",
+}
 
-ALERT_TYPE_LIST_EN = [
-    None,
-    "Wind",
-    "Rain-Flood",
-    "Thunderstorms",
-    "Flood",
-    "Snow/Ice",
-    "Extreme high temperature",
-    "Extreme low temperature",
-    "Avalanches",
-    "Coastal Event",
-]
+ALERT_TYPE_DICTIONARY_EN = {
+    "0": None,
+    "1": "Wind",
+    "2": "Rain-Flood",
+    "3": "Thunderstorms",
+    "4": "Flood",
+    "5": "Snow/Ice",
+    "6": "Extreme high temperature",
+    "7": "Extreme low temperature",
+    "8": "Avalanches",
+    "9": "Coastal Event",
+}
 
 
 # Valide departments list for weather alert bulletin

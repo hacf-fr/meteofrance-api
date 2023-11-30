@@ -12,17 +12,19 @@ from meteofrance_api.model import Place
 
 def assert_types(observation: Observation) -> None:
     """Check observation types."""
-    assert type(observation.timezone) == str
-    assert type(observation.time_as_string) == str
-    assert type(observation.time_as_datetime) == datetime
-    assert (
-        type(observation.temperature) == float or type(observation.temperature) == int
+    assert isinstance(observation.timezone, str)
+    assert isinstance(observation.time_as_string, str)
+    assert isinstance(observation.time_as_datetime, datetime)
+    assert isinstance(observation.temperature, float) or isinstance(
+        observation.temperature, int
     )
-    assert type(observation.wind_speed) == float or type(observation.wind_speed) == int
-    assert type(observation.wind_direction) == int
-    assert type(observation.wind_icon) == str
-    assert type(observation.weather_icon) == str
-    assert type(observation.weather_description) == str
+    assert isinstance(observation.wind_speed, float) or isinstance(
+        observation.wind_speed, int
+    )
+    assert isinstance(observation.wind_direction, int)
+    assert isinstance(observation.wind_icon, str)
+    assert isinstance(observation.weather_icon, str)
+    assert isinstance(observation.weather_description, str)
 
 
 def assert_datetime(observation: Observation) -> None:
