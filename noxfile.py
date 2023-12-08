@@ -9,14 +9,14 @@ import nox
 try:
     from nox_poetry import Session
     from nox_poetry import session
-except ImportError:
+except ImportError as err:
     message = f"""\
     Nox failed to import the 'nox-poetry' package.
 
     Please install it using the following command:
 
     {sys.executable} -m pip install nox-poetry"""
-    raise SystemExit(dedent(message)) from None
+    raise SystemExit(dedent(message)) from err
 
 
 package = "meteofrance_api"
@@ -172,7 +172,7 @@ def docs_build(session: Session) -> None:
     """Build the documentation."""
     args = session.posargs or ["docs", "docs/_build"]
     session.install(".")
-    session.install("sphinx", "sphinx-click", "sphinx-rtd-theme")
+    session.install("sphinx", "sphinx-click", "furo")
 
     build_dir = Path("docs", "_build")
     if build_dir.exists():
@@ -186,7 +186,7 @@ def docs(session: Session) -> None:
     """Build and serve the documentation with live reloading on file changes."""
     args = session.posargs or ["--open-browser", "docs", "docs/_build"]
     session.install(".")
-    session.install("sphinx", "sphinx-autobuild", "sphinx-click", "sphinx-rtd-theme")
+    session.install("sphinx", "sphinx-autobuild", "sphinx-click", "furo")
 
     build_dir = Path("docs", "_build")
     if build_dir.exists():
