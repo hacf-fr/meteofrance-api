@@ -1,4 +1,3 @@
-# coding: utf-8
 """Tests Météo-France module. Warning classes."""
 from unittest.mock import Mock
 

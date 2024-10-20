@@ -1,4 +1,3 @@
-# coding: utf-8
 """Tests for WarningDictionary class in the Météo-France module."""
 import pytest
 
