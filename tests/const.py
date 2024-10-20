@@ -1,4 +1,5 @@
 """Météo-France API test constants."""
+
 from meteofrance_api.model.place import PlaceData
 
 MOUNTAIN_CITY: PlaceData = {

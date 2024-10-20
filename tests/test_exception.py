@@ -1,4 +1,3 @@
-# coding: utf-8
 """Tests for meteofrance module. Exception classes."""
 import pytest
 
