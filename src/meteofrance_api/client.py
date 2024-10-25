@@ -50,7 +50,7 @@ class MeteoFranceClient:
     ) -> List[Place]:
         """Search the places (cities) linked to a query by name.
 
-        You can add GPS coordinates in parameter to search places arround a given
+        You can add GPS coordinates in parameter to search places around a given
         location.
 
         Args:
@@ -71,7 +71,7 @@ class MeteoFranceClient:
         if longitude is not None:
             params["lon"] = longitude
 
-        # Send the API resuest
+        # Send the API request
         resp = self.session.request("get", "places", params=params)
         return [Place(place_data) for place_data in resp.json()]
 
@@ -121,7 +121,7 @@ class MeteoFranceClient:
                 be in French. All other value will give results in English.
 
         Returns:
-            An Observation intance.
+            An Observation instance.
         """
         return self.get_observation(place.latitude, place.longitude, language)
 
@@ -147,7 +147,7 @@ class MeteoFranceClient:
                 be in French. All other value will give results in English.
 
         Returns:
-            A Forecast intance representing the hourly and daily weather forecast.
+            A Forecast instance representing the hourly and daily weather forecast.
         """
         # TODO: add possibility to request forecast from id
 
@@ -174,7 +174,7 @@ class MeteoFranceClient:
                 be in French. All other value will give results in English.
 
         Returns:
-            A Forecast intance representing the hourly and daily weather forecast.
+            A Forecast instance representing the hourly and daily weather forecast.
         """
         return self.get_forecast(place.latitude, place.longitude, language)
 
@@ -219,7 +219,7 @@ class MeteoFranceClient:
                 for coastal phenomenoms. To access it add `10` after the domain id
                 (example: `1310`).
             depth: Optional; To be used with domain = 'france'. With depth = 0 the
-                results will show only natinal sum up of the weather alerts. If
+                results will show only national sum up of the weather alerts. If
                 depth = 1, you will have in addition, the bulletin for all metropolitan
                 France department and Andorre
             with_coastal_bulletin: Optional; If set to True (default is False), you can
@@ -258,7 +258,7 @@ class MeteoFranceClient:
         """Retrieve a complete bulletin of the weather phenomenons for a given domain.
 
         For a given domain we can access the maximum alert, a timelaps of the alert
-        evolution for the next 24 hours, a list of alerts and other metadatas.
+        evolution for the next 24 hours, a list of alerts and other metadata.
 
         Args:
             domain: could be `france` or any metropolitan France department numbers on
