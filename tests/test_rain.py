@@ -1,4 +1,5 @@
 """Tests Météo-France module. Forecast class."""
+
 from unittest.mock import Mock
 
 import pytest

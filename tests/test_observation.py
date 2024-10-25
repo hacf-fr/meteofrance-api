@@ -1,4 +1,5 @@
 """Tests Météo-France module. Observation class."""
+
 from datetime import datetime
 from datetime import timedelta
 from datetime import timezone

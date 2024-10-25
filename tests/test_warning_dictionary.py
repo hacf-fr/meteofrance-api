@@ -1,4 +1,5 @@
 """Tests for WarningDictionary class in the Météo-France module."""
+
 import pytest
 
 from meteofrance_api import MeteoFranceClient

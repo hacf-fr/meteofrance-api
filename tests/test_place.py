@@ -1,4 +1,5 @@
 """Tests Météo-France module. Place class."""
+
 from meteofrance_api import MeteoFranceClient
 
 

@@ -1,4 +1,5 @@
 """Tests Météo-France module. Forecast class."""
+
 import time
 from datetime import datetime
 

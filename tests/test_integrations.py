@@ -1,4 +1,5 @@
 """Tests Météo-France module."""
+
 import pytest
 
 from meteofrance_api import MeteoFranceClient
