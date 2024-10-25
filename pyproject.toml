@@ -25,7 +25,7 @@ classifiers = [
 Changelog = "https://github.com/hacf-fr/meteofrance-api/releases"
 
 [tool.poetry.dependencies]
-python = "^3.8.19"
+python = "^3.8.18"
 requests = "^2.32.3"
 urllib3 = ">=1.26.5,<2"
 pytz = ">=2024.1"
