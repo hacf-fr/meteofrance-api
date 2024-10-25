@@ -64,7 +64,7 @@ def test_rain_expected(requests_mock: Mock) -> None:
     )
 
     rain = client.get_rain(latitude=48.8075, longitude=2.24028)
-    
+
     assert rain.position["name"] == "Meudon"
     date_rain = rain.next_rain_date_locale()
     assert str(date_rain) == "2020-05-20 19:50:00+02:00"
@@ -108,6 +108,6 @@ def test_no_rain_expected(requests_mock: Mock) -> None:
     )
 
     rain = client.get_rain(latitude=48.8075, longitude=2.24028)
-    
+
     assert rain.position["name"] == "Meudon"
     assert rain.next_rain_date_locale() is None

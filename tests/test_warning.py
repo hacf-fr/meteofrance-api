@@ -126,7 +126,7 @@ def test_full_with_coastal_bulletin(
         phenomenom["phenomenon_id"] == "9"
         for phenomenom in full_phenomenoms.phenomenons_items
     )
-    
+
     # print("#"*100)
     # print(dep)
     # print(full_phenomenoms.raw_data)
