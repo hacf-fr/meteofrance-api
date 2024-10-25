@@ -11,7 +11,7 @@ def test_picture_of_the_day() -> None:
     potd = client.get_picture_of_the_day()
 
     assert potd.description
-    params = "?domain=france&report_type=observation&report_subtype=image%20du%20jour&format=jpg"
+    params = "?domain=france&report_type=observation&report_subtype=image%20du%20jour&format=jpg"  # noqa: B950
     token_param = f"&token={const.METEOFRANCE_API_TOKEN}"
     path = "/v2/report"
     assert_url = f"{const.METEOFRANCE_API_URL}{path}{params}{token_param}"

@@ -49,7 +49,8 @@ class WarningDictionary:
     """A class to represent and manipulate the Meteo France meteorological dictionary data.
 
     Methods:
-        get_phenomenon_name_by_id(phenomenon_id: int): Returns the name of the phenomenon for the given ID.
+        get_phenomenon_name_by_id(phenomenon_id: int): Returns the name of the
+        phenomenon for the given ID.
         get_color_name_by_id(color_id: int): Returns the name of the color for the given ID.
     """
 

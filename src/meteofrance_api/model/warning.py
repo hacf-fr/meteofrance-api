@@ -12,7 +12,7 @@ from typing import TypedDict
 
 # Define a custom type for items in the phenomenons_max_colors list
 class PhenomenonMaxColor(TypedDict):
-    """A type definition for representing a meteorological phenomenon and its maximum color code.
+    """Describing a meteorological phenomenon and its maximum color code.
 
     Attributes:
         phenomenon_id (str): A unique identifier for the meteorological phenomenon.
