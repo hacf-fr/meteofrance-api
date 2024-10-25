@@ -25,12 +25,13 @@ def test_rain_not_covered() -> None:
     """Test rain forecast result on a non covered zone."""
     client = MeteoFranceClient()
 
-    with pytest.raises(requests.HTTPError, match=r"400 .*"):
-        client.get_rain(latitude=45.508, longitude=-73.58)
+    # Demande au moins 3 chiffres après la virgule, sinon 502
+    with pytest.raises(requests.HTTPError, match=r"50[0|2] .*"):
+        client.get_rain(latitude=45.51, longitude=-73.58)
 
 
 def test_rain_expected(requests_mock: Mock) -> None:
-    """Test datecomputation when rain is expected within the hour."""
+    """Test date computation when rain is expected within the hour."""
     client = MeteoFranceClient()
 
     requests_mock.request(
@@ -63,6 +64,8 @@ def test_rain_expected(requests_mock: Mock) -> None:
     )
 
     rain = client.get_rain(latitude=48.8075, longitude=2.24028)
+
+    assert rain.position["name"] == "Meudon"
     date_rain = rain.next_rain_date_locale()
     assert str(date_rain) == "2020-05-20 19:50:00+02:00"
     assert (
@@ -72,7 +75,7 @@ def test_rain_expected(requests_mock: Mock) -> None:
 
 
 def test_no_rain_expected(requests_mock: Mock) -> None:
-    """Test datecomputation when rain is expected within the hour."""
+    """Test date computation when rain is expected within the hour."""
     client = MeteoFranceClient()
 
     requests_mock.request(
@@ -105,4 +108,6 @@ def test_no_rain_expected(requests_mock: Mock) -> None:
     )
 
     rain = client.get_rain(latitude=48.8075, longitude=2.24028)
+
+    assert rain.position["name"] == "Meudon"
     assert rain.next_rain_date_locale() is None
