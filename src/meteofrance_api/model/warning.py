@@ -61,7 +61,7 @@ class WarnningFullData(TypedDict):
 class CurrentPhenomenons:
     """Class to access the results of a `warning/currentPhenomenons` REST API request.
 
-    For coastal department two bulletins are avalaible corresponding to two different
+    For coastal department two bulletins are available corresponding to two different
     domains.
 
     Attributes:
@@ -71,7 +71,7 @@ class CurrentPhenomenons:
             the phenomenoms.
         domain_id: A string corresponding do the domain ID of the bulletin. Value is
             'France' or a department number.
-        phenomenons_max_colors: A list of dictionnaries with type of phenomenoms and the
+        phenomenons_max_colors: A list of dictionaries with type of phenomenoms and the
             current alert level.
     """
 
@@ -92,7 +92,7 @@ class CurrentPhenomenons:
 
     @property
     def end_validity_time(self) -> int:
-        """Return the end of validty time of the phenomenoms."""
+        """Return the end of validity time of the phenomenoms."""
         return self.raw_data["end_validity_time"]
 
     @property
@@ -117,7 +117,7 @@ class CurrentPhenomenons:
             coastal_phenomenoms: CurrentPhenomenons instance corresponding to the
                 coastal weather alert bulletin.
         """
-        # TODO: Add consitency check
+        # TODO: Add consistency check
         self.raw_data["phenomenons_max_colors"].extend(
             coastal_phenomenoms.phenomenons_max_colors
         )
@@ -140,7 +140,7 @@ class Full:
     For a given domain we can access the maximum alert, a timelaps of the alert
     evolution for the next 24 hours, and a list of alerts.
 
-    For coastal department two bulletins are avalaible corresponding to two different
+    For coastal department two bulletins are available corresponding to two different
     domains.
 
     Attributes:
@@ -151,9 +151,9 @@ class Full:
         domain_id: A string corresponding do the domain ID of the bulletin. Value is
             'France' or a department number.
         color_max: An integer representing the maximum alert level in the domain.
-        timelaps: A list of dictionnaries corresponding to the schedule of each
+        timelaps: A list of dictionaries corresponding to the schedule of each
             phenomenoms in the next 24 hours.
-        phenomenons_items: list of dictionnaries corresponding the alert level for each
+        phenomenons_items: list of dictionaries corresponding the alert level for each
             phenomenoms type.
     """
 
@@ -174,7 +174,7 @@ class Full:
 
     @property
     def end_validity_time(self) -> int:
-        """Return the end of validty time of the full bulletin."""
+        """Return the end of validity time of the full bulletin."""
         return self.raw_data["end_validity_time"]
 
     @property
@@ -207,7 +207,7 @@ class Full:
             coastal_phenomenoms: Full instance corresponding to the coastal weather
                 alert bulletin.
         """
-        # TODO: Add consitency check
+        # TODO: Add consistency check
         # TODO: Check if other data need to be merged
 
         # Merge color_max property
