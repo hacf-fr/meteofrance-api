@@ -1,5 +1,5 @@
-# coding: utf-8
 """Tests Météo-France module. Place class."""
+
 from meteofrance_api import MeteoFranceClient
 
 
@@ -25,7 +25,7 @@ def test_places() -> None:
 
 
 def test_places_with_gps() -> None:
-    """Test a place search by specifying a GPS point to search arround."""
+    """Test a place search by specifying a GPS point to search around."""
     client = MeteoFranceClient()
 
     list_places = client.search_places("montreal", "45.50884", "-73.58")

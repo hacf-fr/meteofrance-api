@@ -1,4 +1,5 @@
 """Météo-France models for the REST API."""
+
 from .dictionary import WarningDictionary
 from .forecast import Forecast
 from .observation import Observation
