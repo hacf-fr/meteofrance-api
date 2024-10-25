@@ -42,15 +42,15 @@ def get_warning_text_status_from_indice_color(
 def get_phenomenon_name_from_indice(
     int_phenomenon: str, lang: str = "fr"
 ) -> Optional[str]:
-    """Convert the phenomenom code in readable text (Hepler).
+    """Convert the phenomenon code in readable text (Hepler).
 
     Args:
-        int_phenomenon: ID of the phenomenom in int. Value expected between 1 and 9.
+        int_phenomenon: ID of the phenomenon in int. Value expected between 1 and 9.
         lang: Optional; If language is equal "fr" (default value) results will
             be in French. All other value will give results in English.
 
     Returns:
-        Phenomenom in text. French or English according to the lang parameter.
+        phenomenon in text. French or English according to the lang parameter.
     """
     if lang == "fr":
         return ALERT_TYPE_DICTIONARY_FR[int_phenomenon]
@@ -84,13 +84,13 @@ def is_valid_warning_department(department_number: str) -> bool:
     return department_number in VALID_DEPARTMENT_LIST
 
 
-def readeable_phenomenoms_dict(
-    list_phenomenoms: List[PhenomenonMaxColor], language: str = "fr"
+def readeable_phenomenons_dict(
+    list_phenomenons: List[PhenomenonMaxColor], language: str = "fr"
 ) -> Dict[Optional[str], Optional[str]]:
     """Create a dictionary with human readable keys and values (Helper).
 
     Args:
-        list_phenomenoms: Dictionary with phenomenon ID and color code of status.
+        list_phenomenons: Dictionary with phenomenon ID and color code of status.
         language: Optional; If language is equal "fr" (default value) results will
             be in French. All other value will give results in English.
 
@@ -100,12 +100,12 @@ def readeable_phenomenoms_dict(
     # Init empty dictionary
     readable_dict = {}
 
-    # Translate phenomenom name and alert level
-    for phenomenom in list_phenomenoms:
+    # Translate phenomenon name and alert level
+    for phenomenon in list_phenomenons:
         readable_dict[
-            get_phenomenon_name_from_indice(phenomenom["phenomenon_id"], language)
+            get_phenomenon_name_from_indice(phenomenon["phenomenon_id"], language)
         ] = get_warning_text_status_from_indice_color(
-            phenomenom["phenomenon_max_color_id"], language
+            phenomenon["phenomenon_max_color_id"], language
         )
     return readable_dict
 

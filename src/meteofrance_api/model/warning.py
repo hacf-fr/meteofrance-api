@@ -68,10 +68,10 @@ class CurrentPhenomenons:
         update_time: A timestamp (as integer) corresponding to the latest update of the
             pheomenoms.
         end_validity_time: A timestamp (as integer) corresponding to expiration date of
-            the phenomenoms.
+            the phenomenons.
         domain_id: A string corresponding do the domain ID of the bulletin. Value is
             'France' or a department number.
-        phenomenons_max_colors: A list of dictionaries with type of phenomenoms and the
+        phenomenons_max_colors: A list of dictionaries with type of phenomenons and the
             current alert level.
     """
 
@@ -87,39 +87,39 @@ class CurrentPhenomenons:
 
     @property
     def update_time(self) -> int:
-        """Return the update time of the phenomenoms."""
+        """Return the update time of the phenomenons."""
         return self.raw_data["update_time"]
 
     @property
     def end_validity_time(self) -> int:
-        """Return the end of validity time of the phenomenoms."""
+        """Return the end of validity time of the phenomenons."""
         return self.raw_data["end_validity_time"]
 
     @property
     def domain_id(self) -> str:
-        """Return the domain ID of the phenomenoms."""
+        """Return the domain ID of the phenomenons."""
         return self.raw_data["domain_id"]
 
     @property
     def phenomenons_max_colors(self) -> List[PhenomenonMaxColor]:
-        """Return the list and colors of the phenomenoms."""
+        """Return the list and colors of the phenomenons."""
         return self.raw_data["phenomenons_max_colors"]
 
     def merge_with_coastal_phenomenons(
-        self, coastal_phenomenoms: "CurrentPhenomenons"
+        self, coastal_phenomenons: "CurrentPhenomenons"
     ) -> None:
-        """Merge the classical phenomenoms bulleting with the coastal one.
+        """Merge the classical phenomenons bulleting with the coastal one.
 
-        Extend the phenomenomes_max_colors property with the content of the coastal
+        Extend the phenomenones_max_colors property with the content of the coastal
         weather alert bulletin.
 
         Args:
-            coastal_phenomenoms: CurrentPhenomenons instance corresponding to the
+            coastal_phenomenons: CurrentPhenomenons instance corresponding to the
                 coastal weather alert bulletin.
         """
         # TODO: Add consistency check
         self.raw_data["phenomenons_max_colors"].extend(
-            coastal_phenomenoms.phenomenons_max_colors
+            coastal_phenomenons.phenomenons_max_colors
         )
 
     def get_domain_max_color(self) -> int:
@@ -147,14 +147,14 @@ class Full:
         update_time: A timestamp (as integer) corresponding to the latest update of the
             pheomenoms.
         end_validity_time: A timestamp (as integer) corresponding to expiration date of
-            the phenomenoms.
+            the phenomenons.
         domain_id: A string corresponding do the domain ID of the bulletin. Value is
             'France' or a department number.
         color_max: An integer representing the maximum alert level in the domain.
         timelaps: A list of dictionaries corresponding to the schedule of each
-            phenomenoms in the next 24 hours.
+            phenomenons in the next 24 hours.
         phenomenons_items: list of dictionaries corresponding the alert level for each
-            phenomenoms type.
+            phenomenons type.
     """
 
     def __init__(self, raw_data: WarnningFullData) -> None:
@@ -189,34 +189,34 @@ class Full:
 
     @property
     def timelaps(self) -> List[Dict[str, Any]]:
-        """Return the timelaps of each phenomenom for the domain."""
+        """Return the timelaps of each phenomenon for the domain."""
         return self.raw_data["timelaps"]
 
     @property
     def phenomenons_items(self) -> List[PhenomenonMaxColor]:
-        """Return the phenomenom list of the domain."""
+        """Return the phenomenon list of the domain."""
         return self.raw_data["phenomenons_items"]
 
-    def merge_with_coastal_phenomenons(self, coastal_phenomenoms: "Full") -> None:
+    def merge_with_coastal_phenomenons(self, coastal_phenomenons: "Full") -> None:
         """Merge the classical phenomenon bulletin with the coastal one.
 
         Extend the color_max, timelaps and phenomenons_items properties with the content
             of the coastal weather alert bulletin.
 
         Args:
-            coastal_phenomenoms: Full instance corresponding to the coastal weather
+            coastal_phenomenons: Full instance corresponding to the coastal weather
                 alert bulletin.
         """
         # TODO: Add consistency check
         # TODO: Check if other data need to be merged
 
         # Merge color_max property
-        self.raw_data["color_max"] = max(self.color_max, coastal_phenomenoms.color_max)
+        self.raw_data["color_max"] = max(self.color_max, coastal_phenomenons.color_max)
 
         # Merge timelaps
-        self.raw_data["timelaps"].extend(coastal_phenomenoms.timelaps)
+        self.raw_data["timelaps"].extend(coastal_phenomenons.timelaps)
 
         # Merge phenomenons_items
-        self.raw_data["phenomenons_items"].extend(coastal_phenomenoms.phenomenons_items)
+        self.raw_data["phenomenons_items"].extend(coastal_phenomenons.phenomenons_items)
 
     # TODO: check opportunity to complete class
