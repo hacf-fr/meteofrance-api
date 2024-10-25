@@ -127,12 +127,12 @@ def test_full_with_coastal_bulletin(
         for phenomenom in full_phenomenoms.phenomenons_items
     )
     
-    print("#"*100)
-    print(dep)
-    print(full_phenomenoms.raw_data)
-    print(has_avalanche_phenomenom)
-    print(has_coastal_phenomenom)
-    print("#"*100)
+    # print("#"*100)
+    # print(dep)
+    # print(full_phenomenoms.raw_data)
+    # print(has_avalanche_phenomenom)
+    # print(has_coastal_phenomenom)
+    # print("#"*100)
 
     # FIXME: ne fonctionne plus phenomenon_id 8 non trouvé: autre ID ?
     # https://meteofrance.com/meteo-montagne/alpes-du-nord/risques-avalanche
