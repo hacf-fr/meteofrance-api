@@ -8,7 +8,7 @@ from meteofrance_api.helpers import get_phenomenon_name_from_indice
 from meteofrance_api.helpers import get_warning_text_status_from_indice_color
 from meteofrance_api.helpers import is_coastal_department
 from meteofrance_api.helpers import is_valid_warning_department
-from meteofrance_api.helpers import readeable_phenomenoms_dict
+from meteofrance_api.helpers import readeable_phenomenons_dict
 from meteofrance_api.helpers import sort_places_versus_distance_from_coordinates
 from meteofrance_api.model import Place
 from meteofrance_api.model.place import PlaceData
@@ -58,8 +58,8 @@ def test_is_valid_warning_department(dep: str, res: bool) -> None:
     assert is_valid_warning_department(dep) == res
 
 
-def test_readeable_phenomenoms_dict() -> None:
-    """Test the helper constructing a human readable dictionary for phenomenom."""
+def test_readeable_phenomenons_dict() -> None:
+    """Test the helper constructing a human readable dictionary for phenomenon."""
     api_list = [
         PhenomenonMaxColor(phenomenon_id="4", phenomenon_max_color_id=1),
         PhenomenonMaxColor(phenomenon_id="5", phenomenon_max_color_id=1),
@@ -76,7 +76,7 @@ def test_readeable_phenomenoms_dict() -> None:
         "Vent violent": "Orange",
     }
 
-    assert readeable_phenomenoms_dict(api_list) == expected_dictionary
+    assert readeable_phenomenons_dict(api_list) == expected_dictionary
 
 
 def test_sort_places_versus_distance_from_coordinates() -> None:

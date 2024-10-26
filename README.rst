@@ -101,7 +101,7 @@ The client allows:
 * Search a forecast location.
 * Fetch daily or hourly weather forecast.
 * Fetch rain forecast within the next hour if available.
-* Fetch the weather alerts or phenomenoms for each French department or Andorre.
+* Fetch the weather alerts or phenomenons for each French department or Andorre.
   Two bulletin are availabe: one basic and an other advanced with the timelaps evolution
   for the next 24 hours (example `here <https://vigilance.meteofrance.fr/fr/gers>`_).
 
