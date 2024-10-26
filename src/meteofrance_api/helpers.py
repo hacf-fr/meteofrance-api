@@ -161,7 +161,7 @@ def sort_places_versus_distance_from_coordinates(
     return sorted_places
 
 
-def timestamp_to_dateime_with_locale_tz(timestamp: int, local_tz: str) -> datetime:
+def timestamp_to_datetime_with_locale_tz(timestamp: int, local_tz: str) -> datetime:
     """Convert timestamp in datetime (Helper).
 
     Args:

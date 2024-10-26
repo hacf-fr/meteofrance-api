@@ -7,7 +7,7 @@ from typing import List
 from typing import Optional
 from typing import TypedDict
 
-from meteofrance_api.helpers import timestamp_to_dateime_with_locale_tz
+from meteofrance_api.helpers import timestamp_to_datetime_with_locale_tz
 
 
 class RainData(TypedDict):
@@ -80,7 +80,7 @@ class Rain:
             # get the time stamp of the first cadran with rain
             next_rain_timestamp = next_rain["dt"]
             # convert timestamp in datetime with local timezone
-            next_rain_dt_local = timestamp_to_dateime_with_locale_tz(
+            next_rain_dt_local = timestamp_to_datetime_with_locale_tz(
                 next_rain_timestamp, self.position["timezone"]
             )
 
@@ -96,4 +96,4 @@ class Rain:
             A datetime instance corresponding to the timestamp with the timezone of the
                 rain forecast location.
         """
-        return timestamp_to_dateime_with_locale_tz(timestamp, self.position["timezone"])
+        return timestamp_to_datetime_with_locale_tz(timestamp, self.position["timezone"])
