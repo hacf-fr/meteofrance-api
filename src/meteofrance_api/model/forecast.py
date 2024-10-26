@@ -8,7 +8,7 @@ from typing import TypedDict
 
 from pytz import utc
 
-from meteofrance_api.helpers import timestamp_to_dateime_with_locale_tz
+from meteofrance_api.helpers import timestamp_to_datetime_with_locale_tz
 
 
 class ForecastData(TypedDict, total=False):
@@ -117,4 +117,6 @@ class Forecast:
             Datetime instance corresponding to the timestamp with the timezone of the
                 forecast location.
         """
-        return timestamp_to_dateime_with_locale_tz(timestamp, self.position["timezone"])
+        return timestamp_to_datetime_with_locale_tz(
+            timestamp, self.position["timezone"]
+        )
