@@ -39,7 +39,7 @@ def test_get_warning_text_status_from_indice_color_en() -> None:
     ],
 )
 def test_is_coastal_department(dep: str, res: bool) -> None:
-    """Test the helper checking if an additional coastal departement bulletin exist."""
+    """Test the helper checking if an additional coastal department bulletin exist."""
     assert is_coastal_department(dep) == res
 
 
@@ -54,7 +54,7 @@ def test_is_coastal_department(dep: str, res: bool) -> None:
     ],
 )
 def test_is_valid_warning_department(dep: str, res: bool) -> None:
-    """Test the helper checking if departent has a weather alert bulletin."""
+    """Test the helper checking if department has a weather alert bulletin."""
     assert is_valid_warning_department(dep) == res
 
 

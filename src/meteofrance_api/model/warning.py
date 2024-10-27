@@ -1,6 +1,6 @@
-"""Weather alert buletin Python model for the Météo-France REST API.
+"""Weather alert bulletin Python model for the Météo-France REST API.
 
-For getting weather alerts in France Metropole and Andorre.
+For getting weather alerts in metropolitan France and Andorre.
 """
 
 from typing import Any
@@ -66,7 +66,7 @@ class CurrentPhenomenons:
 
     Attributes:
         update_time: A timestamp (as integer) corresponding to the latest update of the
-            pheomenoms.
+            phenomenons.
         end_validity_time: A timestamp (as integer) corresponding to expiration date of
             the phenomenons.
         domain_id: A string corresponding do the domain ID of the bulletin. Value is
@@ -110,7 +110,7 @@ class CurrentPhenomenons:
     ) -> None:
         """Merge the classical phenomenons bulleting with the coastal one.
 
-        Extend the phenomenones_max_colors property with the content of the coastal
+        Extend the phenomenons_max_colors property with the content of the coastal
         weather alert bulletin.
 
         Args:
@@ -145,7 +145,7 @@ class Full:
 
     Attributes:
         update_time: A timestamp (as integer) corresponding to the latest update of the
-            pheomenoms.
+            phenomenons.
         end_validity_time: A timestamp (as integer) corresponding to expiration date of
             the phenomenons.
         domain_id: A string corresponding do the domain ID of the bulletin. Value is

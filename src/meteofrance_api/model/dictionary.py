@@ -46,7 +46,7 @@ class WarningDictionaryData(TypedDict):
 
 
 class WarningDictionary:
-    """A class to represent and manipulate the Meteo France meteorological dictionary data.
+    """A class to represent and manipulate the Météo-France meteorological dictionary data.
 
     Methods:
         get_phenomenon_name_by_id(phenomenon_id: int): Returns the name of the
@@ -58,7 +58,7 @@ class WarningDictionary:
         """Initializes the WarningDictionary with raw dictionary data.
 
         Args:
-            raw_data: A dictionary representing the JSON response from the Meteo France API.
+            raw_data: A dictionary representing the JSON response from the Météo-France API.
         """
         self.raw_data = raw_data
 

@@ -102,7 +102,7 @@ The client allows:
 * Fetch daily or hourly weather forecast.
 * Fetch rain forecast within the next hour if available.
 * Fetch the weather alerts or phenomenons for each French department or Andorre.
-  Two bulletin are availabe: one basic and an other advanced with the timelaps evolution
+  Two bulletin are available: one basic and an other advanced with the timelaps evolution
   for the next 24 hours (example `here <https://vigilance.meteofrance.fr/fr/gers>`_).
 
 This package have been developed to be used with `Home-Assistant <https://home-assistant.io/>`_
