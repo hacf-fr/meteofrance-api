@@ -88,14 +88,11 @@ jobs:
 
       - name: Upload coverage data
         if: always() && matrix.session == 'tests'
-        uses: actions/upload-artifact@v3
-        # uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4
         with:
-          name: coverage-data
-          # name: coverage-data-${{ matrix.os }}-${{ matrix.python-version }}
+          name: coverage-data-${{ matrix.python-version }}-${{ matrix.os }}
           path: ".coverage.*"
-          # include-hidden-files: true
-          # if-no-files-found: error
+          include-hidden-files: true
 
       - name: Upload documentation
         if: matrix.session == 'docs-build'
@@ -131,20 +128,11 @@ jobs:
           pip install --constraint=.github/workflows/constraints.txt nox nox-poetry
           nox --version
 
-      # - name: Merge coverage data
-      #   uses: actions/upload-artifact/merge@v4
-      #   with:
-      #     name: coverage-data
-      #     pattern: coverage-data-*
-
       - name: Download coverage data
-        uses: actions/download-artifact@v3
-        # uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v4
         with:
-          name: coverage-data
-          # path: coverage-data
-          # pattern: coverage-data-*
-          # merge-multiple: true
+          pattern: coverage-data-*
+          merge-multiple: true
 
       - run: ls -R coverage-data
 
