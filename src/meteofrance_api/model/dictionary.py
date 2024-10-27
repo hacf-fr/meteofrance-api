@@ -1,4 +1,5 @@
 """Dictionary Python model for the Météo-France REST API."""
+
 from typing import List
 from typing import Optional
 from typing import TypedDict

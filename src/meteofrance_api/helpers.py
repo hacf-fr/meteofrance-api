@@ -1,4 +1,5 @@
 """Helpers to be used with the Météo-France REST API ."""
+
 import math
 from datetime import datetime
 from typing import Dict

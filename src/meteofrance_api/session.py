@@ -1,4 +1,5 @@
 """Session managers for the Météo-France REST API."""
+
 from typing import Any
 from typing import Optional
 

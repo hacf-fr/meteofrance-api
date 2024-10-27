@@ -1,4 +1,5 @@
 """Picture of the Day Python model for the Météo-France REST API."""
+
 from typing import TypedDict
 
 
