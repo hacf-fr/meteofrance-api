@@ -88,6 +88,8 @@ jobs:
 
       - run: ls -la
         if: matrix.os != 'windows-latest'
+      
+      - run: "echo '### MATRIX_ID : ${{ env.MATRIX_ID }}'"
 
       - name: Upload coverage data
         if: always() && matrix.session == 'tests'
