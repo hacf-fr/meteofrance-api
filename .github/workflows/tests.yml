@@ -134,10 +134,6 @@ jobs:
           pattern: coverage-data-*
           merge-multiple: true
 
-      - run: ls -R coverage-data
-
-      - run: ls -la
-
       - name: Combine coverage data and display human readable report
         run: |
           nox --force-color --session=coverage
