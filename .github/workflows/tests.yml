@@ -93,7 +93,7 @@ jobs:
         if: always() && matrix.session == 'tests'
         uses: actions/upload-artifact@v4.4.3
         with:
-          name: coverage-data
+          name: coverage-data-${{ env.MATRIX_ID }}
           path: ".coverage.*"
           include-hidden-files: true
           if-no-files-found: error
@@ -137,7 +137,8 @@ jobs:
       - name: Download coverage data
         uses: actions/download-artifact@v4.1.8
         with:
-          name: coverage-data
+          name: coverage-data-*
+          merge-multiple: true
 
       - name: Combine coverage data and display human readable report
         run: |
