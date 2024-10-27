@@ -28,7 +28,7 @@ class Place:
         country: A string corresponding to the country code of the place.
         admin: A string with the name of the administrative area ('Département' for
             France and Region for other countries).
-        admin2: A string correponding to an administrative code ( 'Département' number
+        admin2: A string corresponding to an administrative code ('Département' number
             for France)
         postCode: A string corresponding to the ZIP code of location.
     """

@@ -17,7 +17,7 @@ class PictureOfTheDay:
         image_url: A string corresponding to the picture of the day URL.
         image_hd_url: A string corresponding to the URL for the HD version of the
             picture of the day.
-        descritpion: A string with the description of the picture of the day.
+        description: A string with the description of the picture of the day.
     """
 
     def __init__(self, raw_data: PictureOfTheDayData) -> None:

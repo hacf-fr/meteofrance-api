@@ -71,7 +71,7 @@ class Forecast:
 
     @property
     def probability_forecast(self) -> List[Dict[str, Any]]:
-        """Return the wheather event forecast."""
+        """Return the weather event forecast."""
         return self.raw_data.get("probability_forecast", [])
 
     @property

@@ -4,7 +4,7 @@ from meteofrance_api import MeteoFranceClient
 
 
 def test_places() -> None:
-    """Test for simple seach of Place."""
+    """Test for simple search of Place."""
     client = MeteoFranceClient()
 
     list_places = client.search_places("montreal")
