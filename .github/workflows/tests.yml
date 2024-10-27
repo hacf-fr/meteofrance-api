@@ -86,9 +86,6 @@ jobs:
         run: |
           nox --force-color --python=${{ matrix.python-version }}
 
-      - run: ls -la
-        if: matrix.os != 'windows-latest'
-
       - name: Upload coverage data
         if: always() && matrix.session == 'tests'
         uses: actions/upload-artifact@v4.4.3
@@ -132,8 +129,6 @@ jobs:
         run: |
           pip install --constraint=.github/workflows/constraints.txt nox nox-poetry
           nox --version
-
-      - run: ls -la
 
       - name: Download coverage data
         uses: actions/download-artifact@v4.1.8
