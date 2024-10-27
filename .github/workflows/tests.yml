@@ -93,8 +93,9 @@ jobs:
         if: always() && matrix.session == 'tests'
         uses: actions/upload-artifact@v4.4.3
         with:
-          name: coverage-data-${{ matrix.os }}-${{ matrix.python-version }}
+          name: coverage-data
           path: ".coverage.*"
+          overwrite: true
           include-hidden-files: true
           if-no-files-found: error
 
@@ -137,8 +138,7 @@ jobs:
       - name: Download coverage data
         uses: actions/download-artifact@v4.1.8
         with:
-          name: coverage-data-*
-          merge-multiple: true
+          name: coverage-data
 
       - name: Combine coverage data and display human readable report
         run: |
