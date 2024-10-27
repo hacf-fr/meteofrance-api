@@ -10,6 +10,9 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      attestations: write
     steps:
       - name: Check out the repository
         uses: actions/checkout@v4.1.1
@@ -55,6 +58,12 @@ jobs:
         run: |
           poetry build --ansi
 
+      - name: Attest build provenance
+        if: steps.check-version.outputs.tag
+        uses: actions/attest-build-provenance@v1
+        with:
+          subject-path: dist/*
+
       - name: Publish package on PyPI
         if: steps.check-version.outputs.tag
         uses: pypa/gh-action-pypi-publish@v1.10.3
@@ -68,7 +77,7 @@ jobs:
         with:
           user: __token__
           password: ${{ secrets.TEST_PYPI_TOKEN }}
-          repository_url: https://test.pypi.org/legacy/
+          repository-url: https://test.pypi.org/legacy/
 
       - name: Publish release notes
         uses: release-drafter/release-drafter@v5.25.0
