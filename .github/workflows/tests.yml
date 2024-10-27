@@ -101,10 +101,19 @@ jobs:
         with:
           name: docs
           path: docs/_build
+  merge:
+    runs-on: ubuntu-latest
+    needs: tests
+    steps:
+      - name: Merge Artifacts
+        uses: actions/upload-artifact/merge@v4
+        with:
+          name: coverage-data
+          pattern: coverage-data-*
 
   coverage:
     runs-on: ubuntu-latest
-    needs: tests
+    needs: merge
     steps:
       - name: Check out the repository
         uses: actions/checkout@v4.1.1
@@ -132,9 +141,7 @@ jobs:
       - name: Download coverage data
         uses: actions/download-artifact@v4
         with:
-          path: coverage-data
-          pattern: coverage-data-*
-          merge-multiple: true
+          name: coverage-data
 
       - run: ls -R coverage-data
 
