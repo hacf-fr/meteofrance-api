@@ -84,7 +84,7 @@ def is_valid_warning_department(department_number: str) -> bool:
     return department_number in VALID_DEPARTMENT_LIST
 
 
-def readeable_phenomenons_dict(
+def readable_phenomenons_dict(
     list_phenomenons: List[PhenomenonMaxColor], language: str = "fr"
 ) -> Dict[Optional[str], Optional[str]]:
     """Create a dictionary with human readable keys and values (Helper).
