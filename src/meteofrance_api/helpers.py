@@ -42,7 +42,7 @@ def get_warning_text_status_from_indice_color(
 def get_phenomenon_name_from_indice(
     int_phenomenon: str, lang: str = "fr"
 ) -> Optional[str]:
-    """Convert the phenomenon code in readable text (Hepler).
+    """Convert the phenomenon code in readable text (Helper).
 
     Args:
         int_phenomenon: ID of the phenomenon in int. Value expected between 1 and 9.
