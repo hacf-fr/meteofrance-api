@@ -32,7 +32,7 @@ class PhenomenonMaxColor(TypedDict):
     phenomenon_max_color_id: int
 
 
-class WarnningCurrentPhenomenonsData(TypedDict):
+class WarningCurrentPhenomenonsData(TypedDict):
     """Describing the data structure of CurrentPhenomenons object from the REST API."""
 
     update_time: int
@@ -41,7 +41,7 @@ class WarnningCurrentPhenomenonsData(TypedDict):
     phenomenons_max_colors: List[PhenomenonMaxColor]
 
 
-class WarnningFullData(TypedDict):
+class WarningFullData(TypedDict):
     """Describing the data structure of full object from the REST API."""
 
     update_time: int
@@ -75,13 +75,13 @@ class CurrentPhenomenons:
             current alert level.
     """
 
-    def __init__(self, raw_data: WarnningCurrentPhenomenonsData) -> None:
+    def __init__(self, raw_data: WarningCurrentPhenomenonsData) -> None:
         """Initialize a CurrentPhenomenons object.
 
         Args:
             raw_data: A dictionary representing the JSON response from
                 'warning/currentPhenomenons' REST API request. The structure is
-                described by the WarnningCurrentPhenomenonsData class.
+                described by the WarningCurrentPhenomenonsData class.
         """
         self.raw_data = raw_data
 
@@ -157,12 +157,12 @@ class Full:
             phenomenons type.
     """
 
-    def __init__(self, raw_data: WarnningFullData) -> None:
+    def __init__(self, raw_data: WarningFullData) -> None:
         """Initialize a Full object.
 
         Args:
             raw_data: A dictionary representing the JSON response from'warning/full'
-                REST API request. The structure is described by the WarnningFullData
+                REST API request. The structure is described by the WarningFullData
                 class.
         """
         self.raw_data = raw_data
