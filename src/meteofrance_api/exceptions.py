@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Météo-France API module exceptions."""
 
 

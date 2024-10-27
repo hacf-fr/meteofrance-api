@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-"""Consts for Météo-France weather forecast python API."""
+"""Constants for Météo-France weather forecast python API."""
 METEOFRANCE_API_URL = "https://webservice.meteofrance.com"
 METEOFRANCE_API_TOKEN = "__Wj7dVSTjV9YGu1guveLyDq0g7S7TfTjaHBTPTpO0kj8__"  # noqa: S105
 

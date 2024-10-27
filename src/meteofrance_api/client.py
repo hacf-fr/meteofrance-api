@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Client for the Météo-France REST API."""
 from typing import List
 from typing import Optional

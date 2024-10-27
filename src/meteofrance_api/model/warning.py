@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Weather alert buletin Python model for the Météo-France REST API.
 
 For getting weather alerts in France Metropole and Andorre.

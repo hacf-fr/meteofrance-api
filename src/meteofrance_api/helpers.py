@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Helpers to be used with the Météo-France REST API ."""
 import math
 from datetime import datetime
