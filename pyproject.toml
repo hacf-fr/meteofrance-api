@@ -27,7 +27,7 @@ Changelog = "https://github.com/hacf-fr/meteofrance-api/releases"
 [tool.poetry.dependencies]
 python = "^3.8.18"
 requests = "^2.32.3"
-urllib3 = ">=1.26.5,<2"
+urllib3 = ">=1.26.5,<3"
 pytz = ">=2024.1"
 typing-extensions = {version = ">=3.8.18,<5.0.0", python = "~3.8 || ~3.9 || ~3.10 || ~3.11"}
 
