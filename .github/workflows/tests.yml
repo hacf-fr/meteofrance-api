@@ -87,6 +87,7 @@ jobs:
           nox --force-color --python=${{ matrix.python-version }}
 
       - run: ls -la
+        if: matrix.os != 'windows-latest'
 
       - name: Upload coverage data
         if: always() && matrix.session == 'tests'
