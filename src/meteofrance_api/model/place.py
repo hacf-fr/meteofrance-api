@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
 """Place Python model for the Météo-France REST API."""
+
 from typing import Optional
 from typing import TypedDict
 

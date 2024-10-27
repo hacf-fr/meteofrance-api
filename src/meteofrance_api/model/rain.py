@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
 """Rain in the next hour Python model for the Météo-France REST API."""
+
 from datetime import datetime
 from typing import Any
 from typing import Dict
