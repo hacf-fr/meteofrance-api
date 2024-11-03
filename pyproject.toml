@@ -53,7 +53,7 @@ pre-commit-hooks = "^5.0.0"
 sphinx-rtd-theme = "^3.0.1"
 sphinx-click = "^6.0.0"
 Pygments = "^2.15.0"
-types-requests = "^2.28.11"
+types-requests = "^2.32.0"
 types-pytz = "^2024.2.0"
 
 [tool.poetry.scripts]
