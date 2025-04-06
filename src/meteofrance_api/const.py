@@ -21,7 +21,7 @@ ALERT_TYPE_DICTIONARY_FR = {
     "1": "Vent violent",
     "2": "Pluie-inondation",
     "3": "Orages",
-    "4": "Inondation",
+    "4": "Crues",
     "5": "Neige-verglas",
     "6": "Canicule",
     "7": "Grand-froid",
