@@ -52,7 +52,7 @@ darglint = "^1.8.1"
 pre-commit-hooks = "^5.0.0"
 sphinx-rtd-theme = "^3.0.2"
 sphinx-click = "^6.0.0"
-Pygments = "^2.15.0"
+Pygments = "^2.19.2"
 types-requests = "^2.32.0"
 types-pytz = "^2024.2.0"
 
