@@ -305,7 +305,7 @@ class MeteoFranceClient:
         """
         # Return directly the URL of the gif image
         return (
-            f"{METEOFRANCE_API_URL}/v3/warning/thumbnail?&token={METEOFRANCE_API_TOKEN}"
+            f"{METEOFRANCE_API_URL}/v2/warning/thumbnail?&token={METEOFRANCE_API_TOKEN}" # v3 API not working with this URLs
             f"&domain={domain}"
         )
 
