@@ -34,7 +34,7 @@ typing-extensions = {version = ">=3.8.18,<5.0.0", python = "~3.8 || ~3.9 || ~3.1
 pytest = "^8.3.5"
 requests_mock = "^1.12.1"
 coverage = {extras = ["toml"], version = "^7.2"}
-safety = "^3.2.14"
+safety = "^3.6.1"
 mypy = "^1.11.2"
 typeguard = "^4.4.0"
 xdoctest = {extras = ["colors"], version = "^1.1.2"}
