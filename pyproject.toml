@@ -50,8 +50,6 @@ pep8-naming = "0.15.1"
 darglint = "1.8.1"
 pre-commit-hooks = "6.0.0"
 Pygments = "2.19.2"
-types-requests = "^2.32.0"
-types-pytz = "^2024.2.0"
 
 # docs (Python >= 3.14)
 furo = {version = "==2025.12.19", python = ">=3.14"}
