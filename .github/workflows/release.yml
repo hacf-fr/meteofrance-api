@@ -61,7 +61,7 @@ jobs:
 
       - name: Attest build provenance
         if: steps.check-version.outputs.tag
-        uses: actions/attest-build-provenance@v2
+        uses: actions/attest-build-provenance@v3.1.0
         with:
           subject-path: dist/*
 
