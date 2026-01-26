@@ -69,16 +69,14 @@ def activate_virtualenv_in_precommit_hooks(session: Session) -> None:
         if not (lines[0].startswith("#!") and "python" in lines[0].lower()):
             continue
 
-        header = dedent(
-            f"""\
+        header = dedent(f"""\
             import os
             os.environ["VIRTUAL_ENV"] = {virtualenv!r}
             os.environ["PATH"] = os.pathsep.join((
                 {session.bin!r},
                 os.environ.get("PATH", ""),
             ))
-            """
-        )
+            """)
 
         lines.insert(1, header)
         hook.write_text("\n".join(lines))
