@@ -33,7 +33,7 @@ requests = "^2.32.3"
 pytz = ">=2024.1"
 
 [tool.poetry.group.dev.dependencies]
-pytest = "8.4.2"
+pytest = "9.0.2"
 requests_mock = "1.12.1"
 coverage = {extras = ["toml"], version = "7.13.2"}
 safety = "3.7.0"
