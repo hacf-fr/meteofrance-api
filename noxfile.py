@@ -88,14 +88,8 @@ def precommit(session: Session) -> None:
     """Lint using pre-commit."""
     args = session.posargs or ["run", "--all-files", "--show-diff-on-failure"]
     session.install(
-        "black",
         "darglint",
-        "flake8",
-        "flake8-bandit",
-        "flake8-bugbear",
-        "flake8-docstrings",
-        "flake8-rst-docstrings",
-        "pep8-naming",
+        "ruff",
         "pre-commit",
         "pre-commit-hooks",
     )
