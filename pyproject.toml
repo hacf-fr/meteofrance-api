@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "meteofrance-api"
-version = "1.4.0"
+version = "1.5.0"
 description = "Python client for Météo-France API."
 authors = ["oncleben31 <oncleben31@gmail.com>", "quentame <polletquentin74@me.com>", "HACF <contact@hacf.fr>"]
 license = "MIT"
