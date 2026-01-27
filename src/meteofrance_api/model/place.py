@@ -1,20 +1,19 @@
 """Place Python model for the Météo-France REST API."""
 
-from typing import Optional
 from typing import TypedDict
 
 
 class PlaceData(TypedDict):
     """Describing the data structure of place object returned by the REST API."""
 
-    insee: Optional[str]
+    insee: str | None
     name: str
     lat: float
     lon: float
     country: str
     admin: str
-    admin2: Optional[str]
-    postCode: Optional[str]  # noqa: N815
+    admin2: str | None
+    postCode: str | None  # noqa: N815
 
 
 class Place:
@@ -51,9 +50,7 @@ class Place:
 
             Example: <Place(name=Montréal, country=FR, admin=Languedoc-Roussillon)>
         """
-        return "<{}(name={}, country={}, admin={})>".format(
-            self.__class__.__name__, self.name, self.country, self.admin
-        )
+        return f"<{self.__class__.__name__}(name={self.name}, country={self.country}, admin={self.admin})>"
 
     def __str__(self) -> str:
         """Provide an easy way to identify the Place.
@@ -72,7 +69,7 @@ class Place:
         return f"{self.name} - {self.admin} - {self.country}"
 
     @property
-    def insee(self) -> Optional[str]:
+    def insee(self) -> str | None:
         """Return the INSEE ID of the place."""
         return self.raw_data.get("insee")
 
@@ -97,16 +94,16 @@ class Place:
         return self.raw_data["country"]
 
     @property
-    def admin(self) -> Optional[str]:
+    def admin(self) -> str | None:
         """Return the admin of the place."""
         return self.raw_data.get("admin")
 
     @property
-    def admin2(self) -> Optional[str]:
+    def admin2(self) -> str | None:
         """Return the admin2 of the place."""
         return self.raw_data.get("admin2")
 
     @property
-    def postal_code(self) -> Optional[str]:
+    def postal_code(self) -> str | None:
         """Return the postal code of the place."""
         return self.raw_data.get("postCode")

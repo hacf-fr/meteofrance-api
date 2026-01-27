@@ -2,10 +2,6 @@
 
 import math
 from datetime import datetime
-from typing import Dict
-from typing import List
-from typing import Optional
-from typing import Tuple
 
 from pytz import timezone
 from pytz import utc
@@ -22,7 +18,7 @@ from .model.warning import PhenomenonMaxColor
 
 def get_warning_text_status_from_indice_color(
     int_color: int, lang: str = "fr"
-) -> Optional[str]:
+) -> str | None:
     """Convert the color code (in int) in readable text (Helper).
 
     Args:
@@ -41,7 +37,7 @@ def get_warning_text_status_from_indice_color(
 
 def get_phenomenon_name_from_indice(
     int_phenomenon: str, lang: str = "fr"
-) -> Optional[str]:
+) -> str | None:
     """Convert the phenomenon code in readable text (Helper).
 
     Args:
@@ -85,8 +81,8 @@ def is_valid_warning_department(department_number: str) -> bool:
 
 
 def readable_phenomenons_dict(
-    list_phenomenons: List[PhenomenonMaxColor], language: str = "fr"
-) -> Dict[Optional[str], Optional[str]]:
+    list_phenomenons: list[PhenomenonMaxColor], language: str = "fr"
+) -> dict[str | None, str | None]:
     """Create a dictionary with human readable keys and values (Helper).
 
     Args:
@@ -110,7 +106,7 @@ def readable_phenomenons_dict(
     return readable_dict
 
 
-def haversine(coord1: Tuple[float, float], coord2: Tuple[float, float]) -> float:
+def haversine(coord1: tuple[float, float], coord2: tuple[float, float]) -> float:
     """Compute distance in meters between to GPS coordinates using Harvesine formula.
 
     source: https://janakiev.com/blog/gps-points-distance-python/
@@ -138,8 +134,8 @@ def haversine(coord1: Tuple[float, float], coord2: Tuple[float, float]) -> float
 
 
 def sort_places_versus_distance_from_coordinates(
-    list_places: List[Place], gps_coord: Tuple[float, float]
-) -> List[Place]:
+    list_places: list[Place], gps_coord: tuple[float, float]
+) -> list[Place]:
     """Oder list of places according to the distance to a reference coordinates.
 
     Note: this helper is compensating the bad results of the API. Results in the API

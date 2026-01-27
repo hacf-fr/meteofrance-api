@@ -75,17 +75,14 @@ show_error_context = true
 
 [tool.ruff]
 line-length = 88
-target-version = "py38"
+target-version = "py310"
 
 [tool.ruff.lint]
 ignore = [
     "A001",    # Variable is shadowing a Python builtin
     "E501",    # Line too long
     "ERA001",  # Found commented-out code
-    "I001",    # Import block is un-sorted or un-formatted
     "PLR2004", # Magic value used in comparison, consider replacing with a constant variable
-    "PT006",   # Wrong type passed to first argument of `pytest.mark.parametrize`; expected `tuple`
-    "UP032",   # Use f-string instead of `format` call
 ]
 select = [
     "A",     # flake8-builtins

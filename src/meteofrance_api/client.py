@@ -1,8 +1,5 @@
 """Client for the Météo-France REST API."""
 
-from typing import List
-from typing import Optional
-
 from .const import COASTAL_DEPARTMENT_LIST
 from .const import METEOFRANCE_API_TOKEN
 from .const import METEOFRANCE_API_URL
@@ -31,7 +28,7 @@ class MeteoFranceClient:
     weather alert bulletin.
     """
 
-    def __init__(self, access_token: Optional[str] = None) -> None:
+    def __init__(self, access_token: str | None = None) -> None:
         """Initialize the API and store the auth so we can make requests.
 
         Args:
@@ -45,9 +42,9 @@ class MeteoFranceClient:
     def search_places(
         self,
         search_query: str,
-        latitude: Optional[str] = None,
-        longitude: Optional[str] = None,
-    ) -> List[Place]:
+        latitude: str | None = None,
+        longitude: str | None = None,
+    ) -> list[Place]:
         """Search the places (cities) linked to a query by name.
 
         You can add GPS coordinates in parameter to search places around a given

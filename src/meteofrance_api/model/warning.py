@@ -4,9 +4,6 @@ For getting weather alerts in metropolitan France and Andorre.
 """
 
 from typing import Any
-from typing import Dict
-from typing import List
-from typing import Optional
 from typing import TypedDict
 
 
@@ -38,7 +35,7 @@ class WarningCurrentPhenomenonsData(TypedDict):
     update_time: int
     end_validity_time: int
     domain_id: str
-    phenomenons_max_colors: List[PhenomenonMaxColor]
+    phenomenons_max_colors: list[PhenomenonMaxColor]
 
 
 class WarningFullData(TypedDict):
@@ -48,13 +45,13 @@ class WarningFullData(TypedDict):
     end_validity_time: int
     domain_id: str
     color_max: int
-    timelaps: List[Dict[str, Any]]
-    phenomenons_items: List[PhenomenonMaxColor]
-    advices: Optional[List[Dict[str, Any]]]
-    consequences: Optional[List[Dict[str, Any]]]
+    timelaps: list[dict[str, Any]]
+    phenomenons_items: list[PhenomenonMaxColor]
+    advices: list[dict[str, Any]] | None
+    consequences: list[dict[str, Any]] | None
     max_count_items: Any  # Didn't see any value yet
-    comments: Dict[str, Any]
-    text: Optional[Dict[str, Any]]
+    comments: dict[str, Any]
+    text: dict[str, Any] | None
     text_avalanche: Any  # Didn't see any value yet
 
 
@@ -101,7 +98,7 @@ class CurrentPhenomenons:
         return self.raw_data["domain_id"]
 
     @property
-    def phenomenons_max_colors(self) -> List[PhenomenonMaxColor]:
+    def phenomenons_max_colors(self) -> list[PhenomenonMaxColor]:
         """Return the list and colors of the phenomenons."""
         return self.raw_data["phenomenons_max_colors"]
 
@@ -188,12 +185,12 @@ class Full:
         return self.raw_data["color_max"]
 
     @property
-    def timelaps(self) -> List[Dict[str, Any]]:
+    def timelaps(self) -> list[dict[str, Any]]:
         """Return the timelaps of each phenomenon for the domain."""
         return self.raw_data["timelaps"]
 
     @property
-    def phenomenons_items(self) -> List[PhenomenonMaxColor]:
+    def phenomenons_items(self) -> list[PhenomenonMaxColor]:
         """Return the phenomenon list of the domain."""
         return self.raw_data["phenomenons_items"]
 

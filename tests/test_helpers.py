@@ -1,7 +1,5 @@
 """Tests for meteofrance module. Helpers."""
 
-from typing import List
-
 import pytest
 
 from meteofrance_api.helpers import get_phenomenon_name_from_indice
@@ -28,7 +26,7 @@ def test_get_warning_text_status_from_indice_color_en() -> None:
 
 
 @pytest.mark.parametrize(
-    "dep, res",
+    ("dep", "res"),
     [
         ("03", False),
         ("06", True),
@@ -44,7 +42,7 @@ def test_is_coastal_department(dep: str, res: bool) -> None:
 
 
 @pytest.mark.parametrize(
-    "dep, res",
+    ("dep", "res"),
     [
         ("03", True),
         ("69", True),
@@ -81,7 +79,7 @@ def test_readable_phenomenons_dict() -> None:
 
 def test_sort_places_versus_distance_from_coordinates() -> None:
     """Test the helper to order the Places list return by the search."""
-    json_places: List[PlaceData] = [
+    json_places: list[PlaceData] = [
         {
             "insee": "11254",
             "name": "Montréal",

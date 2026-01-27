@@ -2,8 +2,6 @@
 
 from datetime import datetime
 from typing import Any
-from typing import Dict
-from typing import List
 from typing import TypedDict
 
 from pytz import utc
@@ -14,11 +12,11 @@ from meteofrance_api.helpers import timestamp_to_datetime_with_locale_tz
 class ForecastData(TypedDict, total=False):
     """Describing the data structure of the forecast object returned by the REST API."""
 
-    position: Dict[str, Any]
+    position: dict[str, Any]
     updated_on: int
-    daily_forecast: List[Dict[str, Any]]
-    forecast: List[Dict[str, Any]]
-    probability_forecast: List[Dict[str, Any]]
+    daily_forecast: list[dict[str, Any]]
+    forecast: list[dict[str, Any]]
+    probability_forecast: list[dict[str, Any]]
 
 
 class Forecast:
@@ -50,7 +48,7 @@ class Forecast:
         self.raw_data = raw_data
 
     @property
-    def position(self) -> Dict[str, Any]:
+    def position(self) -> dict[str, Any]:
         """Return the position information of the forecast."""
         return self.raw_data["position"]
 
@@ -60,27 +58,27 @@ class Forecast:
         return self.raw_data["updated_on"]
 
     @property
-    def daily_forecast(self) -> List[Dict[str, Any]]:
+    def daily_forecast(self) -> list[dict[str, Any]]:
         """Return the daily forecast for the following days."""
         return self.raw_data["daily_forecast"]
 
     @property
-    def forecast(self) -> List[Dict[str, Any]]:
+    def forecast(self) -> list[dict[str, Any]]:
         """Return the hourly forecast."""
         return self.raw_data["forecast"]
 
     @property
-    def probability_forecast(self) -> List[Dict[str, Any]]:
+    def probability_forecast(self) -> list[dict[str, Any]]:
         """Return the weather event forecast."""
         return self.raw_data.get("probability_forecast", [])
 
     @property
-    def today_forecast(self) -> Dict[str, Any]:
+    def today_forecast(self) -> dict[str, Any]:
         """Return the forecast for today."""
         return self.daily_forecast[0]
 
     @property
-    def nearest_forecast(self) -> Dict[str, Any]:
+    def nearest_forecast(self) -> dict[str, Any]:
         """Return the nearest hourly forecast."""
         # get timestamp for current time
         now_timestamp = int(utc.localize(datetime.utcnow()).timestamp())
@@ -93,7 +91,7 @@ class Forecast:
         return sorted_forecast[0]
 
     @property
-    def current_forecast(self) -> Dict[str, Any]:
+    def current_forecast(self) -> dict[str, Any]:
         """Return the forecast of the current hour."""
         # Get the timestamp for the current hour.
         current_hour_timestamp = int(

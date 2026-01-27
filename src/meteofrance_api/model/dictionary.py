@@ -1,7 +1,5 @@
 """Dictionary Python model for the Météo-France REST API."""
 
-from typing import List
-from typing import Optional
 from typing import TypedDict
 
 
@@ -41,8 +39,8 @@ class WarningDictionaryData(TypedDict):
         colors: A list of ColorDictionaryEntry instances.
     """
 
-    phenomenons: List[PhenomenonDictionaryEntry]
-    colors: List[ColorDictionaryEntry]
+    phenomenons: list[PhenomenonDictionaryEntry]
+    colors: list[ColorDictionaryEntry]
 
 
 class WarningDictionary:
@@ -64,7 +62,7 @@ class WarningDictionary:
 
     def get_phenomenon_by_id(
         self, phenomenon_id: int
-    ) -> Optional[PhenomenonDictionaryEntry]:
+    ) -> PhenomenonDictionaryEntry | None:
         """Retrieves a meteorological phenomenon based on its ID.
 
         Args:
@@ -78,7 +76,7 @@ class WarningDictionary:
                 return phenomenon
         return None
 
-    def get_phenomenon_name_by_id(self, phenomenon_id: int) -> Optional[str]:
+    def get_phenomenon_name_by_id(self, phenomenon_id: int) -> str | None:
         """Retrieves the name of a meteorological phenomenon based on its ID.
 
         Args:
@@ -92,7 +90,7 @@ class WarningDictionary:
             return phenomenon["name"]
         return None
 
-    def get_color_by_id(self, color_id: int) -> Optional[ColorDictionaryEntry]:
+    def get_color_by_id(self, color_id: int) -> ColorDictionaryEntry | None:
         """Retrieves a warning color based on its ID.
 
         Args:
@@ -106,7 +104,7 @@ class WarningDictionary:
                 return color
         return None
 
-    def get_color_name_by_id(self, color_id: int) -> Optional[str]:
+    def get_color_name_by_id(self, color_id: int) -> str | None:
         """Retrieves the name of a warning color based on its ID.
 
         Args:
