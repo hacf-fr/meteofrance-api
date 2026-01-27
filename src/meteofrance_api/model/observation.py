@@ -2,8 +2,6 @@
 
 from datetime import datetime
 from typing import Any
-from typing import Dict
-from typing import Optional
 from typing import TypedDict
 
 
@@ -30,7 +28,7 @@ class ObservationData(TypedDict, total=False):
     """Data structure of the observation object from the REST API."""
 
     update_time: str
-    geometry: Dict[str, Any]
+    geometry: dict[str, Any]
     type: str
     properties: ObservationDataProperties
 
@@ -59,7 +57,7 @@ class Observation:
         self.properties = raw_data.get("properties", {})
 
     @property
-    def timezone(self) -> Optional[str]:
+    def timezone(self) -> str | None:
         """Returns the observation timezone."""
         return self.properties.get("timezone")
 
@@ -69,12 +67,12 @@ class Observation:
         return self.properties.get("gridded", {})
 
     @property
-    def time_as_string(self) -> Optional[str]:
+    def time_as_string(self) -> str | None:
         """Returns the time at which the observation was made."""
         return self._gridded.get("time")
 
     @property
-    def time_as_datetime(self) -> Optional[datetime]:
+    def time_as_datetime(self) -> datetime | None:
         """Returns the time at which the observation was made."""
         time = self.time_as_string
         return (
@@ -82,32 +80,32 @@ class Observation:
         )
 
     @property
-    def temperature(self) -> Optional[float]:
+    def temperature(self) -> float | None:
         """Returns the observed temp (°C)."""
         return self._gridded.get("T")
 
     @property
-    def wind_speed(self) -> Optional[float]:
+    def wind_speed(self) -> float | None:
         """Returns the observed wind speed (km/h)."""
         return self._gridded.get("wind_speed")
 
     @property
-    def wind_direction(self) -> Optional[int]:
+    def wind_direction(self) -> int | None:
         """Returns the observed wind direction (°)."""
         return self._gridded.get("wind_direction")
 
     @property
-    def wind_icon(self) -> Optional[str]:
+    def wind_icon(self) -> str | None:
         """Returns an icon ID illustrating the observed wind direction."""
         return self._gridded.get("wind_icon")
 
     @property
-    def weather_icon(self) -> Optional[str]:
+    def weather_icon(self) -> str | None:
         """Returns an icon ID illustrating the observed weather condition."""
         return self._gridded.get("weather_icon")
 
     @property
-    def weather_description(self) -> Optional[str]:
+    def weather_description(self) -> str | None:
         """Returns a description of the observed weather condition."""
         return self._gridded.get("weather_description")
 

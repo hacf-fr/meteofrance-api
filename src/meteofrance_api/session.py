@@ -1,7 +1,6 @@
 """Session managers for the Météo-France REST API."""
 
 from typing import Any
-from typing import Optional
 
 from requests import Response
 from requests import Session
@@ -18,7 +17,7 @@ class MeteoFranceSession(Session):
 
     host: str = METEOFRANCE_API_URL
 
-    def __init__(self, access_token: Optional[str] = None) -> None:
+    def __init__(self, access_token: str | None = None) -> None:
         """Initialize the authentication.
 
         Args:

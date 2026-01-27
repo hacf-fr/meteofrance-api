@@ -1,7 +1,7 @@
 """Tests Météo-France module. PictureOfTheDay class."""
 
-from meteofrance_api import const
 from meteofrance_api import MeteoFranceClient
+from meteofrance_api import const
 
 
 def test_picture_of_the_day() -> None:

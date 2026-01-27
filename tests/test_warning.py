@@ -75,7 +75,7 @@ def test_thumbnail() -> None:
 
 
 @pytest.mark.parametrize(
-    "dep, res_coastal, res_avalanche",
+    ("dep", "res_coastal", "res_avalanche"),
     [("13", True, False), ("32", False, False), ("74", False, True)],
 )
 def test_currentphenomenons_with_coastal_bulletin(
@@ -108,7 +108,7 @@ def test_currentphenomenons_with_coastal_bulletin(
 
 
 @pytest.mark.parametrize(
-    "dep, res_coastal, res_avalanche",
+    ("dep", "res_coastal", "res_avalanche"),
     [("13", True, False), ("32", False, False), ("74", False, True)],
 )
 def test_full_with_coastal_bulletin(
