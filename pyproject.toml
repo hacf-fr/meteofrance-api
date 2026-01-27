@@ -102,6 +102,18 @@ select = [
     "UP",    # pyupgrade
 ]
 
+[tool.ruff.lint.isort]
+force-single-line = true
+known-local-folder = [
+    "meteofrance_api",
+]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
