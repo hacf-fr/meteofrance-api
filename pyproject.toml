@@ -35,7 +35,7 @@ pytz = ">=2024.1"
 [tool.poetry.group.dev.dependencies]
 pytest = "9.0.2"
 requests_mock = "1.12.1"
-coverage = {extras = ["toml"], version = "7.13.2"}
+coverage = {extras = ["toml"], version = "7.13.3"}
 safety = "3.7.0"
 mypy = "1.19.1"
 typeguard = "4.4.4"
