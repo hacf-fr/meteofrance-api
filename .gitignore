@@ -8,6 +8,7 @@
 /docs/_build/
 /src/*.egg-info/
 __pycache__/
+.venv
 
 # Editor
 /.vscode

@@ -151,10 +151,10 @@ class MeteoFranceClient:
         # Send the API request
         resp = self.session.request(
             "get",
-            "forecast",
+            "v2/forecast",
             params={"lat": latitude, "lon": longitude, "lang": language},
         )
-        return Forecast(resp.json())
+        return Forecast.from_api_response(resp.json())
 
     def get_forecast_for_place(
         self,
