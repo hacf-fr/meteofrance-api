@@ -36,7 +36,7 @@ pytz = ">=2024.1"
 pytest = "9.0.3"
 requests_mock = "1.12.1"
 coverage = {extras = ["toml"], version = "7.14.1"}
-safety = "3.7.0"
+safety = "3.8.0"
 mypy = "1.20.2"
 typeguard = "4.5.2"
 pre-commit = "4.6.0"
