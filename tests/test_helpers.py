@@ -67,7 +67,7 @@ def test_readable_phenomenons_dict() -> None:
     ]
 
     expected_dictionary = {
-        "Inondation": "Vert",
+        "Crues": "Vert",
         "Neige-verglas": "Vert",
         "Pluie-inondation": "Vert",
         "Orages": "Jaune",
