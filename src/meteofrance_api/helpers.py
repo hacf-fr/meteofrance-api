@@ -168,6 +168,6 @@ def timestamp_to_datetime_with_locale_tz(timestamp: int, local_tz: str) -> datet
         Datetime instance corresponding to the timestamp with a timezone.
     """
     # convert timestamp in datetime with UTC timezone
-    dt_utc = utc.localize(datetime.utcfromtimestamp(timestamp))
+    dt_utc = datetime.fromtimestamp(timestamp, utc)
     # convert datetime to local timezone
     return dt_utc.astimezone(timezone(local_tz))
