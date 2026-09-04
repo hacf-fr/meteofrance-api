@@ -138,3 +138,13 @@ This project was generated from `@cjolowicz`_'s `Hypermodern Python Cookiecutter
 
 .. github-only
 .. _CONTRIBUTING.rst: CONTRIBUTING.rst
+
+Quick start
+===========
+See docs/ for full examples.
+
+
+Troubleshooting
+===============
+
+If `import meteofrance_api` fails, ensure you installed with `pip install meteofrance-api` and that your Python version matches `requires-python` in `pyproject.toml`. For Home Assistant users, restart HA after updating the library.
