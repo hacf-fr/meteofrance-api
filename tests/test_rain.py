@@ -25,8 +25,8 @@ def test_rain_not_covered() -> None:
     """Test rain forecast result on a non covered zone."""
     client = MeteoFranceClient()
 
-    # Demande au moins 3 chiffres après la virgule, sinon 502
-    with pytest.raises(requests.HTTPError, match=r"50[0|2] .*"):
+    # The API answered 500/502 for non covered zones; it now answers 400.
+    with pytest.raises(requests.HTTPError, match=r"(400|500|502) .*"):
         client.get_rain(latitude=45.51, longitude=-73.58)
 
 
