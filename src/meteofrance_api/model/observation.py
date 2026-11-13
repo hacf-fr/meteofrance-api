@@ -11,6 +11,7 @@ class ObservationDataPropertiesGridded(TypedDict, total=False):
     time: str
     T: float
     wind_speed: float
+    wind_speed_gust: float
     wind_direction: int
     wind_icon: str
     weather_icon: str

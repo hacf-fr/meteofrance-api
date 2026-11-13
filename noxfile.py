@@ -98,12 +98,21 @@ def precommit(session: Session) -> None:
         activate_virtualenv_in_precommit_hooks(session)
 
 
+# The session keeps its historical name so the required status check
+# "safety <python> / <os>" stays valid, but it now runs pip-audit.
 @session(python=python_versions[0])
 def safety(session: Session) -> None:
     """Scan dependencies for insecure packages."""
     requirements = session.poetry.export_requirements()
-    session.install("safety")
-    session.run("safety", "check", "--full-report", f"--file={requirements}")
+    session.install("pip-audit")
+    session.run(
+        "pip-audit",
+        f"--requirement={requirements}",
+        "--no-deps",
+        "--disable-pip",
+        "--progress-spinner=off",
+        "--desc",
+    )
 
 
 @session(python=python_versions)

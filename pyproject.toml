@@ -36,7 +36,7 @@ pytz = ">=2024.1"
 pytest = "9.1.1"
 requests_mock = "1.12.1"
 coverage = {extras = ["toml"], version = "7.14.3"}
-safety = "3.8.1"
+pip-audit = "2.10.1"
 mypy = "2.1.0"
 typeguard = "4.5.2"
 pre-commit = "4.6.0"
@@ -44,6 +44,12 @@ ruff = "0.15.20"
 darglint = "1.8.1"
 pre-commit-hooks = "6.0.0"
 Pygments = "2.20.0"
+# Security floor for a transitive dev dependency (virtualenv, cachecontrol).
+# Fixed releases require Python >= 3.11, so the 3.10 resolution is left as is.
+filelock = [
+    {version = ">=4.2.1", python = ">=3.11"},
+    {version = ">=3.16.1", python = "<3.11"},
+]
 
 # docs (Python >= 3.14)
 furo = {version = "==2025.12.19", python = ">=3.14"}
