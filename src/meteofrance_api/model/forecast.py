@@ -1,10 +1,9 @@
 """Weather forecast Python model for the Météo-France REST API."""
 
+from datetime import UTC
 from datetime import datetime
 from typing import Any
 from typing import TypedDict
-
-from pytz import utc
 
 from meteofrance_api.helpers import timestamp_to_datetime_with_locale_tz
 
@@ -81,7 +80,7 @@ class Forecast:
     def nearest_forecast(self) -> dict[str, Any]:
         """Return the nearest hourly forecast."""
         # get timestamp for current time
-        now_timestamp = int(utc.localize(datetime.utcnow()).timestamp())
+        now_timestamp = int(datetime.now(UTC).timestamp())
         # sort list of forecast by distance between current timestamp and
         # forecast timestamp
         sorted_forecast = sorted(
@@ -95,9 +94,7 @@ class Forecast:
         """Return the forecast of the current hour."""
         # Get the timestamp for the current hour.
         current_hour_timestamp = int(
-            utc.localize(
-                datetime.utcnow().replace(minute=0, second=0, microsecond=0)
-            ).timestamp()
+            datetime.now(UTC).replace(minute=0, second=0, microsecond=0).timestamp()
         )
         # create a dict using timestamp as keys
         forecast_by_datetime = {item["dt"]: item for item in self.forecast}
