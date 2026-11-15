@@ -11,4 +11,6 @@ extensions = [
     "myst_parser",
 ]
 autodoc_typehints = "description"
+# Show the class docstring and the __init__ docstring (constructor arguments).
+autoclass_content = "both"
 html_theme = "furo"
