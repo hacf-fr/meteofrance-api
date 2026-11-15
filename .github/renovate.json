@@ -35,6 +35,12 @@
       "matchManagers": ["github-actions"],
       "matchUpdateTypes": ["minor", "patch"],
       "automerge": true
+    },
+    {
+      "description": "Keep the main CI/release Python on 3.14 (Home Assistant's version). Moving to 3.15 must be a deliberate change, not an automerged update. Patch updates (3.14.x) stay allowed.",
+      "matchManagers": ["github-actions"],
+      "matchDepNames": ["python"],
+      "allowedVersions": "<3.15"
     }
   ]
 }
