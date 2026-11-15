@@ -36,7 +36,7 @@ jobs:
 
     steps:
       - name: Check out the repository
-        uses: actions/checkout@v6.0.3
+        uses: actions/checkout@v6.1.0
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v6.3.0
@@ -99,7 +99,7 @@ jobs:
     needs: tests
     steps:
       - name: Check out the repository
-        uses: actions/checkout@v6.0.3
+        uses: actions/checkout@v6.1.0
 
       - name: Set up Python
         uses: actions/setup-python@v6.3.0
