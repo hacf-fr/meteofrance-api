@@ -1,9 +1,10 @@
 name: Tests
 
 on:
-  push:
   pull_request:
-    types: [opened, reopened]
+  push:
+    branches:
+      - main
 
 jobs:
   tests:
@@ -13,31 +14,32 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - { python-version: "3.11", os: ubuntu-latest, session: "pre-commit" }
-          - { python-version: "3.11", os: ubuntu-latest, session: "safety" }
+          - { python-version: "3.14", os: ubuntu-latest, session: "pre-commit" }
+          - { python-version: "3.14", os: ubuntu-latest, session: "safety" }
+          - { python-version: "3.14", os: ubuntu-latest, session: "mypy" }
+          - { python-version: "3.13", os: ubuntu-latest, session: "mypy" }
+          - { python-version: "3.12", os: ubuntu-latest, session: "mypy" }
           - { python-version: "3.11", os: ubuntu-latest, session: "mypy" }
-          - { python-version: "3.10", os: ubuntu-latest, session: "mypy" }
-          - { python-version: "3.9", os: ubuntu-latest, session: "mypy" }
-          - { python-version: "3.8", os: ubuntu-latest, session: "mypy" }
+          - { python-version: "3.15", os: ubuntu-latest, session: "mypy" }
+          - { python-version: "3.14", os: ubuntu-latest, session: "tests" }
+          - { python-version: "3.13", os: ubuntu-latest, session: "tests" }
+          - { python-version: "3.12", os: ubuntu-latest, session: "tests" }
           - { python-version: "3.11", os: ubuntu-latest, session: "tests" }
-          - { python-version: "3.10", os: ubuntu-latest, session: "tests" }
-          - { python-version: "3.9", os: ubuntu-latest, session: "tests" }
-          - { python-version: "3.8", os: ubuntu-latest, session: "tests" }
-          - { python-version: "3.11", os: windows-latest, session: "tests" }
-          - { python-version: "3.11", os: macos-latest, session: "tests" }
-          - { python-version: "3.11", os: ubuntu-latest, session: "typeguard" }
-          - { python-version: "3.11", os: ubuntu-latest, session: "xdoctest" }
-          - { python-version: "3.11", os: ubuntu-latest, session: "docs-build" }
+          - { python-version: "3.15", os: ubuntu-latest, session: "tests" }
+          - { python-version: "3.14", os: windows-latest, session: "tests" }
+          - { python-version: "3.14", os: macos-latest, session: "tests" }
+          - { python-version: "3.14", os: ubuntu-latest, session: "typeguard" }
+          - { python-version: "3.14", os: ubuntu-latest, session: "docs-build" }
 
     env:
       NOXSESSION: ${{ matrix.session }}
 
     steps:
       - name: Check out the repository
-        uses: actions/checkout@v4.1.1
+        uses: actions/checkout@v7.0.1
 
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4.7.1
+        uses: actions/setup-python@v6.3.0
         with:
           python-version: ${{ matrix.python-version }}
 
@@ -50,6 +52,8 @@ jobs:
         run: |
           pip install --constraint=.github/workflows/constraints.txt poetry
           poetry --version
+          poetry self add poetry-plugin-export
+          poetry self show plugins
 
       - name: Install Nox
         run: |
@@ -59,20 +63,11 @@ jobs:
       - name: Compute pre-commit cache key
         if: matrix.session == 'pre-commit'
         id: pre-commit-cache
-        shell: python
         run: |
-          import hashlib
-          import sys
-
-          python = "py{}.{}".format(*sys.version_info[:2])
-          payload = sys.version.encode() + sys.executable.encode()
-          digest = hashlib.sha256(payload).hexdigest()
-          result = "${{ runner.os }}-{}-{}-pre-commit".format(python, digest[:8])
-
-          print("::set-output name=result::{}".format(result))
+          echo "result=${{ runner.os }}-$(python --version | cut -d ' ' -f 2)" >> $GITHUB_OUTPUT
 
       - name: Restore pre-commit cache
-        uses: actions/cache@v3.3.2
+        uses: actions/cache@v6.1.0
         if: matrix.session == 'pre-commit'
         with:
           path: ~/.cache/pre-commit
@@ -86,14 +81,15 @@ jobs:
 
       - name: Upload coverage data
         if: always() && matrix.session == 'tests'
-        uses: "actions/upload-artifact@v3.1.3"
+        uses: actions/upload-artifact@v7.0.2
         with:
-          name: coverage-data
+          name: coverage-data-${{ matrix.python-version }}-${{ matrix.os }}
           path: ".coverage.*"
+          include-hidden-files: true
 
       - name: Upload documentation
         if: matrix.session == 'docs-build'
-        uses: actions/upload-artifact@v3.1.3
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: docs
           path: docs/_build
@@ -103,12 +99,12 @@ jobs:
     needs: tests
     steps:
       - name: Check out the repository
-        uses: actions/checkout@v4.1.1
+        uses: actions/checkout@v7.0.1
 
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v4.7.1
+      - name: Set up Python
+        uses: actions/setup-python@v6.3.0
         with:
-          python-version: "3.11"
+          python-version: "3.14.6"
 
       - name: Upgrade pip
         run: |
@@ -119,6 +115,8 @@ jobs:
         run: |
           pip install --constraint=.github/workflows/constraints.txt poetry
           poetry --version
+          poetry self add poetry-plugin-export
+          poetry self show plugins
 
       - name: Install Nox
         run: |
@@ -126,9 +124,10 @@ jobs:
           nox --version
 
       - name: Download coverage data
-        uses: actions/download-artifact@v3.0.2
+        uses: actions/download-artifact@v8.0.2
         with:
-          name: coverage-data
+          pattern: coverage-data-*
+          merge-multiple: true
 
       - name: Combine coverage data and display human readable report
         run: |
@@ -139,4 +138,4 @@ jobs:
           nox --force-color --session=coverage -- xml
 
       - name: Upload coverage report
-        uses: codecov/codecov-action@v3.1.4
+        uses: codecov/codecov-action@v7.1.1

@@ -1,4 +1,5 @@
 """Météo-France models for the REST API."""
+
 from .dictionary import WarningDictionary
 from .forecast import Forecast
 from .observation import Observation
@@ -7,7 +8,6 @@ from .place import Place
 from .rain import Rain
 from .warning import CurrentPhenomenons
 from .warning import Full
-
 
 __all__ = [
     "Forecast",

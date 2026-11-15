@@ -10,16 +10,20 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    permissions:
+      attestations: write
+      contents: write
+      id-token: write
     steps:
       - name: Check out the repository
-        uses: actions/checkout@v4.1.1
+        uses: actions/checkout@v7.0.1
         with:
           fetch-depth: 2
 
       - name: Set up Python
-        uses: actions/setup-python@v4.7.1
+        uses: actions/setup-python@v6.3.0
         with:
-          python-version: "3.11"
+          python-version: "3.14.6"
 
       - name: Upgrade pip
         run: |
@@ -34,7 +38,7 @@ jobs:
       - name: Check if there is a parent commit
         id: check-parent-commit
         run: |
-          echo "::set-output name=sha::$(git rev-parse --verify --quiet HEAD^)"
+          echo "sha=$(git rev-parse --verify --quiet HEAD^)" >> $GITHUB_OUTPUT
 
       - name: Detect and tag new version
         id: check-version
@@ -55,25 +59,30 @@ jobs:
         run: |
           poetry build --ansi
 
+      - name: Attest build provenance
+        if: steps.check-version.outputs.tag
+        uses: actions/attest@v4.2.2
+        with:
+          subject-path: dist/*
+
       - name: Publish package on PyPI
         if: steps.check-version.outputs.tag
-        uses: pypa/gh-action-pypi-publish@v1.8.10
+        uses: pypa/gh-action-pypi-publish@v1.14.3
         with:
           user: __token__
           password: ${{ secrets.PYPI_TOKEN }}
 
       - name: Publish package on TestPyPI
         if: "! steps.check-version.outputs.tag"
-        uses: pypa/gh-action-pypi-publish@v1.8.10
+        uses: pypa/gh-action-pypi-publish@v1.14.3
         with:
           user: __token__
           password: ${{ secrets.TEST_PYPI_TOKEN }}
-          repository_url: https://test.pypi.org/legacy/
+          repository-url: https://test.pypi.org/legacy/
 
       - name: Publish release notes
-        uses: release-drafter/release-drafter@v5.25.0
+        uses: release-drafter/release-drafter@v7.5.1
         with:
           publish: ${{ steps.check-version.outputs.tag != '' }}
           tag: ${{ steps.check-version.outputs.tag }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}

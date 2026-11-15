@@ -1,7 +1,4 @@
-# -*- coding: utf-8 -*-
 """Client for the Météo-France REST API."""
-from typing import List
-from typing import Optional
 
 from .const import COASTAL_DEPARTMENT_LIST
 from .const import METEOFRANCE_API_TOKEN
@@ -31,7 +28,7 @@ class MeteoFranceClient:
     weather alert bulletin.
     """
 
-    def __init__(self, access_token: Optional[str] = None) -> None:
+    def __init__(self, access_token: str | None = None) -> None:
         """Initialize the API and store the auth so we can make requests.
 
         Args:
@@ -45,12 +42,12 @@ class MeteoFranceClient:
     def search_places(
         self,
         search_query: str,
-        latitude: Optional[str] = None,
-        longitude: Optional[str] = None,
-    ) -> List[Place]:
+        latitude: str | None = None,
+        longitude: str | None = None,
+    ) -> list[Place]:
         """Search the places (cities) linked to a query by name.
 
-        You can add GPS coordinates in parameter to search places arround a given
+        You can add GPS coordinates in parameter to search places around a given
         location.
 
         Args:
@@ -71,7 +68,7 @@ class MeteoFranceClient:
         if longitude is not None:
             params["lon"] = longitude
 
-        # Send the API resuest
+        # Send the API request
         resp = self.session.request("get", "places", params=params)
         return [Place(place_data) for place_data in resp.json()]
 
@@ -121,7 +118,7 @@ class MeteoFranceClient:
                 be in French. All other value will give results in English.
 
         Returns:
-            An Observation intance.
+            An Observation instance.
         """
         return self.get_observation(place.latitude, place.longitude, language)
 
@@ -147,7 +144,7 @@ class MeteoFranceClient:
                 be in French. All other value will give results in English.
 
         Returns:
-            A Forecast intance representing the hourly and daily weather forecast.
+            A Forecast instance representing the hourly and daily weather forecast.
         """
         # TODO: add possibility to request forecast from id
 
@@ -174,7 +171,7 @@ class MeteoFranceClient:
                 be in French. All other value will give results in English.
 
         Returns:
-            A Forecast intance representing the hourly and daily weather forecast.
+            A Forecast instance representing the hourly and daily weather forecast.
         """
         return self.get_forecast(place.latitude, place.longitude, language)
 
@@ -208,18 +205,18 @@ class MeteoFranceClient:
     #
     # Warning
     #
-    def get_warning_current_phenomenoms(
+    def get_warning_current_phenomenons(
         self, domain: str, depth: int = 0, with_coastal_bulletin: bool = False
     ) -> CurrentPhenomenons:
-        """Return the current weather phenomenoms (or alerts) for a given domain.
+        """Return the current weather phenomenons (or alerts) for a given domain.
 
         Args:
             domain: could be `france` or any metropolitan France department numbers on
                 two digits. For some departments you can access an additional bulletin
-                for coastal phenomenoms. To access it add `10` after the domain id
+                for coastal phenomenons. To access it add `10` after the domain id
                 (example: `1310`).
             depth: Optional; To be used with domain = 'france'. With depth = 0 the
-                results will show only natinal sum up of the weather alerts. If
+                results will show only national sum up of the weather alerts. If
                 depth = 1, you will have in addition, the bulletin for all metropolitan
                 France department and Andorre
             with_coastal_bulletin: Optional; If set to True (default is False), you can
@@ -237,7 +234,7 @@ class MeteoFranceClient:
         )
 
         # Create object with API response
-        phenomenoms = CurrentPhenomenons(resp.json())
+        phenomenons = CurrentPhenomenons(resp.json())
         # if user ask to have the coastal bulletin merged
         if with_coastal_bulletin:
             if domain in COASTAL_DEPARTMENT_LIST:
@@ -246,11 +243,11 @@ class MeteoFranceClient:
                     "v3/warning/currentphenomenons",
                     params={"domain": domain + "10"},
                 )
-                phenomenoms.merge_with_coastal_phenomenons(
+                phenomenons.merge_with_coastal_phenomenons(
                     CurrentPhenomenons(resp.json())
                 )
 
-        return phenomenoms
+        return phenomenons
 
     def get_warning_full(
         self, domain: str, with_coastal_bulletin: bool = False
@@ -258,12 +255,12 @@ class MeteoFranceClient:
         """Retrieve a complete bulletin of the weather phenomenons for a given domain.
 
         For a given domain we can access the maximum alert, a timelaps of the alert
-        evolution for the next 24 hours, a list of alerts and other metadatas.
+        evolution for the next 24 hours, a list of alerts and other metadata.
 
         Args:
             domain: could be `france` or any metropolitan France department numbers on
                 two digits. For some departments you can access an additional bulletin
-                for coastal phenomenoms. To access it add `10` after the domain id
+                for coastal phenomenons. To access it add `10` after the domain id
                 (example: `1310`).
             with_coastal_bulletin: Optional; If set to True (default is False), you can
                 get the basic bulletin and coastal bulletin merged.
@@ -279,7 +276,7 @@ class MeteoFranceClient:
         )
 
         # Create object with API response
-        full_phenomenoms = Full(resp.json())
+        full_phenomenons = Full(resp.json())
 
         # if user ask to have the coastal bulletin merged
         if with_coastal_bulletin:
@@ -289,12 +286,12 @@ class MeteoFranceClient:
                     "v3/warning/full",
                     params={"domain": domain + "10"},
                 )
-                full_phenomenoms.merge_with_coastal_phenomenons(Full(resp.json()))
+                full_phenomenons.merge_with_coastal_phenomenons(Full(resp.json()))
 
-        return full_phenomenoms
+        return full_phenomenons
 
     def get_warning_thumbnail(self, domain: str = "france") -> str:
-        """Retrieve the thumbnail URL of the weather phenomenoms or alerts map.
+        """Retrieve the thumbnail URL of the weather phenomenons or alerts map.
 
         Args:
             domain: could be `france` or any metropolitan France department numbers on

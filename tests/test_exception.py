@@ -1,5 +1,5 @@
-# coding: utf-8
 """Tests for meteofrance module. Exception classes."""
+
 import pytest
 
 from meteofrance_api.exceptions import MeteoFranceError

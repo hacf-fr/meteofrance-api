@@ -1,5 +1,5 @@
-# coding: utf-8
 """Tests Météo-France module. MeteoFranceSession class."""
+
 import pytest
 from requests.exceptions import RequestException
 

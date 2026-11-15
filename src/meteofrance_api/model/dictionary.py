@@ -1,7 +1,5 @@
-# -*- coding: utf-8 -*-
 """Dictionary Python model for the Météo-France REST API."""
-from typing import List
-from typing import Optional
+
 from typing import TypedDict
 
 
@@ -41,15 +39,16 @@ class WarningDictionaryData(TypedDict):
         colors: A list of ColorDictionaryEntry instances.
     """
 
-    phenomenons: List[PhenomenonDictionaryEntry]
-    colors: List[ColorDictionaryEntry]
+    phenomenons: list[PhenomenonDictionaryEntry]
+    colors: list[ColorDictionaryEntry]
 
 
 class WarningDictionary:
-    """A class to represent and manipulate the Meteo France meteorological dictionary data.
+    """A class to represent and manipulate the Météo-France meteorological dictionary data.
 
     Methods:
-        get_phenomenon_name_by_id(phenomenon_id: int): Returns the name of the phenomenon for the given ID.
+        get_phenomenon_name_by_id(phenomenon_id: int): Returns the name of the
+        phenomenon for the given ID.
         get_color_name_by_id(color_id: int): Returns the name of the color for the given ID.
     """
 
@@ -57,13 +56,13 @@ class WarningDictionary:
         """Initializes the WarningDictionary with raw dictionary data.
 
         Args:
-            raw_data: A dictionary representing the JSON response from the Meteo France API.
+            raw_data: A dictionary representing the JSON response from the Météo-France API.
         """
         self.raw_data = raw_data
 
     def get_phenomenon_by_id(
         self, phenomenon_id: int
-    ) -> Optional[PhenomenonDictionaryEntry]:
+    ) -> PhenomenonDictionaryEntry | None:
         """Retrieves a meteorological phenomenon based on its ID.
 
         Args:
@@ -77,7 +76,7 @@ class WarningDictionary:
                 return phenomenon
         return None
 
-    def get_phenomenon_name_by_id(self, phenomenon_id: int) -> Optional[str]:
+    def get_phenomenon_name_by_id(self, phenomenon_id: int) -> str | None:
         """Retrieves the name of a meteorological phenomenon based on its ID.
 
         Args:
@@ -91,7 +90,7 @@ class WarningDictionary:
             return phenomenon["name"]
         return None
 
-    def get_color_by_id(self, color_id: int) -> Optional[ColorDictionaryEntry]:
+    def get_color_by_id(self, color_id: int) -> ColorDictionaryEntry | None:
         """Retrieves a warning color based on its ID.
 
         Args:
@@ -105,7 +104,7 @@ class WarningDictionary:
                 return color
         return None
 
-    def get_color_name_by_id(self, color_id: int) -> Optional[str]:
+    def get_color_name_by_id(self, color_id: int) -> str | None:
         """Retrieves the name of a warning color based on its ID.
 
         Args:

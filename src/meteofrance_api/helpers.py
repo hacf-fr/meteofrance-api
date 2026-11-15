@@ -1,11 +1,7 @@
-# -*- coding: utf-8 -*-
 """Helpers to be used with the Météo-France REST API ."""
+
 import math
 from datetime import datetime
-from typing import Dict
-from typing import List
-from typing import Optional
-from typing import Tuple
 
 from pytz import timezone
 from pytz import utc
@@ -22,7 +18,7 @@ from .model.warning import PhenomenonMaxColor
 
 def get_warning_text_status_from_indice_color(
     int_color: int, lang: str = "fr"
-) -> Optional[str]:
+) -> str | None:
     """Convert the color code (in int) in readable text (Helper).
 
     Args:
@@ -41,16 +37,16 @@ def get_warning_text_status_from_indice_color(
 
 def get_phenomenon_name_from_indice(
     int_phenomenon: str, lang: str = "fr"
-) -> Optional[str]:
-    """Convert the phenomenom code in readable text (Hepler).
+) -> str | None:
+    """Convert the phenomenon code in readable text (Helper).
 
     Args:
-        int_phenomenon: ID of the phenomenom in int. Value expected between 1 and 9.
+        int_phenomenon: ID of the phenomenon in int. Value expected between 1 and 9.
         lang: Optional; If language is equal "fr" (default value) results will
             be in French. All other value will give results in English.
 
     Returns:
-        Phenomenom in text. French or English according to the lang parameter.
+        phenomenon in text. French or English according to the lang parameter.
     """
     if lang == "fr":
         return ALERT_TYPE_DICTIONARY_FR[int_phenomenon]
@@ -59,7 +55,7 @@ def get_phenomenon_name_from_indice(
 
 
 def is_coastal_department(department_number: str) -> bool:
-    """Identify when a second bulletin is availabe for coastal risks (Helper).
+    """Identify when a second bulletin is available for coastal risks (Helper).
 
     Args:
         department_number: Department number on 2 characters
@@ -73,7 +69,7 @@ def is_coastal_department(department_number: str) -> bool:
 def is_valid_warning_department(department_number: str) -> bool:
     """Identify if there is a weather alert bulletin for this department (Helper).
 
-    Weather alert buletins are available only for metropolitan France and Andorre.
+    Weather alert bulletins are available only for metropolitan France and Andorre.
 
     Args:
         department_number: Department number on 2 characters.
@@ -84,13 +80,13 @@ def is_valid_warning_department(department_number: str) -> bool:
     return department_number in VALID_DEPARTMENT_LIST
 
 
-def readeable_phenomenoms_dict(
-    list_phenomenoms: List[PhenomenonMaxColor], language: str = "fr"
-) -> Dict[Optional[str], Optional[str]]:
+def readable_phenomenons_dict(
+    list_phenomenons: list[PhenomenonMaxColor], language: str = "fr"
+) -> dict[str | None, str | None]:
     """Create a dictionary with human readable keys and values (Helper).
 
     Args:
-        list_phenomenoms: Dictionary with phenomenon ID and color code of status.
+        list_phenomenons: Dictionary with phenomenon ID and color code of status.
         language: Optional; If language is equal "fr" (default value) results will
             be in French. All other value will give results in English.
 
@@ -100,17 +96,17 @@ def readeable_phenomenoms_dict(
     # Init empty dictionary
     readable_dict = {}
 
-    # Translate phenomenom name and alert level
-    for phenomenom in list_phenomenoms:
+    # Translate phenomenon name and alert level
+    for phenomenon in list_phenomenons:
         readable_dict[
-            get_phenomenon_name_from_indice(phenomenom["phenomenon_id"], language)
+            get_phenomenon_name_from_indice(phenomenon["phenomenon_id"], language)
         ] = get_warning_text_status_from_indice_color(
-            phenomenom["phenomenon_max_color_id"], language
+            phenomenon["phenomenon_max_color_id"], language
         )
     return readable_dict
 
 
-def haversine(coord1: Tuple[float, float], coord2: Tuple[float, float]) -> float:
+def haversine(coord1: tuple[float, float], coord2: tuple[float, float]) -> float:
     """Compute distance in meters between to GPS coordinates using Harvesine formula.
 
     source: https://janakiev.com/blog/gps-points-distance-python/
@@ -138,8 +134,8 @@ def haversine(coord1: Tuple[float, float], coord2: Tuple[float, float]) -> float
 
 
 def sort_places_versus_distance_from_coordinates(
-    list_places: List[Place], gps_coord: Tuple[float, float]
-) -> List[Place]:
+    list_places: list[Place], gps_coord: tuple[float, float]
+) -> list[Place]:
     """Oder list of places according to the distance to a reference coordinates.
 
     Note: this helper is compensating the bad results of the API. Results in the API
@@ -161,7 +157,7 @@ def sort_places_versus_distance_from_coordinates(
     return sorted_places
 
 
-def timestamp_to_dateime_with_locale_tz(timestamp: int, local_tz: str) -> datetime:
+def timestamp_to_datetime_with_locale_tz(timestamp: int, local_tz: str) -> datetime:
     """Convert timestamp in datetime (Helper).
 
     Args:

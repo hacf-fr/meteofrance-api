@@ -1,9 +1,9 @@
-# coding: utf-8
 """Tests Météo-France module."""
+
 import pytest
 
 from meteofrance_api import MeteoFranceClient
-from meteofrance_api.helpers import readeable_phenomenoms_dict
+from meteofrance_api.helpers import readable_phenomenons_dict
 
 
 @pytest.mark.parametrize("city", ["Montréal", "Foix"])
@@ -35,10 +35,10 @@ def test_workflow(city: str) -> None:
 
     # Fetch weather alerts.
     if my_place.admin2:
-        my_place_weather_alerts = client.get_warning_current_phenomenoms(
+        my_place_weather_alerts = client.get_warning_current_phenomenons(
             my_place.admin2
         )
-        readable_warnings = readeable_phenomenoms_dict(
+        readable_warnings = readable_phenomenons_dict(
             my_place_weather_alerts.phenomenons_max_colors
         )
 

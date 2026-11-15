@@ -1,8 +1,8 @@
-# coding: utf-8
 """Tests Météo-France module. Observation class."""
+
+from datetime import UTC
 from datetime import datetime
 from datetime import timedelta
-from datetime import timezone
 
 from .const import MOUNTAIN_CITY
 from meteofrance_api import MeteoFranceClient
@@ -29,7 +29,7 @@ def assert_types(observation: Observation) -> None:
 
 def assert_datetime(observation: Observation) -> None:
     """Check observation time is before now but after now - 1h."""
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     assert (
         True
         if observation.time_as_datetime is None

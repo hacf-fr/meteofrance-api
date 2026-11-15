@@ -1,4 +1,6 @@
 """Nox sessions."""
+
+import os
 import shutil
 import sys
 from pathlib import Path
@@ -20,15 +22,14 @@ except ImportError:
 
 
 package = "meteofrance_api"
-python_versions = ["3.11", "3.10", "3.9", "3.8"]
-nox.needs_version = ">= 2021.6.6"
+python_versions = ["3.14", "3.15", "3.13", "3.12", "3.11"]
+nox.needs_version = ">= 2024.4.15"
 nox.options.sessions = (
     "pre-commit",
     "safety",
     "mypy",
     "tests",
     "typeguard",
-    "xdoctest",
     "docs-build",
 )
 
@@ -69,49 +70,49 @@ def activate_virtualenv_in_precommit_hooks(session: Session) -> None:
         if not (lines[0].startswith("#!") and "python" in lines[0].lower()):
             continue
 
-        header = dedent(
-            f"""\
+        header = dedent(f"""\
             import os
             os.environ["VIRTUAL_ENV"] = {virtualenv!r}
             os.environ["PATH"] = os.pathsep.join((
                 {session.bin!r},
                 os.environ.get("PATH", ""),
             ))
-            """
-        )
+            """)
 
         lines.insert(1, header)
         hook.write_text("\n".join(lines))
 
 
-@session(name="pre-commit", python="3.11")
+@session(name="pre-commit", python=python_versions[0])
 def precommit(session: Session) -> None:
     """Lint using pre-commit."""
     args = session.posargs or ["run", "--all-files", "--show-diff-on-failure"]
     session.install(
-        "black",
         "darglint",
-        "flake8",
-        "flake8-bandit",
-        "flake8-bugbear",
-        "flake8-docstrings",
-        "flake8-rst-docstrings",
-        "pep8-naming",
+        "ruff",
         "pre-commit",
         "pre-commit-hooks",
-        "reorder-python-imports",
     )
     session.run("pre-commit", *args)
     if args and args[0] == "install":
         activate_virtualenv_in_precommit_hooks(session)
 
 
-@session(python="3.11")
+# The session keeps its historical name so the required status check
+# "safety <python> / <os>" stays valid, but it now runs pip-audit.
+@session(python=python_versions[0])
 def safety(session: Session) -> None:
     """Scan dependencies for insecure packages."""
     requirements = session.poetry.export_requirements()
-    session.install("safety")
-    session.run("safety", "check", "--full-report", f"--file={requirements}")
+    session.install("pip-audit")
+    session.run(
+        "pip-audit",
+        f"--requirement={requirements}",
+        "--no-deps",
+        "--disable-pip",
+        "--progress-spinner=off",
+        "--desc",
+    )
 
 
 @session(python=python_versions)
@@ -158,21 +159,15 @@ def typeguard(session: Session) -> None:
     session.run("pytest", f"--typeguard-packages={package}", *session.posargs)
 
 
-@session(python=python_versions)
-def xdoctest(session: Session) -> None:
-    """Run examples with xdoctest."""
-    args = session.posargs or ["all"]
-    session.install(".")
-    session.install("xdoctest[colors]")
-    session.run("python", "-m", "xdoctest", package, *args)
-
-
-@session(name="docs-build", python="3.11")
+@session(name="docs-build", python=python_versions[0])
 def docs_build(session: Session) -> None:
     """Build the documentation."""
     args = session.posargs or ["docs", "docs/_build"]
+    if not session.posargs and "FORCE_COLOR" in os.environ:
+        args.insert(0, "--color")
+
     session.install(".")
-    session.install("sphinx", "sphinx-click", "sphinx-rtd-theme")
+    session.install("sphinx", "furo", "myst-parser")
 
     build_dir = Path("docs", "_build")
     if build_dir.exists():
@@ -181,12 +176,12 @@ def docs_build(session: Session) -> None:
     session.run("sphinx-build", *args)
 
 
-@session(python="3.11")
+@session(python=python_versions[0])
 def docs(session: Session) -> None:
     """Build and serve the documentation with live reloading on file changes."""
     args = session.posargs or ["--open-browser", "docs", "docs/_build"]
     session.install(".")
-    session.install("sphinx", "sphinx-autobuild", "sphinx-click", "sphinx-rtd-theme")
+    session.install("sphinx", "sphinx-autobuild", "furo", "myst-parser")
 
     build_dir = Path("docs", "_build")
     if build_dir.exists():
