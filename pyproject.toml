@@ -13,11 +13,11 @@ classifiers = [
     "Operating System :: OS Independent",
     "Development Status :: 5 - Production/Stable",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15",
     "License :: OSI Approved :: MIT License",
 ]
 
@@ -28,7 +28,7 @@ Changelog = "https://github.com/hacf-fr/meteofrance-api/releases"
 poetry-plugin-export = ">=1.8"
 
 [tool.poetry.dependencies]
-python = ">=3.10,<4.0"
+python = ">=3.11,<4.0"
 requests = "^2.32.3"
 pytz = ">=2024.1"
 
@@ -44,12 +44,6 @@ ruff = "0.17.5"
 darglint = "1.8.1"
 pre-commit-hooks = "6.0.0"
 Pygments = "2.20.0"
-# Security floor for a transitive dev dependency (virtualenv, cachecontrol).
-# Fixed releases require Python >= 3.11, so the 3.10 resolution is left as is.
-filelock = [
-    {version = ">=4.2.1", python = ">=3.11"},
-    {version = ">=3.16.1", python = "<3.11"},
-]
 
 # docs (Python >= 3.14)
 furo = {version = "==2025.12.19", python = ">=3.14"}
@@ -81,7 +75,7 @@ show_error_context = true
 
 [tool.ruff]
 line-length = 88
-target-version = "py310"
+target-version = "py311"
 
 [tool.ruff.lint]
 ignore = [
