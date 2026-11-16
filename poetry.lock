@@ -1893,35 +1893,38 @@ files = [
 
 [[package]]
 name = "sphinx"
-version = "9.1.0"
+version = "9.2.0"
 description = "Python documentation generator"
 optional = false
-python-versions = ">=3.12"
+python-versions = ">=3.13"
 groups = ["dev"]
 markers = "python_version >= \"3.14\""
 files = [
-    {file = "sphinx-9.1.0-py3-none-any.whl", hash = "sha256:c84fdd4e782504495fe4f2c0b3413d6c2bf388589bb352d439b2a3bb99991978"},
-    {file = "sphinx-9.1.0.tar.gz", hash = "sha256:7741722357dd75f8190766926071fed3bdc211c74dd2d7d4df5404da95930ddb"},
+    {file = "sphinx-9.2.0-py3-none-any.whl", hash = "sha256:4c3ec13b612712c0d3ce4cbdd9e3eb91e68577e07a8e31f32f21cf178453578c"},
+    {file = "sphinx-9.2.0.tar.gz", hash = "sha256:90470459f3cab15d9dfed146c71cf77694b0445df17b2e0e69059cb9f7fc9ee4"},
 ]
 
 [package.dependencies]
-alabaster = ">=0.7.14"
-babel = ">=2.13"
+alabaster = ">=1.0"
+babel = ">=2.18"
 colorama = {version = ">=0.4.6", markers = "sys_platform == \"win32\""}
-docutils = ">=0.21,<0.23"
+docutils = ">=0.21,<0.24"
 imagesize = ">=1.3"
 Jinja2 = ">=3.1"
-packaging = ">=23.0"
-Pygments = ">=2.17"
-requests = ">=2.30.0"
-roman-numerals = ">=1.0.0"
-snowballstemmer = ">=2.2"
+packaging = ">=25.0"
+Pygments = ">=2.19"
+requests = ">=2.32.5"
+roman-numerals = ">=3.0"
+snowballstemmer = ">=3.0.1"
 sphinxcontrib-applehelp = ">=1.0.7"
 sphinxcontrib-devhelp = ">=1.0.6"
 sphinxcontrib-htmlhelp = ">=2.0.6"
 sphinxcontrib-jsmath = ">=1.0.1"
 sphinxcontrib-qthelp = ">=1.0.6"
 sphinxcontrib-serializinghtml = ">=1.1.9"
+
+[package.extras]
+test = ["defusedxml (>=0.7.1)"]
 
 [[package]]
 name = "sphinx-autobuild"
@@ -2479,4 +2482,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11,<4.0"
-content-hash = "6ff4e464779c07e6320cd8a55e3fc569b102be56af5d586327b271773e62ea4a"
+content-hash = "d59d6b518c293b35c9ade3c0b0ad61bf426695d3a6b36efff30d53dacbdce168"
