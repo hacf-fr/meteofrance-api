@@ -33,7 +33,7 @@ requests = "^2.32.3"
 pytz = ">=2024.1"
 
 [tool.poetry.group.dev.dependencies]
-pytest = "9.1.1"
+pytest = "9.2.0"
 requests_mock = "1.12.1"
 coverage = {extras = ["toml"], version = "7.17.3"}
 pip-audit = "2.10.1"
