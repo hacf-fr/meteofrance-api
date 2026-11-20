@@ -2185,14 +2185,14 @@ files = [
 
 [[package]]
 name = "typeguard"
-version = "4.6.0"
+version = "4.6.1"
 description = "Run-time type checker for Python"
 optional = false
 python-versions = ">=3.10"
 groups = ["dev"]
 files = [
-    {file = "typeguard-4.6.0-py3-none-any.whl", hash = "sha256:79878165bb86f2cf5d41d159a0ff1792a796cf496882d2fe1b1c6c7049b9cdd7"},
-    {file = "typeguard-4.6.0.tar.gz", hash = "sha256:e7414f09111317de3e335de92cd397c5c0ca00b1cc1676de12e1d444a79b3f21"},
+    {file = "typeguard-4.6.1-py3-none-any.whl", hash = "sha256:aca1f365124873d5325b18aad1a3689d62f7184abe32d899413562cf51729d02"},
+    {file = "typeguard-4.6.1.tar.gz", hash = "sha256:d94fd3552c5feb6bada6e8bb1167d9916c08d7442141aeb041b847ba9bd1afb1"},
 ]
 
 [package.dependencies]
@@ -2482,4 +2482,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11,<4.0"
-content-hash = "9328ecb8c30d30ceca187bee8adc6f7fe3ff6bfe433da9fe8792152f32afdfe0"
+content-hash = "a8a3efaefa5cfb615e3cba3e8f409fe44c36b0c63cc0aab1c888af878b04b4a5"
