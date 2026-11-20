@@ -38,7 +38,7 @@ requests_mock = "1.12.1"
 coverage = {extras = ["toml"], version = "7.17.3"}
 pip-audit = "2.10.1"
 mypy = "2.4.1"
-typeguard = "4.6.0"
+typeguard = "4.6.1"
 pre-commit = "4.7.0"
 ruff = "0.17.6"
 darglint = "1.8.1"
